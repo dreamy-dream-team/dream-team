@@ -5,41 +5,36 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Entities & Attributes</h1>
+<h1>Entities, Attributes, & Relations</h1>
 <div>
     <p>Profile</p>
     <ul>
+        <li>profileId</li>
         <li>profileEmail</li>
-        <li>profilePassword</li>
-        <li>profileHandle</li>  //username
-        <li>profileId</li>  //nine digit code
-        <li>profileIcon</li>
+        <li>profileHash</li>
+        <li>profileHandle</li>
     </ul>
 
     <p>Post</p>
     <ul>
         <li>postId</li>
-        <li>postDate</li>
-        <li>postTime</li>
-        <li>postContent</li>
         <li>postProfileId</li>
-        <li>postTags</li>
-        <li>postProfileIcon</li>
+        <li>postContent</li>
+        <li>postDateTime</li>
     </ul>
 
-    <p>Flag</p>
+    <p>Post Category</p>
     <ul>
-        <li>flagProfileId</li>
-        <li>flagPostId</li>
+        <li>postCategoryPostId</li>
+        <li>postCategoryCategoryId</li>
     </ul>
 
-    <p>Reactions</p>
+    <p>Vote</p>
     <ul>
-        <li>reactionId</li>
-        <li>reactionProfileId</li>
-        <li>reactionDate</li>
-        <li>reactionTotal</li>
-        <li>reactionPostId</li>
+        <li>votePostId</li>
+        <li>voteProfileId</li>
+        <li>voteDateTime</li>
+        <li>voteValue</li>
     </ul>
 
     <p>Categories</p>
@@ -48,11 +43,6 @@
         <li>categoryName</li>
     </ul>
 
-    <p>Hashtags</p>
-    <ul>
-        <li>hashtagId</li>
-        <li>hashtagName</li>
-    </ul>
 </div>
 
 <h2>Relations</h2>
