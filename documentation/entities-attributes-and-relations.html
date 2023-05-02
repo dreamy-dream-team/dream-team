@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<h1>Entities & Attributes</h1>
+<div>
+    <p>Profile</p>
+    <ul>
+        <li>profileEmail</li>
+        <li>profilePassword</li>
+        <li>profileHandle</li>  //username
+        <li>profileId</li>  //nine digit code
+        <li>profileIcon</li>
+    </ul>
+
+    <p>Post</p>
+    <ul>
+        <li>postId</li>
+        <li>postDate</li>
+        <li>postTime</li>
+        <li>postContent</li>
+        <li>postProfileId</li>
+        <li>postTags</li>
+        <li>postProfileIcon</li>
+    </ul>
+
+    <p>Flag</p>
+    <ul>
+        <li>flagProfileId</li>
+        <li>flagPostId</li>
+    </ul>
+
+    <p>Reactions</p>
+    <ul>
+        <li>reactionId</li>
+        <li>reactionProfileId</li>
+        <li>reactionDate</li>
+        <li>reactionTotal</li>
+        <li>reactionPostId</li>
+    </ul>
+
+    <p>Categories</p>
+    <ul>
+        <li>categoryId</li>
+        <li>categoryName</li>
+    </ul>
+
+    <p>Hashtags</p>
+    <ul>
+        <li>hashtagId</li>
+        <li>hashtagName</li>
+    </ul>
+</div>
+
+<h2>Relations</h2>
+<ul>
+    <li>One Profile can write many Posts (1 to many)</li>
+    <li>One Profile can React to many Posts (1 to many)</li>
+    <li>One Profile can Flag many Posts (1 to many)</li>
+    <li>One Hashtag can go to many Posts (1 to many)</li>
+    <li>One Category can have many Posts (1 to many)</li>
+    <li>One Category can have many Hashtags (1 to many)</li>
+    <li>Many Posts can have many Hashtags (many to many)</li>
+    <li>One Post can have many Reactions (1 to many)</li>
+    <li>One Post can have many Flags (1 to many)</li>
+    <li>One Post can have many Categories (1 to many)</li>
+    <li>One Post can have many Hashtags (1 to many)</li>
+</ul>
+
+
+
+
+
+</body>
+</html>
