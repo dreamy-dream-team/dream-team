@@ -10,10 +10,12 @@
     <p>Profile</p>
     <ul>
         <li>profileId</li>
+        <li>profileAuthenticationToken</li>
         <li>profileEmail</li>
         <li>profileHandle</li>
+        <li>profileHandleIsVisible</li>
         <li>profileHash</li>
-
+        <li>profileAuthenticationToken</li>
     </ul>
 
     <p>Post</p>
@@ -21,6 +23,7 @@
         <li>postId</li>
         <li>postContent</li>
         <li>postDateTime</li>
+        <li>postIsPublished</li>
         <li>postProfileId</li>
     </ul>
 
@@ -43,33 +46,15 @@
         <li>categoryId</li>
         <li>categoryName</li>
     </ul>
-
 </div>
 
 <h2>Relations</h2>
 <ul>
-    <li>One Profile can write many Posts (1 to many)</li>
-    <li>One Profile can React to many Posts (1 to many)</li>
-    <li>One Profile can Flag many Posts (1 to many)</li>
-    <li>One Hashtag can go to many Posts (1 to many)</li>
-    <li>One Category can have many Posts (1 to many)</li>
-    <li>One Category can have many Hashtags (1 to many)</li>
-    <li>Many Posts can have many Hashtags (many to many)</li>
-    <li>One Post can have many Reactions (1 to many)</li>
-    <li>One Post can have many Flags (1 to many)</li>
-    <li>One Post can have many Categories (1 to many)</li>
-    <li>One Post can have many Hashtags (1 to many)</li>
-
-<!-- Added more here....we could discuss tomorrow at group meeting-->
-    <li>One profile can have many posts. (one-to-many)</li>
-    <li>One post can have many post categories. (one-to-many)</li>
-    <li>One category can have many post-categories. (one-to-many)</li>
-    <li>One profile can have many votes. (one-to-many)</li>
-    <li>One post can receive many votes. (one-to-many)</li>
+    <li>One profile id can have many vote profile id. (one-to-many)</li>
+    <li>One profile id can have many post profile id. (one-to-many)</li>
+    <li>One post id can have many vote post id. (one-to-one)</li>
+    <li>Many category id can have many post category category id. (many-to-many)</li>
+    <li>Many post id can have many post category post id. (many-to-many)</li>
 </ul>
-
-
-
-
 </body>
 </html>
