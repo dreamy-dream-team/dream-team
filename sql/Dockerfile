@@ -1,4 +1,1 @@
-FROM ubuntu:latest
-LABEL authors="entro"
-
-ENTRYPOINT ["top", "-b"]
+FROM postgres:alpine
