@@ -6,6 +6,7 @@ import session from 'express-session'
 import { createClient,  RedisClientType } from 'redis'
 import RedisStore from 'connect-redis'
 import signUpRoute from "./apis/sign-up/sign-up.route";
+import {SignInRouter} from "./apis/sign-in/sign-in.route";
 
 // The following class creates the app and instantiates the server
 export class App {
@@ -50,6 +51,7 @@ export class App {
     private routes (): void {
         this.app.use('/apis', indexRoute)
         this.app.use('/apis/sign-up', signUpRoute)
+        this.app.use('/apis/sign-in', SignInRouter)
     }
 
     // starts the server and tells the terminal to post a message that the server is running and on what port
