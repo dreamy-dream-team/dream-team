@@ -13,9 +13,20 @@
 //         })
 //
 //         const activationSucceeded = async (profile: Profile): Promise<Response> => {
-//             const
+//             const updatedProfile = { ...profile, profileActivationToken: null }
+//             console.log(updatedProfile)
+//             await updatedProfile(updatedProfile)
+//             return response.json({
+//                 status: 200,
+//                 data: null,
+//                 message: 'Account activation was successful'
+//             })
 //         }
-//     } catch(error) {
-//         return
+//         return (profile != null) ? await activationSucceeded(profile) : activationFailed()
+//     } catch(error: any) {
+//         return response.json({
+//             status: 500,
+//             data: null,
+//             message: error.message})
 //     }
 // }
