@@ -20,9 +20,13 @@ export interface Profile {
 
 export async function insertProfile (profile: Profile) : Promise<string> {
     const {profileActivationToken, profileCreateDate, profileEmail, profileHandle, profileHash} = profile
-    console.log(profile)
     await sql `INSERT INTO profile(profile_id, profile_activation_token, profile_create_date, profile_email, profile_handle, profile_hash) VALUES (gen_random_uuid(), ${profileActivationToken}, now(), ${profileEmail}, ${profileHandle}, ${profileHash})`
     return 'Profile Successfully Created'
+}
+
+export async function selectProfileByProfileActivationToken (profileActivationToken: string): Promise<Profile|null> {
+    const result = <Profile[]>await sql `SELECT profile_id, profile_activation_token, profile_create_date, profile_email, profile_handle FROM profile WHERE profile_activation_token = ${profileActivationToken}`
+    return result?.length === 1 ? result[0] : null
 }
 
 export async function selectProfileByProfileEmail (profileEmail: string): Promise<Profile|null>{
