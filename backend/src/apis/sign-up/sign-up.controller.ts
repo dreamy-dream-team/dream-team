@@ -11,7 +11,7 @@ export async function signupProfileController (request : Request, response : Res
         const mailgun: Mailgun = new Mailgun(formData)
         const mailgunClient: Client = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY as string })
 
-        const {profileEmail, profileHandle, profileHandleIsVisible, profilePassword} = request.body
+        const {profileEmail, profileHandle, profilePassword} = request.body
         const profileHash = await setHash(profilePassword)
         const profileActivationToken = setActivationToken()
 
@@ -32,7 +32,6 @@ export async function signupProfileController (request : Request, response : Res
             profileCreateDate: null,
             profileEmail,
             profileHandle,
-            profileHandleIsVisible,
             profileHash
         }
         await insertProfile(profile)

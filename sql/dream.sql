@@ -10,7 +10,6 @@ CREATE TABLE IF NOT EXISTS profile (
     profile_create_date TIMESTAMPTZ,
     profile_email VARCHAR(128) NOT NULL UNIQUE,
     profile_handle VARCHAR(54) NOT NULL UNIQUE,
-    profile_handle_is_visible BOOLEAN NOT NULL,
     profile_hash CHAR(97) NOT NULL
 );
 
@@ -21,6 +20,7 @@ CREATE TABLE IF NOT EXISTS post (
     post_content VARCHAR(1024) NOT NULL,
     post_date_time TIMESTAMPTZ,
     post_is_published BOOLEAN,
+    post_profile_handle_is_visible BOOLEAN NOT NULL,
     post_title VARCHAR(512) NOT NULL,
     FOREIGN KEY (post_profile_id) REFERENCES profile(profile_id)
 );
