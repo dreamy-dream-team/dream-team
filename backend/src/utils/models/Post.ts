@@ -1,5 +1,5 @@
 import {sql} from "../database.utils";
-
+import e from "express";
 
 export interface Post {
     postId: string|null
@@ -17,15 +17,15 @@ export async function insertPost (post: Post): Promise<string> {
     return 'post created successfully'
 }
 
-
-// TODO ask instructors about the oder by in this function
 export async function selectAllPosts (): Promise<Post[]> {
      return sql <Post[]> `SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM post ORDER BY post_date_time DESC`
 }
-// TODO ask how we would select all by vote count
 
+export async function selectAllPostsByVote (): Promise<Post[]> {
+    return sql <Post[]> `SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM vote INNER JOIN vote_value ON post.postId = vote.votePostId WHERE (SELECT COUNT(vote_value) FROM vote WHERE vote_value ORDER BY COUNT(vote_value) DESC)`
+}
 
-export async function selectPostsByPostId (postId: string): Promise<Post|null> {
+export async function selectPostByPostId (postId: string): Promise<Post|null> {
     const result = <Post[]> await sql`SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM post WHERE post_id = ${postId}`
     return result?.length === 1 ? result[0] : null
 }
@@ -34,14 +34,23 @@ export async function selectPostsByPostProfileId (postProfileId: string): Promis
     return <Post[]> await sql`SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM post WHERE post_profile_id = ${postProfileId}`
 }
 
+export async function updatePostByPostId (post: Post): Promise<string> {
+    const {postId, postProfileId, postContent, postDateTime, postIsPublished, postProfileHandleIsVisible, postTitle} = post
+    await sql`UPDATE post SET post_content = ${postContent}, post_date_time = ${postDateTime}, post_is_published = ${postIsPublished}, post_profile_handle_is_visible = ${postProfileHandleIsVisible} post_title = ${postTitle} WHERE post_id = ${postId} AND post_profile_id = ${postProfileId}`
+    return 'post updated successfully'
+}
+
 export async function deletePostByPostId (post: Post): Promise<string> {
     const {postId, postProfileId} = post
     await sql`DELETE FROM "post" WHERE post_id = ${postId} AND post_profile_id = ${postProfileId}`
     return 'Post deleted successfully'
 }
 
-// TODO ask how we would write this and select from postIsPublished
 export async function selectPostsByPostProfileHandleIsVisible (postProfileHandleIsVisible: boolean): Promise<Post[]> {
     return sql<Post[]>`SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM post WHERE post_profile_handle_is_visible = ${postProfileHandleIsVisible}`
+}
+
+export async function selectAllPostsByPostIsPublished (postIsPublished: boolean): Promise<Post[]> {
+    return sql <Post[]>`SELECT post_id, post_profile_id, post_content, post_date_time, post_is_published, post_profile_handle_is_visible, post_title FROM post WHERE post_is_published = ${postIsPublished}`
 }
 
