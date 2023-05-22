@@ -20,9 +20,10 @@ export async function insertPost (post: Post): Promise<string> {
 
 // TODO ask instructors about the oder by in this function
 export async function selectAllPosts (): Promise<Post[]> {
-     return <Post[]> await sql `SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM post `
+     return sql <Post[]> `SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM post ORDER BY post_date_time DESC`
 }
 // TODO ask how we would select all by vote count
+
 
 export async function selectPostsByPostId (postId: string): Promise<Post|null> {
     const result = <Post[]> await sql`SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM post WHERE post_id = ${postId}`
@@ -40,7 +41,7 @@ export async function deletePostByPostId (post: Post): Promise<string> {
 }
 
 // TODO ask how we would write this and select from postIsPublished
-// export async function selectPostsByPostProfileHandleIsVisible (postProfileHandleIsVisible: boolean) Promise<Post[]> {
-//     return = <Post[]> await sql`SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM post WHERE post_profile_handle_is_visible = ${selectPostsByPostProfileHandleIsVisible}`
-// }
+export async function selectPostsByPostProfileHandleIsVisible (postProfileHandleIsVisible: boolean): Promise<Post[]> {
+    return sql<Post[]>`SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM post WHERE post_profile_handle_is_visible = ${postProfileHandleIsVisible}`
+}
 
