@@ -10,6 +10,7 @@ import {SignInRouter} from "./apis/sign-in/sign-in.route";
 import {ProfileRoute} from "./apis/profile/profile.route";
 import {SignOutRoute} from "./apis/sign-out/sign-out.route";
 import VoteRoute from "./apis/vote/vote.route";
+import PostRoute from "./apis/post/post.route";
 
 // The following class creates the app and instantiates the server
 export class App {
@@ -58,6 +59,7 @@ export class App {
         this.app.use('/apis/sign-out', SignOutRoute)
         this.app.use('/apis/profile', ProfileRoute)
         this.app.use('/apis/vote', VoteRoute)
+        this.app.use('apis/post', PostRoute)
     }
 
     // starts the server and tells the terminal to post a message that the server is running and on what port

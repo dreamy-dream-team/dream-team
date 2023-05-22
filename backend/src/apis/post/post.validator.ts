@@ -25,7 +25,7 @@ postDateTime: {
 postHandleIsVisible: {
     isBoolean: true,
 // TODO ask instructors about the options for this boolean
-    options: {1, null}
+//     options: {1, null}
 },
 
 postTitle: {
