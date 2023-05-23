@@ -66,3 +66,4 @@ export class App {
         console.log('Express application built successfully')
     }
 }
+

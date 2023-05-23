@@ -1,10 +1,9 @@
+import {Router} from "express";
+import {getCategoryByCategoryId, putCategoryController} from "./category.controller";
 import {asyncValidatorController} from "../../utils/controllers/async-validator.controller";
-import {getProfileByProfileId} from "../profile/profile.controller";
-import {isLoggedIn} from "../../utils/controllers/isLoggedIn.controller";
 import {checkSchema} from "express-validator";
 import {categoryValidator} from "./category.validator";
-import {Router} from "express";
-
+import {isLoggedIn} from "../../utils/controllers/isLoggedIn.controller";
 
 export const CategoryRoute: Router = Router()
 CategoryRoute.route('/')
@@ -15,8 +14,8 @@ CategoryRoute.route('/:categoryId')
         asyncValidatorController({
             check('categoryId', 'please provide a valid categoryId').isUUID()
         })
-        , getCategoryByCategoryId()
+        , getCategoryByCategoryId
     )
-    .put(asyncValidatorController(checkSchema(categoryValidator)), postCategoryController)
+    .put(isLoggedIn, asyncValidatorController(checkSchema(categoryValidator)), putCategoryController)
 
 
