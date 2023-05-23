@@ -107,6 +107,7 @@ export async function postPost (request: Request, response: Response): Promise<R
                 message
             })
             }
+
         const result = await insertPost(post)
         const status: Status = {
             status: 200,

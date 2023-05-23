@@ -13,21 +13,19 @@ import {postValidator} from "./post.validator";
 
 
 const router = Router()
-router.route('./postId').get(asyncValidatorController([
-    check('postId', 'please provide a valid postId').isUUID()
-]), getPostsByPostIdController)
 
-router.route('/postProfileId/:postProfileId').get(asyncValidatorController([
-    check('postProfileId', 'please provide a valid postProfileId').isUUID()
-]), getPostsByPostProfileIdController).get(asyncValidatorController, getPostsByPostIsPublishedController).put(isLoggedIn, asyncValidatorController(checkSchema(postValidator)))
+router.route('/:postId')
+    .get(asyncValidatorController([
+    check('postId', 'please provide a valid postId').isUUID()]), getPostsByPostIdController)
+    .delete(isLoggedIn, asyncValidatorController([check('postId', 'please provide valid postId')]), deletePostController)
+
+router.route('/postProfileId/:postProfileId')
+    .get(asyncValidatorController([check('postProfileId', 'please provide a valid postProfileId').isUUID()]), getPostsByPostProfileIdController)
+    .put(isLoggedIn, asyncValidatorController(checkSchema(postValidator)))
 
 
 router.route('/')
-    .get(getAllPostsController)
-    .post(isLoggedIn, asyncValidatorController(checkSchema((postValidator))) ,postPost)
-
-router.route('/:postId')
-    .get(asyncValidatorController([check('postId', 'please provide a valid post id').isUUID()]), getPostsByPostIdController)
-    .delete(isLoggedIn, asyncValidatorController(checkSchema((postValidator))) ,deletePostController)
+    .get(getPostsByPostIsPublishedController)
+    .post(isLoggedIn, asyncValidatorController(checkSchema((postValidator))), postPost)
 
 export default router

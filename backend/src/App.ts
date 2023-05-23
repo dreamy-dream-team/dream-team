@@ -22,7 +22,7 @@ export class App {
         private readonly port?: number | string
     ) {
 
-        this.redisClient = createClient({ legacyMode: true, socket: { host: process.env.REDIS_HOST } })
+        this.redisClient = createClient({ socket: { host: process.env.REDIS_HOST } })
         this.redisClient.connect().catch(console.error)
 
         this.redisStore = new RedisStore({client: this.redisClient})
@@ -59,7 +59,7 @@ export class App {
         this.app.use('/apis/sign-out', SignOutRoute)
         this.app.use('/apis/profile', ProfileRoute)
         this.app.use('/apis/vote', VoteRoute)
-        this.app.use('apis/post', PostRoute)
+        this.app.use('/apis/post', PostRoute)
     }
 
     // starts the server and tells the terminal to post a message that the server is running and on what port
