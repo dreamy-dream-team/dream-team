@@ -36,7 +36,7 @@ export async function selectPostsByPostProfileId (postProfileId: string): Promis
 
 export async function updatePostByPostId (post: Post): Promise<string> {
     const {postId, postProfileId, postContent, postDateTime, postIsPublished, postProfileHandleIsVisible, postTitle} = post
-    await sql`UPDATE post SET post_content = ${postContent}, post_date_time = ${postDateTime}, post_is_published = ${postIsPublished}, post_profile_handle_is_visible = ${postProfileHandleIsVisible} post_title = ${postTitle} WHERE post_id = ${postId} AND post_profile_id = ${postProfileId}`
+    await sql`UPDATE post SET post_content = ${postContent}, post_date_time = ${postDateTime}, post_is_published = ${postIsPublished}, post_profile_handle_is_visible = ${postProfileHandleIsVisible}, post_title = ${postTitle} WHERE post_id = ${postId} AND post_profile_id = ${postProfileId}`
     return 'post updated successfully'
 }
 
