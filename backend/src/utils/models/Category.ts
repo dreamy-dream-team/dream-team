@@ -18,7 +18,18 @@ export async function selectCategoryByCategoryId (categoryId: string): Promise<C
 }
 
 export async function selectAllCategories (): Promise<Category[]> {
-    return <Category[]> await sql `SELECT category_id, category_name FROM category ORDER BY post_date_time DESC`
+    return sql <Category[]> `SELECT category_id, category_name FROM category ORDER BY post_date_time DESC`
 }
 
-export async function deleteCategory
+export async function deleteCategory (categoryId: string): Promise<string> {
+    await sql'DELETE FROM category WHERE category_id = ${categoryId}`
+    return 'category deleted successfully'
+}
+
+
+}
+export async function updateCategory (category: Category): Promise<string> {
+    const {categoryId, categoryName} = category
+    await sql'UPDATE category SET category_name = ${categoryName} WHERE category_id = ${categoryId}'
+    return 'category updated successfully'
+}
