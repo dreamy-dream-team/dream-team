@@ -21,7 +21,7 @@ router.route('/:postId')
     .put(isLoggedIn, asyncValidatorController(checkSchema(postValidator)), putPostController)
 
 router.route('/postProfileId/:postProfileId')
-    .get(asyncValidatorController([check('postProfileId', 'please provide a valid postProfileId').isUUID()]), getPostsByPostProfileIdController)
+    .get(isLoggedIn, asyncValidatorController([check('postProfileId', 'please provide a valid postProfileId').isUUID()]), getPostsByPostProfileIdController)
     .put(isLoggedIn, asyncValidatorController(checkSchema(postValidator)))
 
 

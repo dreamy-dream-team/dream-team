@@ -39,7 +39,19 @@ export async function getPostsByPostIdController (request: Request, response: Re
 
 export async function getPostsByPostProfileIdController (request: Request, response: Response, nextFunction: NextFunction): Promise<Response<Status>> {
     try {
+        const {postId} = request.params
+        const profile = request.session.profile as Profile
+        const postProfileIdFromSession: string = profile.profileId as string
+
         const {postProfileId} = request.params
+        if (postProfileIdFromSession !== postProfileId)
+        {
+            return response.json({
+                status: 400,
+                message: 'you are not allowed to perform this task',
+                data: null
+            })
+        }
         const data = await selectPostsByPostProfileId(postProfileId)
         return response.json({status: 200, message: null, data})
     } catch (error) {
@@ -81,7 +93,7 @@ export async function getPostsByPostIsPublishedController (request: Request, res
 
 export async function postPost (request: Request, response: Response): Promise<Response<Status>> {
     try {
-        const { postTitle, postContent } = request.body
+        const { postTitle, postContent, postIsPublished, postProfileHandleIsVisible } = request.body
         const profile: Profile = request.session.profile as Profile
         const postProfileId: string = profile.profileId as string
 
@@ -91,8 +103,8 @@ export async function postPost (request: Request, response: Response): Promise<R
             postContent,
             postTitle,
             postDateTime: null,
-            postIsPublished: true,
-            postProfileHandleIsVisible: true
+            postIsPublished,
+            postProfileHandleIsVisible
         }
 
         const result = await insertPost(post)
