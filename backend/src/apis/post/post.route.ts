@@ -29,4 +29,6 @@ router.route('/')
     .get(getPostsByPostIsPublishedController)
     .post(isLoggedIn, asyncValidatorController(checkSchema((postValidator))), postPost)
 
+router.route('/postProfileId/:postProfileId/postProfileHandleIsVisible/true/')
+    .get(asyncValidatorController([check('postProfileId', 'please provide a valid postProfileId').isUUID()]), getPostsByPostProfileHandleIsVisibleController)
 export default router

@@ -41,13 +41,13 @@ export async function updatePostByPostId (post: Post): Promise<string> {
 }
 
 export async function deletePostByPostId (post: Post): Promise<string> {
-    const {postId, postProfileId} = post
-    await sql`DELETE FROM "post" WHERE post_id = ${postId} AND post_profile_id = ${postProfileId}`
+    const {postId} = post
+    await sql`DELETE FROM "post" WHERE post_id = ${postId}`
     return 'Post deleted successfully'
 }
 
-export async function selectPostsByPostProfileHandleIsVisible (postProfileHandleIsVisible: boolean): Promise<Post[]> {
-    return sql<Post[]>`SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM post WHERE post_profile_handle_is_visible = ${postProfileHandleIsVisible}`
+export async function selectPostsByPostProfileHandleIsVisible (postProfileId: string): Promise<Post[]> {
+    return sql<Post[]>`SELECT post_id, post_profile_id, post_content, post_date_time, post_is_published, post_profile_handle_is_visible, post_title FROM post WHERE post_profile_handle_is_visible = true AND post_profile_id = ${postProfileId} AND post_is_published = true`
 }
 
 export async function selectAllPostsByPostIsPublished (postIsPublished: boolean): Promise<Post[]> {

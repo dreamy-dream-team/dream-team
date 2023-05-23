@@ -22,7 +22,7 @@ postDateTime: {
     toDate: true
 },
 
-postHandleIsVisible: {
+postProfileHandleIsVisible: {
     isBoolean: true,
 },
 

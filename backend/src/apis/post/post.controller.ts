@@ -53,8 +53,8 @@ export async function getPostsByPostProfileIdController (request: Request, respo
 
 export async function getPostsByPostProfileHandleIsVisibleController (request: Request, response: Response, nextFunction: NextFunction): Promise<Response<Status>> {
     try {
-        const {postProfileHandleIsVisible} = request.params
-        const data = await selectPostsByPostProfileHandleIsVisible(Boolean(postProfileHandleIsVisible))
+        const {postProfileId} = request.params
+        const data = await selectPostsByPostProfileHandleIsVisible(postProfileId)
         return response.json({status: 200, message: null, data})
     } catch (error) {
         return response.json({
@@ -153,10 +153,13 @@ export async function putPostController (request: Request, response: Response): 
         }
 
         const updatedValues = { postContent, postDateTime, postIsPublished, postProfileHandleIsVisible, postTitle}
+        console.log("updatedValues", updatedValues)
         const newPost = { ...previousPost, ...updatedValues }
         const message = await updatePostByPostId(newPost)
+        console.log("message", message)
         return response.json({ status: 200, data: null, message })
     } catch (error: any) {
+        console.log(error)
         return response.json({
             status: 500,
             data: null,
