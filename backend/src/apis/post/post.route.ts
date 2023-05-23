@@ -6,7 +6,7 @@ import {
     getPostsByPostIdController,
     getPostsByPostProfileIdController,
     getPostsByPostProfileHandleIsVisibleController, getPostsByPostIsPublishedController,
-    postPost, deletePostController
+    postPost, deletePostController, putPostController
 } from "./post.controller";
 import {isLoggedIn} from "../../utils/controllers/isLoggedIn.controller";
 import {postValidator} from "./post.validator";
@@ -18,6 +18,7 @@ router.route('/:postId')
     .get(asyncValidatorController([
     check('postId', 'please provide a valid postId').isUUID()]), getPostsByPostIdController)
     .delete(isLoggedIn, asyncValidatorController([check('postId', 'please provide valid postId')]), deletePostController)
+    .put(isLoggedIn, asyncValidatorController(checkSchema(postValidator)), putPostController)
 
 router.route('/postProfileId/:postProfileId')
     .get(asyncValidatorController([check('postProfileId', 'please provide a valid postProfileId').isUUID()]), getPostsByPostProfileIdController)

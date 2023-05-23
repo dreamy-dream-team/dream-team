@@ -94,19 +94,6 @@ export async function postPost (request: Request, response: Response): Promise<R
             postIsPublished: true,
             postProfileHandleIsVisible: true
         }
-            const preformUpdate = async(post: Post): Promise<Response> => {
-                const previousPost: Post = await selectPostByPostId(post.postId as string) as Post
-                const newPost: Post = { ...previousPost, ...post}
-                await updatePostByPostId(newPost)
-                return response.json ({ status: 200, data: null, message: 'post successfully updated'})
-            }
-            const updateFailed = (message: string): Response => {
-            return response.json({
-                status: 400,
-                data: null,
-                message
-            })
-            }
 
         const result = await insertPost(post)
         const status: Status = {
@@ -148,3 +135,34 @@ export async function deletePostController (request: Request, response: Response
         })
     }
 }
+
+export async function putPostController (request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const { postId } = request.params
+        const profile = request.session.profile as Profile
+        const postProfileId = profile.profileId as string
+        const {postContent, postDateTime, postIsPublished, postProfileHandleIsVisible, postTitle} = request.body
+        const previousPost: Post | null = await selectPostByPostId(postId)
+
+        if (previousPost === null) {
+            return response.json({status: 404, data: null, message: 'post does not exist'})
+        }
+
+        if (previousPost.postProfileId !== postProfileId) {
+            return response.json({ status: 404, data: null, message: 'You are not allowed to perform this task.'})
+        }
+
+        const updatedValues = { postContent, postDateTime, postIsPublished, postProfileHandleIsVisible, postTitle}
+        const newPost = { ...previousPost, ...updatedValues }
+        const message = await updatePostByPostId(newPost)
+        return response.json({ status: 200, data: null, message })
+    } catch (error: any) {
+        return response.json({
+            status: 500,
+            data: null,
+            message: 'internal server error'
+        })
+    }
+}
+
+
