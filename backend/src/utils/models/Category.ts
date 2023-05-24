@@ -1,5 +1,10 @@
 import {sql} from "../database.utils";
 
+export interface PartialCategory{
+    categoryId: string;
+    categoryName: string;
+}
+
 
 export interface Category {
     categoryId : string | null
@@ -7,7 +12,7 @@ export interface Category {
 }
 
 export async function insertCategory (category: Category): Promise<string> {
-    const {categoryId, categoryName} = category
+    const {categoryName} = category
     await sql `INSERT INTO category (category_id, category_name) VALUES(gen_random_uuid(), ${categoryName})`
     return 'category created successfully'
 }
@@ -18,18 +23,16 @@ export async function selectCategoryByCategoryId (categoryId: string): Promise<C
 }
 
 export async function selectAllCategories (): Promise<Category[]> {
-    return sql <Category[]> `SELECT category_id, category_name FROM category ORDER BY post_date_time DESC`
+    return sql <Category[]> `SELECT category_id, category_name FROM category ORDER BY category_id DESC`
 }
 
 export async function deleteCategory (categoryId: string): Promise<string> {
-    await sql'DELETE FROM category WHERE category_id = ${categoryId}`
+    await sql`DELETE FROM category WHERE category_id = ${categoryId}`
     return 'category deleted successfully'
 }
 
-
-}
 export async function updateCategory (category: Category): Promise<string> {
     const {categoryId, categoryName} = category
-    await sql'UPDATE category SET category_name = ${categoryName} WHERE category_id = ${categoryId}'
+    await sql`UPDATE category SET category_name = ${categoryName} WHERE category_id = ${categoryId}`
     return 'category updated successfully'
 }
