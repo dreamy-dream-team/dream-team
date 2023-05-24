@@ -56,10 +56,10 @@ CREATE TABLE IF NOT EXISTS post_category (
 CREATE INDEX ON post_category(post_category_category_id);
 CREATE INDEX ON post_category(post_category_post_id);
 
--- INSERT INTO category (category_id, category_name) VALUES (gen_random_uuid(), 'nightmare');
--- INSERT INTO category (category_id, category_name) VALUES (gen_random_uuid(), 'funny');
--- INSERT INTO category (category_id, category_name) VALUES (gen_random_uuid(), 'weird');
--- INSERT INTO category (category_id, category_name) VALUES (gen_random_uuid(), 'work');
--- INSERT INTO category (category_id, category_name) VALUES (gen_random_uuid(), 'school');
--- INSERT INTO category (category_id, category_name) VALUES (gen_random_uuid(), 'out of body');
--- INSERT INTO category (category_id, category_name) VALUES (gen_random_uuid(), 'animals');
+INSERT INTO category (category_id, category_name) VALUES (gen_random_uuid(), 'nightmare');
+INSERT INTO category (category_id, category_name) VALUES (gen_random_uuid(), 'funny');
+INSERT INTO category (category_id, category_name) VALUES (gen_random_uuid(), 'weird');
+INSERT INTO category (category_id, category_name) VALUES (gen_random_uuid(), 'work');
+INSERT INTO category (category_id, category_name) VALUES (gen_random_uuid(), 'school');
+INSERT INTO category (category_id, category_name) VALUES (gen_random_uuid(), 'out of body');
+INSERT INTO category (category_id, category_name) VALUES (gen_random_uuid(), 'animals');
