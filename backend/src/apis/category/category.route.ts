@@ -1,7 +1,7 @@
 import {Router} from "express";
 import {asyncValidatorController} from "../../utils/controllers/async-validator.controller";
 import {getAllCategoriesController, getCategoryByCategoryId, postCategoryController} from "./category.controller";
-import {checkSchema} from "express-validator";
+import {check, checkSchema} from "express-validator";
 import {categoryValidator} from "./category.validator";
 
 const router = Router()
@@ -9,6 +9,7 @@ const router = Router()
 router.route('/')
 .get(getAllCategoriesController)
 .post(asyncValidatorController(checkSchema(categoryValidator)), postCategoryController)
-.get(getCategoryByCategoryId)
 
+router.route('/categoryId/:categoryId')
+    .get(asyncValidatorController([check('categoryId', "please provide valid category Id").isUUID()]),getCategoryByCategoryId)
 export default router
