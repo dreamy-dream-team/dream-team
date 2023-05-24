@@ -1,11 +1,17 @@
-import {Category, selectCategoryByCategoryId, updateCategory} from "../../utils/models/Category";
+import {
+    Category,
+    deleteCategory,
+    PartialCategory, selectAllCategories,
+    selectCategoryByCategoryId,
+    updateCategory
+} from "../../utils/models/Category";
 import {Status} from "../../utils/interfaces/Status";
 
 
-export async function putCategoryController (request: Request, response: Response): Promise<Response> {
+export const putCategoryController = async (request: Request, response: Response): Promise<Response> => {
     try{
-        const { categoryId } = request.params
-        const { categoryName } = request.body
+        const {categoryId} = request.params
+        const {categoryName} = request.body
         const category = request.session.category as Category
         const categoryIdFromSession = category.categoryId as string
 
@@ -16,7 +22,7 @@ export async function putCategoryController (request: Request, response: Respons
             return response.json ({ status: 200, data: null, message: 'Category successfully updated'})
         }
         const updateFailed = (message: string): Response => {
-            return response.json ({ status: 400, data: null, message})
+            return response.json ({ status: 400, data: null, message })
         }
 
         return categoryId === categoryIdFromSession
@@ -25,9 +31,9 @@ export async function putCategoryController (request: Request, response: Respons
     } catch (error: any) {
         return(response.json({ status: 400, data: null, message: error.message}))
     }
-}
+};
 
-export async function getCategoryByCategoryId (request: Request, response: Response): Promise<Response> {
+export const getCategoryByCategoryId = async (request: Request, response: Response): Promise<Response> => {
     try{
         const {categoryId} = request.params
         const mySqlResult = await selectCategoryByCategoryId (categoryId)
@@ -37,4 +43,23 @@ export async function getCategoryByCategoryId (request: Request, response: Respo
     }catch(error: any){
         return (response.json ({ status: 400, data: null, message: error.message }))
     }
-}
+};
+
+export const deleteCategoryController = async (request: Request, response: Response): Promise<Response> => {
+    try{
+        const {categoryId} = request.params
+        await deleteCategory(categoryId)
+        return response.json({ status: 200, data: null, message: 'Category successfully deleted'})
+    }catch(error: any) {
+        return response.json({ status: 400, data: null, message: error.message })
+    }
+};
+
+export const getAllCategoriesController = async (request: Request, response: Response): Promise<Response> => {
+    try {
+        const categories = await selectAllCategories();
+        return response.json({status: 200, data: categories, message: null})
+    } catch (error: any) {
+        return response.json({status: 400, data: null, message: error.message})
+    }
+};
