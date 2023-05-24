@@ -28,3 +28,7 @@ export async function selectVoteByVoteId (vote: Vote): Promise<Vote|null> {
 export async function selectVotesByVotePostId (votePostId: string): Promise<Vote[]> {
     return <Vote[]>await sql`SELECT vote_profile_id, vote_post_id, vote_date_time, vote_value FROM "vote" WHERE vote_post_id = ${votePostId}`
 }
+
+// export async function selectCountDaVote (voteValue: boolean): Promise<number> {
+//     return <Vote[]> await sql`SELECT count(CASE WHEN vote_value THEN 1 END) FROM "vote" WHERE vote_post_id = ${votePostId}`
+// }
