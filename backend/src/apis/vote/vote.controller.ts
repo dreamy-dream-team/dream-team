@@ -23,7 +23,7 @@ export async function getVotesByVotePostId (request: Request, response: Response
 
 export async function toggleVoteController (request: Request, response: Response): Promise<Response<string>> {
     try {
-        const { votePostId } = request.body
+        const { votePostId, voteValue } = request.body
         const profile = request.session.profile as Profile
         const voteProfileId = profile.profileId as string
 
@@ -31,7 +31,7 @@ export async function toggleVoteController (request: Request, response: Response
             voteProfileId,
             votePostId,
             voteDateTime: null,
-            voteValue: true
+            voteValue
         }
 
         const status: Status = {
