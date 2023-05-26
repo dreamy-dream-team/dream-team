@@ -61,7 +61,10 @@ export class App {
         this.app.use('/apis/profile', ProfileRoute)
         this.app.use('/apis/vote', VoteRoute)
         this.app.use('/apis/post', PostRoute)
+<<<<<<< HEAD
+=======
         this.app.use('/apis/category', CategoryRoute)
+>>>>>>> develop
     }
 
     // starts the server and tells the terminal to post a message that the server is running and on what port
