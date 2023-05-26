@@ -19,16 +19,11 @@ export async function deleteVote (vote: Vote): Promise<string> {
     return 'Vote deleted successfully'
 }
 
-export async function selectVoteByVoteId (vote: Vote): Promise<Vote|null> {
-    const {voteProfileId, votePostId, voteValue} = vote
-    const result = <Vote[]> await sql `SELECT vote_profile_id, vote_post_id, vote_date_time, vote_value FROM "vote" WHERE vote_profile_id = ${voteProfileId} AND vote_post_id = ${votePostId} AND vote_value = ${voteValue}`
+export async function selectVoteByVoteId (votePostId:string, voteProfileId:string): Promise<Vote|null> {
+    const result = <Vote[]> await sql `SELECT vote_profile_id, vote_post_id, vote_date_time, vote_value FROM "vote" WHERE vote_profile_id = ${voteProfileId} AND vote_post_id = ${votePostId}`
     return result?.length === 1 ? result[0] : null
 }
 
 export async function selectVotesByVotePostId (votePostId: string): Promise<Vote[]> {
     return <Vote[]>await sql`SELECT vote_profile_id, vote_post_id, vote_date_time, vote_value FROM "vote" WHERE vote_post_id = ${votePostId}`
 }
-
-// export async function selectCountDaVote (voteValue: boolean): Promise<number> {
-//     return <Vote[]> await sql`SELECT count(CASE WHEN vote_value THEN 1 END) FROM "vote" WHERE vote_post_id = ${votePostId}`
-// }

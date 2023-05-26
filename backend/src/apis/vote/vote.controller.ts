@@ -7,6 +7,26 @@ export async function getVotesByVotePostId (request: Request, response: Response
     try {
         const { votePostId } = request.params
         const data = await selectVotesByVotePostId(votePostId)
+        console.log(data)
+        return response.json({
+            status: 200,
+            message: null,
+            data
+        })
+    } catch (error) {
+        return response.json({
+            status: 500,
+            message: '',
+            data: []
+        })
+    }
+}
+
+export async function getVoteByPrimaryKeyController (request: Request, response: Response) {
+    try {
+        const { voteProfileId, votePostId } = request.params
+        const data = await selectVoteByVoteId(votePostId, voteProfileId)
+        console.log(data)
         return response.json({
             status: 200,
             message: null,
@@ -40,11 +60,11 @@ export async function toggleVoteController (request: Request, response: Response
             data: null
         }
 
-        const selectedVote: Vote|null = await selectVoteByVoteId(vote)
+        const selectedVote: Vote|null = await selectVoteByVoteId(votePostId, voteProfileId)
         if (selectedVote === null) {
             status.message = await insertVote(vote)
         } else {
-            status.message = await deleteVote(vote)
+            status.message = await deleteVote(selectedVote)
         }
 
         return response.json(status)
