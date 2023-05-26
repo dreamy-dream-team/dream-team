@@ -7,6 +7,7 @@ import {
     updateProfile
 } from "../../utils/models/Profile";
 import {Status} from "../../utils/interfaces/Status";
+import exp from "constants";
 
 
 export async function putProfileController (request: Request, response: Response): Promise<Response> {
@@ -46,3 +47,4 @@ export async function getProfileByProfileId (request: Request, response: Respons
         return (response.json({ status: 400, data: null, message: error.message }))
     }
 }
+
