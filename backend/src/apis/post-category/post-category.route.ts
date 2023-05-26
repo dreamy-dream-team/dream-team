@@ -20,6 +20,11 @@ router.route('/postCategoryId/:postCategoryId/postPostId/:postPostId').get(async
     check('postPostId', 'please provide a valid postPostId').isUUID()
 ]), getPostCategoryByPrimaryKey)
 
+router.route('/postCategoryId/:postCategoryId/postPostId/:postPostId').delete(asyncValidatorController([
+    check('postCategoryId', 'please provide a valid postCategoryId').isUUID(),
+    check('postPostId', 'please provide a valid postPostId').isUUID()
+]), getPostCategoryByPrimaryKey)
+
 router.route('/')
 .post(
     isLoggedIn,

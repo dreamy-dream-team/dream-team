@@ -20,9 +20,11 @@ export async function selectPostCategoryByPostId (postCategoryPostId: string): P
 }
 
 export async function selectPostCategoryByPrimaryKey (postCategoryCategoryId: string, postCategoryPostId: string): Promise<PostCategory|null> {
+    console.log(postCategoryPostId, postCategoryCategoryId)
     const result = <PostCategory[]> await sql `SELECT post_category_category_id, post_category_post_id FROM post_category WHERE post_category_category_id = ${postCategoryCategoryId} AND post_category_post_id = ${postCategoryPostId}`
     return result.length === 1 ? result[0] : null
 }
+
 
 export async function deletePostCategory (postCategory: PostCategory): Promise<string> {
     const {postCategoryCategoryId, postCategoryPostId} = postCategory

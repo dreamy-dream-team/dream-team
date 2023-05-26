@@ -21,22 +21,22 @@ export async function getPostCategoryByCategoryId (request: Request, response: R
         return response.json({
             status: 500,
             message: '',
-            data: []
+            data: null
         })
     }
 }
 
 export async function getPostCategoryByPrimaryKey (request: Request, response: Response, nextFunction: NextFunction): Promise<Response<Status>> {
     try {
-        const {postCategoryCategoryId, postCategoryPostId} = request.params
-
-        const data = await selectPostCategoryByPrimaryKey(postCategoryCategoryId, postCategoryPostId)
+        const {postCategoryId, postPostId} = request.params
+        const data = await selectPostCategoryByPrimaryKey(postCategoryId, postPostId)
         return response.json({
             status: 200,
             message: null,
             data
         })
-    }catch (error) {
+    }catch (error)
+    {
         return response.json({
             status: 500,
             message: '',
