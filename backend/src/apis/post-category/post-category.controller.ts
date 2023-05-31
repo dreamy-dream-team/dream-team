@@ -6,7 +6,7 @@ import {
     selectPostCategoryByCategoryId, selectPostCategoryByPrimaryKey
 } from "../../utils/models/Post-Category";
 import {Profile} from "../../utils/models/Profile";
-import {selectPostsByPostId} from "../../utils/models/Post";
+import {selectPostByPostId} from "../../utils/models/Post";
 
 export async function getPostCategoryByCategoryId (request: Request, response: Response, nextFunction: NextFunction): Promise<Response<Status>> {
     try {
@@ -53,7 +53,7 @@ export async function postPostCategoryController (request: Request, response: Re
         }
         const profile: Profile = request.session.profile as Profile
         const profileId: string = profile.profileId as string
-        const post = await selectPostsByPostId(postCategoryPostId)
+        const post = await selectPostByPostId(postCategoryPostId)
         if (post?.postProfileId !== profileId) {
             return response.json({status:401, data: null, message: 'you are not allowed to perform this action'})
         }
@@ -85,7 +85,7 @@ export async function deletePostCategoryController (request: Request, response: 
         if (postCategory === null){
             return response.json({status: 404, data: null, message: 'post category is not found'})
         }
-        const post = await selectPostsByPostId(postCategoryPostId)
+        const post = await selectPostByPostId(postCategoryPostId)
         if (post?.postProfileId !== profileId) {
             return response.json({status:401, data: null, message: 'you are not allowed to perform this action'})
         }
