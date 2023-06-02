@@ -1,9 +1,10 @@
-// import React from "react";
+import React from "react";
 import {Col, Container, Row, Image} from "react-bootstrap"
 import BrandExample from "../navbar/navbar.tsx";
 import Categories from "./left.tsx";
 import Links from "./right.tsx";
-// import Cloud from './images/cloud.jpg';
+import ProfilePost from "./post.tsx";
+
 
 export const Profile = () => {
     return(
@@ -20,7 +21,8 @@ export const Profile = () => {
 
                 {/*Posts*/}
                 <Col lg={6}>
-                {/*<Image src={Cloud} alt="cloud" />*/}
+                <ProfilePost />
+
 
                 </Col>
 
