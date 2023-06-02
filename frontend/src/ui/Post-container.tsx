@@ -1,12 +1,11 @@
-import {Button, Col, Container, FloatingLabel, Form, Row, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
-import React from "react";
+import {Button, Col, FloatingLabel, Form, Row, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
+
 
 
 export function PostContainer() {
     return (
         <>
-            <div className={'mt-1'}>
-                <Container className={'border rounded-1'}>
+            <div className={'mt-1 mx-auto w-50 border rounded-1'}>
                     <FloatingLabel
                         controlId="floatingInput"
                         label="Title"
@@ -23,6 +22,7 @@ export function PostContainer() {
                         />
                     </FloatingLabel>
                     <Form>
+                        <Row>
                         <p className={'mb-0'}>Add a tag</p>
                         <ToggleButtonGroup type="checkbox" className="mb-1">
                             <ToggleButton variant={'outline-secondary'} id="tbg-check-1" value={1}>
@@ -41,7 +41,7 @@ export function PostContainer() {
                                 Work
                             </ToggleButton>
                             <ToggleButton variant={'outline-secondary'} id="tbg-check-6" value={6}>
-                                Lucid Dream
+                                Weird
                             </ToggleButton>
                         </ToggleButtonGroup>
                         <br/>
@@ -56,9 +56,10 @@ export function PostContainer() {
                                 Daydream
                             </ToggleButton>
                             <ToggleButton variant={'outline-secondary'} id="tbg-check-10" value={10}>
-                                Weird
+                                Lucid Dream
                             </ToggleButton>
                         </ToggleButtonGroup>
+                        </Row>
                     </Form>
 
                     <Form>
@@ -82,7 +83,6 @@ export function PostContainer() {
                             </Col>
                         </Row>
                     </Form>
-                </Container>
             </div>
         </>
     );
