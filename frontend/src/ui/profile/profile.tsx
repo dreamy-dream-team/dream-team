@@ -1,5 +1,5 @@
-import React from "react";
-import {Col, Container, Row, Image} from "react-bootstrap"
+
+import {Col, Container, Row} from "react-bootstrap"
 import BrandExample from "../navbar/navbar.tsx";
 import Categories from "./left.tsx";
 import Links from "./right.tsx";

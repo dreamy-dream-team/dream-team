@@ -1,10 +1,10 @@
 import Card from 'react-bootstrap/Card';
-import React from "react";
+
 
 function Categories() {
     return (
         <Card style={{ width: '18rem' }}>
-            <Card.Body className="text-center">
+            <Card.Body className="text-center bg-info">
                 <Card.Title>Find a Dream</Card.Title>
                 <img
                     alt=""
