@@ -1,6 +1,5 @@
-// import React from "react";
+
 import {Col, Container, Navbar, Row} from "react-bootstrap";
-import React from "react";
 
 // export const Navbar = () => {
 function BrandExample() {
