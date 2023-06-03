@@ -4,6 +4,7 @@ import './App.css'
 import { Home } from './Home.tsx'
 import { SignIn } from './login/SignIn'
 import { SignUp } from './login/SignUp'
+import { Terms } from './Terms.tsx'
 import { FourOhFour } from './FourOhFour'
 import {ForgotPassword} from './login/ForgotPassword.tsx';
 import ProfileArchive from "./ProfileArchive.tsx";
@@ -19,6 +20,7 @@ export function App() {
                     <Route path='/ProfileArchive' element={<ProfileArchive />}/>
                     <Route path='/ForgotPassword' element={<ForgotPassword />}/>
                     <Route path='/SignUp' element={<SignUp />} />
+                    <Route path='/Terms' element={<Terms />} />
                     <Route path='/SignIn' element={<SignIn />} />
                     <Route path='/' element={<Home />} />
                     <Route path={"*"} element={<FourOhFour />} />
