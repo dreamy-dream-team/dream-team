@@ -63,21 +63,21 @@ export function PostForm() {
 
                     <Form>
                         <Row className="align-items-center">
-                            <Col sm="auto" className="my-1">
+                            <Col xs={'4'} className="my-1 me-0">
                                 <Form.Check
                                     type="checkbox"
                                     id="autoSizingCheck2"
                                     label="Anonymous"
                                 />
                             </Col>
-                            <Col sm="auto" className="my-1">
+                            <Col xs={'4'} className="my-1 ms-0">
                                 <Form.Check
                                     type="checkbox"
                                     id="autoSizingCheck2"
                                     label="Private"
                                 />
                             </Col>
-                            <Col md="auto" className="my-1 align-content-end">
+                            <Col xs={'8'} className="my-1 ms-0">
                                 <Button type="submit">Submit</Button>
                             </Col>
                         </Row>
