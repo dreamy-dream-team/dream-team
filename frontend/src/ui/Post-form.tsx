@@ -5,7 +5,8 @@ import {Button, Col, FloatingLabel, Form, Row, ToggleButton, ToggleButtonGroup} 
 export function PostForm() {
     return (
         <>
-            <div className={'m-4 mx-auto p-3 w-50 border rounded-1 d-fluid'} style={{overflow: 'hidden'}}>
+
+            <div className={'my-4 mx-auto px-3 py-2 border rounded-1 shadow-lg'} style={{overflow: 'hidden', width: "35rem"}}>
                     <FloatingLabel
                         controlId="floatingInput"
                         label="Title"
@@ -22,7 +23,7 @@ export function PostForm() {
                         />
                     </FloatingLabel>
                     <Form>
-                        <p className={'mb-0'}>Add a tag</p>
+                        <p className={'mb-0'}>Add category</p>
                         <ToggleButtonGroup type="checkbox" className="mb-1">
                             <ToggleButton variant={'outline-secondary'} id="tbg-check-1" value={1}>
                                 Funny
