@@ -1,12 +1,21 @@
-import {Badge, Card, Container, Row} from "react-bootstrap";
+import {Badge, Card, Form, Row} from "react-bootstrap";
 
 export function DreamPost() {
     return (
         <>
-            <Container>
+            <div className={'border rounded-1 mx-auto p-5 m-2'} style={{width: '35rem'}}>
+                <Form.Check
+                    type="checkbox"
+                    id="autoSizingCheck2"
+                    label="Most Popular"
+                />
+                <Form.Check
+                    type="checkbox"
+                    id="autoSizingCheck2"
+                    label="Most Recent"
+                />
                 <Row>
-
-                    <Card style={{ width: '30rem' }}>
+                    <Card className={'mx-auto'} style={{ width: '30rem' }}>
                         <Card.Body>
                             <Card.Title>Dream Title</Card.Title>
                             <Card.Text>
@@ -25,7 +34,7 @@ export function DreamPost() {
                         </Card.Body>
                     </Card>
                 </Row>
-            </Container>
+            </div>
         </>
     );
 }

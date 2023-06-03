@@ -3,10 +3,10 @@ import {DreamPost} from "./Posts.tsx";
 import {FindADream} from "./Find.tsx";
 
 
-export function Home() {
+export function Category() {
     return (
         <>
-           <PostForm/>
+            <PostForm/>
             <FindADream/>
             <DreamPost/>
         </>

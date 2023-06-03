@@ -2,14 +2,14 @@ import {Button, Col, FloatingLabel, Form, Row, ToggleButton, ToggleButtonGroup} 
 
 
 
-export function PostContainer() {
+export function PostForm() {
     return (
         <>
-            <div className={'mt-1 mx-auto w-50 border rounded-1'}>
+            <div className={'m-4 mx-auto p-3 w-50 border rounded-1 d-fluid'} style={{overflow: 'hidden'}}>
                     <FloatingLabel
                         controlId="floatingInput"
                         label="Title"
-                        className="mb-1"
+                        className="mb-1 mx-auto"
                     >
                         <Form.Control type="title" placeholder="Title" style={{ height: '50px', width: '500px'}}/>
                     </FloatingLabel>
@@ -22,7 +22,6 @@ export function PostContainer() {
                         />
                     </FloatingLabel>
                     <Form>
-                        <Row>
                         <p className={'mb-0'}>Add a tag</p>
                         <ToggleButtonGroup type="checkbox" className="mb-1">
                             <ToggleButton variant={'outline-secondary'} id="tbg-check-1" value={1}>
@@ -59,7 +58,6 @@ export function PostContainer() {
                                 Lucid Dream
                             </ToggleButton>
                         </ToggleButtonGroup>
-                        </Row>
                     </Form>
 
                     <Form>

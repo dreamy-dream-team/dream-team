@@ -3,7 +3,7 @@ import {Col, Container, ListGroup, Row} from "react-bootstrap";
 export function FindADream() {
     return (
         <>
-            <Container className={'border rounded-1 bg-secondary p-5'}>
+            <Container className={'border rounded-1 bg-secondary p-5 w-25'} style={{position: 'absolute'}}>
                 <Row>
                     <h2 className={'text-center'}>Find a Dream</h2>
                     <Col className={'text-center'}>
