@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {App} from './ui/App.tsx'
+import { App } from './ui/App'
+import { store } from './store/store'
 
-ReactDOM.createRoot(document.getElementById('root') as Element)
-    .render(
+
+    ReactDOM.createRoot(document.getElementById('root')as Element).render(
         <React.StrictMode>
-            <App />
+            <App store={store} />
         </React.StrictMode>
     )
