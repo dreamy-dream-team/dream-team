@@ -1,16 +1,21 @@
-import {PostForm} from "./Post-form/Post-form.tsx";
-import {DreamPost} from "./Posts/Posts.tsx";
-import {Col, Container, Navbar, Row} from "react-bootstrap";
-import {PostFormModal} from "./Post-form/Post-formModal.tsx";
+import {PostForm} from "../Post-form/Post-form.tsx";
+import {DreamPost} from "../Posts/Posts.tsx";
+import {Col, Container, Nav, Navbar, Row} from "react-bootstrap";
+import {PostFormModal} from "../Post-form/Post-formModal.tsx";
 
 
-export function Home() {
+export function Category() {
     return (
         <>
             <Navbar bg="light" expand="lg">
                 <Container>
                     <Navbar.Brand href="#home">Dreamery</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            <Nav.Link href="#home">filler navbar</Nav.Link>
+                        </Nav>
+                    </Navbar.Collapse>
                 </Container>
             </Navbar>
 
@@ -21,7 +26,7 @@ export function Home() {
                     </Container>
                 </Col>
                 <Col>
-                    <img src={'../images/Dreamery-Logo.png'} alt={'Logo'}/>
+                    <h1 className={'m-5 text-center'}>Category</h1>
                 </Col>
                 <Col>
                     <Container>
@@ -31,7 +36,6 @@ export function Home() {
             <PostFormModal/>
             <PostForm/>
             <DreamPost/>
-
         </>
-    )
+    );
 }
