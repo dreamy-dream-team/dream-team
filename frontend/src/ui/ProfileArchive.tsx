@@ -1,5 +1,7 @@
 //import React from "react";
 import { Container, Row, Col, Card, Image } from "react-bootstrap";
+import logo from "../images/Dreamery-Logo.png";
+
 
 const categories = [
     "Funny",
@@ -27,7 +29,7 @@ export const ProfileArchive = () => {
                         <h1 className="mt-3 mb-5">Dreamery Journal</h1>
                     </Col>
                     <Col xs ={12}  style={{marginTop: '50px'}}>
-                        <Image src="Images/Logo-1.jpeg" alt="Logo" className='img-fluid' style={{width:"30%", height:"auto"}} />
+                        <Image src={logo} alt="Logo" className='img-fluid' style={{width:"30%", height:"auto"}} />
                     </Col>
                 </Row>
                 <Row style={{marginTop: '100px'}}>

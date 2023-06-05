@@ -4,6 +4,7 @@ import './App.css'
 import { Home } from './Homepage/Home.tsx'
 import { FourOhFour } from './FourOhFour'
 import { CategoryMain } from "./CategoryMain/CategoryMain";
+import ProfileArchive from "./ProfileArchive.tsx";
 
 
 export function App() {
@@ -11,6 +12,7 @@ export function App() {
         <>
             <BrowserRouter>
                 <Routes>
+                    <Route path='/ProfileArchive' element={<ProfileArchive />} />
                     <Route  path='/' element={<Home />} />
                     <Route path={"*"} element={<FourOhFour />} />
                     <Route path={'/category-main'} element={<CategoryMain />} />
