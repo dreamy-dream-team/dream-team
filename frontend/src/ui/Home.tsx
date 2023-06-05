@@ -1,6 +1,6 @@
 import {PostForm} from "./Post-form/Post-form.tsx";
 import {DreamPost} from "./Posts/Posts.tsx";
-import {Col, Container, Nav, Navbar, Row} from "react-bootstrap";
+import {Col, Container, Navbar, Row} from "react-bootstrap";
 import {PostFormModal} from "./Post-form/Post-formModal.tsx";
 
 
