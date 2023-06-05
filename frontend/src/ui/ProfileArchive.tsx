@@ -1,5 +1,5 @@
 //import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Image } from "react-bootstrap";
 
 const categories = [
     "Funny",
@@ -22,7 +22,15 @@ export const ProfileArchive = () => {
     return (
         <>
             <Container fluid>
-                <Row style={{marginTop: '200px'}}>
+                <Row className="justify-content-center text-center" style={{marginTop:'20px'}}>
+                    <Col xs={12}>
+                        <h1 className="mt-3 mb-5">Dreamery Journal</h1>
+                    </Col>
+                    <Col xs ={12}  style={{marginTop: '50px'}}>
+                        <Image src="Images/Logo-1.jpeg" alt="Logo" className='img-fluid' style={{width:"30%", height:"auto"}} />
+                    </Col>
+                </Row>
+                <Row style={{marginTop: '100px'}}>
                     <Col className="p-3" md={3} xs={12} style={{height: "100vh"}}>
                         <div className="border border-3 rounded p-2 bg-light h-100 d-flex flex-column justify-content-center align-items-center">
                             {categories.map((category, idx) => (
