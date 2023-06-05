@@ -4,7 +4,7 @@ import {Col, Container, Nav, Navbar, Row} from "react-bootstrap";
 import {PostFormModal} from "./Post-form/Post-formModal.tsx";
 
 
-export function Home() {
+export function Category() {
     return (
         <>
             <Navbar bg="light" expand="lg">
@@ -26,7 +26,7 @@ export function Home() {
                     </Container>
                 </Col>
                 <Col>
-                    <img src={'../images/Dreamery-Logo.png'} alt={'Logo'}/>
+                    <h1 className={'m-5 text-center'}>Category</h1>
                 </Col>
                 <Col>
                     <Container>
@@ -36,7 +36,6 @@ export function Home() {
             <PostFormModal/>
             <PostForm/>
             <DreamPost/>
-
         </>
-    )
+    );
 }
