@@ -1,10 +1,15 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import './App.css'
-import { Home } from './Homepage/Home.tsx'
+import { Home } from './Home.tsx'
+import { SignIn } from './login/SignIn'
+import { SignUp } from './login/SignUp'
+import { Terms } from './Terms.tsx'
 import { FourOhFour } from './FourOhFour'
-import { CategoryMain } from "./CategoryMain/CategoryMain";
+import {ForgotPassword} from './login/ForgotPassword.tsx';
 import ProfileArchive from "./ProfileArchive.tsx";
+//import React from "react";
+
 
 
 export function App() {
@@ -12,10 +17,13 @@ export function App() {
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/ProfileArchive' element={<ProfileArchive />} />
-                    <Route  path='/' element={<Home />} />
+                    <Route path='/ProfileArchive' element={<ProfileArchive />}/>
+                    <Route path='/ForgotPassword' element={<ForgotPassword />}/>
+                    <Route path='/SignUp' element={<SignUp />} />
+                    <Route path='/Terms' element={<Terms />} />
+                    <Route path='/SignIn' element={<SignIn />} />
+                    <Route path='/' element={<Home />} />
                     <Route path={"*"} element={<FourOhFour />} />
-                    <Route path={'/category-main'} element={<CategoryMain />} />
                 </Routes>
             </BrowserRouter>
         </>
