@@ -1,8 +1,7 @@
-import {PostForm} from "./Post-form.tsx";
-import {DreamPost} from "./Posts.tsx";
-import { Col, Container, Nav, Navbar, Row} from "react-bootstrap";
-import {PostFormModal} from "./Post-formModal.tsx";
-
+import {PostForm} from "./Post-form/Post-form.tsx";
+import {DreamPost} from "./Posts/Posts.tsx";
+import {Col, Container, Nav, Navbar, Row} from "react-bootstrap";
+import {PostFormModal} from "./Post-form/Post-formModal.tsx";
 
 
 export function Home() {
@@ -27,7 +26,7 @@ export function Home() {
                     </Container>
                 </Col>
                 <Col>
-                    <h1 className={'m-5 text-center'}>Dreamery</h1>
+                    <img src={'../images/Dreamery-Logo.png'} alt={'Logo'}/>
                 </Col>
                 <Col>
                     <Container>
