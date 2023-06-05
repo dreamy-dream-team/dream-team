@@ -5,43 +5,60 @@
     --purple: #A980E8;
     --yellow: #FFC482;
     --blue: #188FA7;
-
 }
-/*!********* Mobile *********!*/
-/*@media screen and (max-width: 464px) {*/
-/*    .button{*/
-/*        display: none;*/
-/*    }*/
-/*}*/
-/*!********* Tablet *********!*/
-/*@media screen and (max-width: 1024px) {*/
-
-/*}*/
-.slider{
-    --slider-index: 0;
+/********* Mobile Screens *********/
+@media screen and (max-width: 424px) {
+    .slider{
+    --post-per-screen: 2;
+    }
+}
+/********* Tablet Screens *********/
+@media screen and (max-width: 1024px) {
+    .slider{
+        --post-per-screen: 3;
+    }
+}
+/********* Posts Row *********/
+.wrapper{
     display: flex;
-    justify-content: space-between;
-    transform: translateX(0px);
-
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-bottom: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: .1rem solid;
+}
+/********* Posts Slider Holder *********/
+.slider{
+    --slider-index: 1;
+    --slider-padding: 5rem;
+    display: flex;
+    flex-grow: 1;
+    transform: translateX(calc(var(--slider-index) * -100%));
+}
+/********* Posts Card *********/
+.post{
+    --post-per-screen: 4;
+    background-color: var(--white);
+    flex: 0 0 calc(100% / var(--post-per-screen));
+    max-width: calc(100% / var(--post-per-screen));
+    aspect-ratio: 16/9;
+    margin: 0 .25rem;
 }
 .button{
     border: none;
-    width: 5rem;
+    border-radius: 50%;
+    height: 2rem;
+    width: 3rem;
     padding: 2rem;
     background-color: rgba(0, 0, 0, .25);
-    z-index: 10;
     display: flex;
     font-size: 5rem;
-    align-content: center;
+    align-items: center;
     justify-content: center;
     color: #FFF;
-
+    z-index: 10;
 }
 .button:hover{
     background-color: rgba(0, 0, 0, .5);
-    border-bottom-left-radius: 0;
-}
-.wrapper{
-    margin-bottom: 2rem;
-    border: none;
 }
