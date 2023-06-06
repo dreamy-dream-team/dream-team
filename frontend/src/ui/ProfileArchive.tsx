@@ -1,5 +1,7 @@
 //import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import {Container, Row, Col, Card} from "react-bootstrap";
+/*import { ReactComponent as Logo} from '../images/Dreamery-Logo.svg';*/
+import Logo from '../images/Dreamery-Logo.svg';
 
 const categories = [
     "Funny",
@@ -22,7 +24,20 @@ export const ProfileArchive = () => {
     return (
         <>
             <Container fluid>
-                <Row style={{marginTop: '200px'}}>
+
+                <Row className="justify-content-center text-center" style={{marginTop:'auto'}}>
+                    <Col xs ={12} className="d-flex justify-content-center">
+                        <div style={{width:'20%'}}>
+                            <img src={Logo} className="App-logo img-fluid" alt ="logo" />
+                            {/*<Image alt="Logo"/>*/}
+                            {/*<Image src="./images/Dreamery-Logo.svg" alt="Logo"/>*/}
+                        </div>
+                    </Col>
+                </Row>
+                <Col xs={12}>
+                    <h1 className="mt-0 justify-content-center text-center">Journal</h1>
+                </Col>
+                <Row style={{marginTop: 'auto'}}>
                     <Col className="p-3" md={3} xs={12} style={{height: "100vh"}}>
                         <div className="border border-3 rounded p-2 bg-light h-100 d-flex flex-column justify-content-center align-items-center">
                             {categories.map((category, idx) => (
