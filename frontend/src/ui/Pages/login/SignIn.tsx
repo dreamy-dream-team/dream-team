@@ -23,8 +23,8 @@ export const SignIn = () => {
                                 Login
                             </Button>
                         </Form>
-                        <a href="/ForgotPassword" className="d-block text-center mb-2">Forgot Password</a>
-                        <a href="/signup" className="d-block text-center mb-2">Create New Account</a>
+                        <a href="/login/ForgotPassword" className="d-block text-center mb-2">Forgot Password</a>
+                        <a href="/login/SignUp" className="d-block text-center mb-2">Create New Account</a>
                     </Col>
                 </Row>
             </Container>

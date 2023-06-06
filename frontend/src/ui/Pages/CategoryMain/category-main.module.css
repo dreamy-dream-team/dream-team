@@ -1,0 +1,20 @@
+:root{
+/********* Colors *********/
+    --black: #221E22;
+    --white: #DEE5E5;
+    --purple: #A980E8;
+    --yellow: #FFC482;
+    --blue: #188FA7;
+}
+.wrapper{
+    max-width: 100%;
+    padding: 2rem 1rem 4rem 1rem;
+    border-bottom: .05rem solid;
+}
+.content_wrapper{
+
+}
+.card{
+    margin: 0 .25rem;
+    aspect-ratio: 16/9;
+}

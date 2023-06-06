@@ -50,7 +50,7 @@ export async function selectPostsByPostProfileHandleIsVisible (postProfileId: st
     return sql<Post[]>`SELECT post_id, post_profile_id, post_content, post_date_time, post_is_published, post_profile_handle_is_visible, post_title FROM post WHERE post_profile_handle_is_visible = true AND post_profile_id = ${postProfileId} AND post_is_published = true`
 }
 
-export async function selectAllPostsByPostIsPublished (postIsPublished: boolean): Promise<Post[]> {
-    return sql <Post[]>`SELECT post_id, post_profile_id, post_content, post_date_time, post_is_published, post_profile_handle_is_visible, post_title FROM post WHERE post_is_published = ${postIsPublished}`
+export async function selectAllPostsByPostIsPublished (): Promise<Post[]> {
+    return sql <Post[]>`SELECT post_id, post_profile_id, post_content, post_date_time, post_is_published, post_profile_handle_is_visible, post_title FROM post WHERE post_is_published = true`
 }
 

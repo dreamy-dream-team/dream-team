@@ -80,7 +80,7 @@ export async function getPostsByPostProfileHandleIsVisibleController (request: R
 export async function getPostsByPostIsPublishedController (request: Request, response: Response, nextFunction: NextFunction): Promise<Response<Status>> {
     try {
         const {postIsPublished} = request.params
-        const data = await selectAllPostsByPostIsPublished(Boolean(postIsPublished))
+        const data = await selectAllPostsByPostIsPublished()
         return response.json({status: 200, message: null, data})
     } catch (error) {
         return response.json({
