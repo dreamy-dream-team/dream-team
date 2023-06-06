@@ -1,6 +1,5 @@
-
+//import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-
 
 const categories = [
     "Funny",
@@ -59,3 +58,5 @@ export const ProfileArchive = () => {
         </>
     );
 };
+
+export default ProfileArchive;
