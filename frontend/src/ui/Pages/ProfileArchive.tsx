@@ -1,6 +1,6 @@
 //import React from "react";
 import { Container, Row, Col, Card, Image } from "react-bootstrap";
-import logo from "../images/Dreamery-Logo.png";
+import logo from "../../images/Dreamery-Logo.png";
 
 
 const categories = [

@@ -1,8 +1,6 @@
-
 import {Col, Container, Navbar, Row} from "react-bootstrap";
 
-// export const Navbar = () => {
-function BrandExample() {
+export function TopNav() {
     return (
         <>
         <Navbar bg="dark" variant="dark">
@@ -37,4 +35,4 @@ function BrandExample() {
     )
 }
 
-export default BrandExample;
+export default TopNav;
