@@ -1,7 +1,7 @@
-import {PostForm} from "./Post-form/Post-form.tsx";
+
 import {DreamPost} from "./Posts/Posts.tsx";
 import {Col, Container, Nav, Navbar, Row} from "react-bootstrap";
-import {PostFormModal} from "./Post-form/Post-formModal.tsx";
+import {PostFormModal} from "./PostForm/PostFormModal.tsx";
 
 
 export function Home() {
@@ -34,9 +34,7 @@ export function Home() {
                 </Col>
             </Row>
             <PostFormModal/>
-            <PostForm/>
             <DreamPost/>
-
         </>
     );
 }

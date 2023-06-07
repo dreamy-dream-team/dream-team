@@ -1,24 +1,18 @@
-import {Button, Col, Form, Modal, Row, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
-import {useState} from "react";
+import { Button, Col, Form, Modal, Row, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
+import { useState } from "react";
+import {PostForm} from "./PostForm";
+import {useWindowSize} from "usehooks-ts";
 
-
-
- export function PostFormModal() {
+export function PostFormModal() {
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-    function
-
-    return (
-        <>
-            <div className={'text-end m-3'}>
-            <Button variant="secondary" onClick={handleShow} className="bi bi-cloud-plus">
-                Tell us your dream
-            </Button>
-
-            <Modal show={show} onHide={handleClose}>
+    const {width} = useWindowSize()
+    const isDesktopView = width >= 768;
+    const mobileViewModal = (
+        <div>
+            {
+                <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Tell us your dream...</Modal.Title>
                 </Modal.Header>
@@ -40,7 +34,7 @@ import {useState} from "react";
                             <Form.Control as="textarea" rows={3} />
                         </Form.Group>
                         <p className={'mb-0'}>Add category</p>
-                        <ToggleButtonGroup type="checkbox" className="mb-1">
+                        <ToggleButtonGroup type="checkbox" className="mb-1" style={{overflow: "auto"}}>
                             <ToggleButton variant={'outline-secondary'} id="tbg-check-11" value={11}>
                                 Funny
                             </ToggleButton>
@@ -101,7 +95,22 @@ import {useState} from "react";
                         Post
                     </Button>
                 </Modal.Footer>
-            </Modal>
+            </Modal>}
+        </div>
+    );
+    const desktopViewForm = (
+        <PostForm/>
+    );
+    return (
+
+        <>
+            <div className="text-end m-3">
+                {!isDesktopView && (
+                    <Button variant="secondary" onClick={handleShow} className="bi bi-cloud-plus">
+                        Tell us your dream...
+                    </Button>
+                )}
+                {isDesktopView ? desktopViewForm : mobileViewModal}
             </div>
         </>
     );

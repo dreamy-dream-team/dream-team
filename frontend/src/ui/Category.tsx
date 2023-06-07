@@ -1,7 +1,7 @@
-import {PostForm} from "./Post-form/Post-form";
+import {PostForm} from "./PostForm/PostForm.tsx";
 import {DreamPost} from "./Posts/Posts";
 import {Col, Container, Nav, Navbar, Row} from "react-bootstrap";
-import {PostFormModal} from "./Post-form/Post-formModal";
+import {PostFormModal} from "./PostForm/PostFormModal.tsx";
 
 
 export function Category() {
