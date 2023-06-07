@@ -9,8 +9,8 @@ export function TopNav() {
                         <Row>
                             <Col lg={2}>
                         <img
-                            alt=""
-                            src="/img/logo.svg"
+                            alt="image"
+                            src=""
                             width="30"
                             height="30"
                             className="d-inline-block align-top"
