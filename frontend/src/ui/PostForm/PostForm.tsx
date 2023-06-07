@@ -6,7 +6,7 @@ export function PostForm() {
     return (
         <>
 
-            <div className={'my-4 mx-auto px-3 py-2 border rounded-1 shadow-lg'} style={{overflow: 'hidden', width: "35rem"}}>
+            <div className={'my-4 mx-auto px-3 py-2 border rounded-1 shadow-lg'} style={{overflow: 'auto', width: "35rem"}}>
                     <FloatingLabel
                         controlId="floatingInput"
                         label="Title"
@@ -22,8 +22,8 @@ export function PostForm() {
                             style={{ height: '175px', width: '500px'}}
                         />
                     </FloatingLabel>
-                    <Form>
-                        <p className={'mb-0'}>Add category</p>
+                    <Form className={'align-content-center'}>
+                        <p className={'mb-0 text-center'}>Add category</p>
                         <ToggleButtonGroup type="checkbox" className="mb-1">
                             <ToggleButton variant={'outline-secondary'} id="tbg-check-1" value={1}>
                                 Funny
