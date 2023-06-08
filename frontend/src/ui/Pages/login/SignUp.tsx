@@ -11,14 +11,13 @@ export const SignUp = () => {
     return(
      <>
          <Container className="text-center">
-         <h1 className="my-5"> Dreamery World</h1>
+         <h1 className="my-5">Dreamery World</h1>
     <Modal show={show} onHide={handleClose} backdrop="static">
         <Modal.Header closeButton>
             <Modal.Title>Sign Up</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <Form>
-
                 <Form.Group className="mb-3" controlId="formEmail">
                     <Form.Label>Create Username</Form.Label>
                     <FormControl type="Username" placeholder="Enter username" />

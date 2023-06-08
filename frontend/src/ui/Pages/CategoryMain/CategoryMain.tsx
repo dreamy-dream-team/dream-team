@@ -5,7 +5,8 @@ import Carousel from "react-multi-carousel";
 import { TopNav } from "../../Components/TopNav";
 import { PostCard } from "../../Components/PostCard";
 import {Post} from "../../../shared/interfaces/Post";
-import {useGetAllPostsQuery} from "../../../store/apis";
+import {useGetAllCategoryQuery, useGetAllPostsPublishedQuery} from "../../../store/apis";
+import {Category} from "../../../shared/interfaces/Category";
 
 
 export function CategoryMain() {
@@ -16,6 +17,8 @@ export function CategoryMain() {
                 <h4 className="font-weight-bold py-3 mb-4">Category Main Page</h4>
                 <div className={styles.content_wrapper}>
                 <CategoryRow/>
+                <CategoryRow/>
+                <CategoryRow/>
                 </div>
             </Container>
         </>
@@ -23,8 +26,20 @@ export function CategoryMain() {
 }
 export function CategoryRow() {
 
-        const { data, isLoading } = useGetAllPostsQuery("")
-        if(isLoading || data === undefined) {
+        const {
+            data: dataPosts,
+            error: errorPosts,
+            isLoading: isLoadingPosts
+        } = useGetAllPostsPublishedQuery("")
+        const {
+            data: dataCategory,
+            error: errorCategory,
+            isLoading: isLoadingCategory
+        } = useGetAllCategoryQuery("")
+        if(
+            isLoadingPosts ||
+            isLoadingCategory
+        ) {
             return(
                 <Spinner animation="border" />)
         }
@@ -32,10 +47,12 @@ export function CategoryRow() {
     return (
         <>
             <div className={styles.wrapper}>
-                <h4>$Category Title</h4>
+
+                {dataCategory.map((category:Category) => <h4 key={category.categoryId}>{category.categoryName}</h4>)}
+
                 <Carousel showDots={true} responsive={responsive}>
 
-                    {data.map((post:Post) => <PostCard post={post} key={post.postId}/>)}
+                    {dataPosts.map((post:Post) => <PostCard post={post} key={post.postId}/>)}
 
                 </Carousel>
             </div>

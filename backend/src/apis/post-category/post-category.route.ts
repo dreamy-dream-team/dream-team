@@ -33,5 +33,4 @@ router.route('/')
     check('postPostId', 'please provide a valid postPostId').isUUID()
 ]),postPostCategoryController)
 
-
 export default router

@@ -25,6 +25,11 @@ export async function selectAllPostsByVote (): Promise<Post[]> {
     return sql <Post[]> `SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM vote INNER JOIN vote_value ON post.postId = vote.votePostId WHERE (SELECT COUNT(vote_value) FROM vote WHERE vote_value ORDER BY COUNT(vote_value) DESC)`
 }
 
+export async function selectAllPostsByPostCategory (postCategoryCategoryId: string): Promise<Post[]> {
+
+    return sql <Post[]> `SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM post INNER JOIN post_category ON post.post_id = post_category.post_category_post_id WHERE post_category_category_id = ${postCategoryCategoryId}`
+}
+
 export async function selectPostByPostId (postId: string): Promise<Post|null> {
     const result = <Post[]> await sql`SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM post WHERE post_id = ${postId}`
     return result?.length === 1 ? result[0] : null
