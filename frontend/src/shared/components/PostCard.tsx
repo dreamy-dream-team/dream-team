@@ -1,5 +1,5 @@
 import {Badge, Card} from "react-bootstrap";
-import {Post} from "../../shared/interfaces/Post";
+import {Post} from "../interfaces/Post.tsx";
 
 interface Props {
     post: Post
