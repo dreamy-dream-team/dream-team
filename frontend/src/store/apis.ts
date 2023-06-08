@@ -44,7 +44,7 @@ export const apis = createApi({
 
       postSignUp: builder.mutation<ClientResponse, PartialProfile>({
          query: (payload: PartialProfile) => ({
-            url:'/signup',
+            url:'/sign-up',
             method:'POST',
             body: payload,
          }),

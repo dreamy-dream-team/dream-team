@@ -3,7 +3,7 @@ import {Container, Modal} from "react-bootstrap";
 import {SignUpForm} from "../../../shared/components/main-nav/sing-up/SignUpForm.tsx";
 
 
-export const SignUp = () => {
+export function SignUp() {
 
     const[show, setShow] = useState(true);
     /*const[agreed, setAgreed] = useState(false);*/

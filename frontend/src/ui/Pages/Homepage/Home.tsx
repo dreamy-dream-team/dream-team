@@ -1,7 +1,7 @@
 import {DreamPost} from "../Posts/Posts.tsx";
 import {Col, Container, Navbar, Row} from "react-bootstrap";
-import {PostFormModal} from "../../PostForm/PostFormModal.tsx";
-import {PostForm} from "../../PostForm/PostForm.tsx";
+// import {PostFormModal} from "../../PostForm/PostFormModal.tsx";
+// import {PostForm} from "../../PostForm/PostForm.tsx";
 
 
 
@@ -14,6 +14,7 @@ export function Home() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 </Container>
             </Navbar>
+
 
             <Row>
                 <Col>
@@ -29,8 +30,8 @@ export function Home() {
                     </Container>
                 </Col>
             </Row>
-            <PostFormModal/>
-            <PostForm/>
+            {/*<PostFormModal/>*/}
+            {/*<PostForm/>*/}
             <DreamPost/>
 
         </>

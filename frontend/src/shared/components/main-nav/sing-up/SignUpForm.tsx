@@ -43,11 +43,14 @@ const [submit] = usePostSignUpMutation()
         const {data: response, error} = result
 
         if (error) {
-            setStatus({type: error.type, message: error.message,})
+            setStatus({type: error.type, message: error.message})
         } else if (response?.status === 200) {
             resetForm()
             setStatus({type: response.type, message: response.message})
+        }else{
+            setStatus({type: response?.type, message: response?.message})
         }
+
     }
     return (
         <>
@@ -86,7 +89,7 @@ const [agreed, setAgreed] = useState(false)
                                     name="profileHandle"
                                     type="text"
                                     value={values.profileHandle}
-                                    placeholder="yourHandle"
+                                    placeholder="username"
                                     onChange={handleChange}
                                     onBlur={handleBlur} />
                             </Form.Group>
@@ -99,7 +102,7 @@ const [agreed, setAgreed] = useState(false)
                                 name="profileEmail"
                                 type="text"
                                 value={values.profileEmail}
-                                placeholder="your@email.you"
+                                placeholder="email"
                                 onChange={handleChange}
                                 onBlur={handleBlur} />
                             </Form.Group>
@@ -112,7 +115,7 @@ const [agreed, setAgreed] = useState(false)
                                 name="profilePassword"
                                 type="password"
                                 value={values.profilePassword}
-                                placeholder="P@ssword1"
+                                placeholder="password"
                                 onChange={handleChange}
                                 onBlur={handleBlur} />
                             </Form.Group>
@@ -125,7 +128,7 @@ const [agreed, setAgreed] = useState(false)
                                 name="profilePasswordConfirm"
                                 type="password"
                                 value={values.profilePasswordConfirm}
-                                placeholder="placeholder-placeholder"
+                                placeholder="re-enter password"
                                 onChange={handleChange}
                                 onBlur={handleBlur} />
                             </Form.Group>
