@@ -9,7 +9,7 @@ import { Terms } from './Pages/Terms.tsx'
 import { ForgotPassword } from './Pages/login/ForgotPassword.tsx';
 import { Home } from './Pages/Homepage/Home.tsx'
 import { FourOhFour } from './Pages/FourOhFour'
-import { ProfileArchive } from "./Pages/ProfileArchive.tsx";
+import { ProfileArchive } from "./Pages/ProfileArchive//ProfileArchive.tsx";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import { Provider } from "react-redux";
 import { CategoryMain } from "./Pages/CategoryMain/CategoryMain";
