@@ -1,5 +1,8 @@
 import { createApi, fetchBaseQuery, } from '@reduxjs/toolkit/query/react'
 import {PartialPost, Post} from "../shared/interfaces/Post";
+import {PartialProfile} from "../shared/interfaces/Profile.tsx";
+
+
 
 export interface ServerResponse {
    status: number,
@@ -37,7 +40,17 @@ export const apis = createApi({
          transformResponse: transformMutationResponses,
          transformErrorResponse: transformErrorResponses,
          invalidatesTags: ["Post"]
-      })
+      }),
+
+      postSignUp: builder.mutation<ClientResponse, PartialProfile>({
+         query: (payload: PartialProfile) => ({
+            url:'/signup',
+            method:'POST',
+            body: payload,
+         }),
+
+      }),
+
    })
 })
 
@@ -67,6 +80,6 @@ function transformErrorResponses(): ClientResponse {
    }
 }
 
-export const {useGetAllPostsQuery, usePostPostMutation} = apis
+export const {useGetAllPostsQuery, usePostPostMutation, usePostSignUpMutation} = apis
 console.log(useGetAllPostsQuery)
 
