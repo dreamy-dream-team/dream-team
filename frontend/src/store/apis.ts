@@ -10,9 +10,8 @@ export const apis = createApi({
          query: () => '/post',
          transformResponse: (response: { data: Post[]}) => response.data,
       }),
-
-   })
-})
+   }),
+});
 
 export const {useGetAllPostsQuery} = apis
 console.log(useGetAllPostsQuery)

@@ -11,7 +11,7 @@ export async function activationController (request: Request, response: Response
         const activationFailed = (): Response => response.json({
             status: 400,
             data: null,
-            message: 'Account activation has failed. Have you alreadt activated this account'
+            message: 'Account activation has failed. Have you already activated this account'
         })
 
         const activationSucceeded = async (profile: Profile): Promise<Response> => {
