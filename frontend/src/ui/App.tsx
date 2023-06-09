@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './App.css'
 
 
-import { SignIn } from './Pages/login/SignIn'
 import { SignUp } from './Pages/login/SignUp'
 import { Terms } from './Pages/Terms.tsx'
 import { ForgotPassword } from './Pages/login/ForgotPassword.tsx';
@@ -12,7 +11,8 @@ import { FourOhFour } from './Pages/FourOhFour'
 import { ProfileArchive } from './Pages/ProfileArchive/ProfileArchive.tsx';
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import { Provider } from "react-redux";
-import { CategoryMain } from "./Pages/CategoryMain/CategoryMain";
+import {SignInForm} from "../shared/components/main-nav/sign-in/SignInForm.tsx";
+// import { CategoryMain } from "./Pages/CategoryMain/CategoryMain";
 
 
 interface Props {
@@ -26,12 +26,12 @@ export function App(props: Props)  {
             <Provider store = {store}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/CategoryMain' element={<CategoryMain />} />
+                    {/*<Route path='/CategoryMain' element={<CategoryMain />} />*/}
                     <Route path='/ProfileArchive' element={<ProfileArchive />} />
                     <Route path='/ForgotPassword' element={<ForgotPassword />} />
                     <Route path='/SignUp' element={<SignUp />} />
                     <Route path='/Terms' element={<Terms />} />
-                    <Route path='/SignIn' element={<SignIn />} />
+                    <Route path='/SignIn' element={<SignInForm />} />
                     <Route path='/' element={<Home />} />
                     <Route path={"*"} element={<FourOhFour />} />
                 </Routes>

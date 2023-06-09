@@ -8,3 +8,8 @@ export interface PartialProfile {
     profilePassword: string
     profilePasswordConfirm: string
 }
+
+export interface SignIn {
+    profileEmail: string,
+    profilePassword: string
+}
