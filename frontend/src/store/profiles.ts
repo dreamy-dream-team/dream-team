@@ -29,7 +29,6 @@ export const fetchProfileByProfileId = (profileId: string) => async (
     const state = getState()
     const profiles = state.profiles
 
-    //TODO ask George about this type 'unknown'
     if (profiles[profileId] === undefined) {
         try {
             const { data } = await httpConfig(`/apis/profile/${profileId}`)
