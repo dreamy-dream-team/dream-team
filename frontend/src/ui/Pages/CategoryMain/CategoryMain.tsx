@@ -49,7 +49,7 @@ export function CategoryRow() {
                     <>
                         <h4 key={category.categoryId}>{category.categoryName}</h4>
                         <Carousel showDots={true} responsive={responsive}>
-                            {dataPosts.map((post:Post) => <CategoryCard categoryId={category.categoryId}/>)}
+                            {categories.map((category:Category) => <CategoryCard categoryId={category.categoryId}/>)}
                         </Carousel>
                     </>
                 ) )}
