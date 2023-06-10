@@ -30,10 +30,11 @@ export async function getAllPostsController (request: Request, response: Respons
 
 export async function getAllPostsByPostCategoryIdController (request: Request, response: Response): Promise<Response<Status>> {
     try {
-        const {postCategoryCategoryId} = request.params
-        const data = await selectAllPostsByPostCategory(postCategoryCategoryId)
+        const {postCategoryId} = request.params
+        const data = await selectAllPostsByPostCategory(postCategoryId)
         return response.json({status: 200, message: null, data})
     } catch (error) {
+        console.log(error)
         return response.json({
             status: 500,
             message: '',

@@ -1,6 +1,7 @@
 import {Router} from "express";
 import {asyncValidatorController} from "../../utils/controllers/async-validator.controller";
 import {
+    deletePostCategoryController,
     // deletePostCategory,
     getPostCategoryByCategoryId,
     getPostCategoryByPrimaryKey, postPostCategoryController
@@ -23,14 +24,14 @@ router.route('/postCategoryId/:postCategoryId/postPostId/:postPostId').get(async
 router.route('/postCategoryId/:postCategoryId/postPostId/:postPostId').delete(asyncValidatorController([
     check('postCategoryId', 'please provide a valid postCategoryId').isUUID(),
     check('postPostId', 'please provide a valid postPostId').isUUID()
-]), getPostCategoryByPrimaryKey)
+]), deletePostCategoryController)
 
 router.route('/')
 .post(
     isLoggedIn,
     asyncValidatorController([
-    check('postCategoryId', 'please provide a valid postCategoryId').isUUID(),
-    check('postPostId', 'please provide a valid postPostId').isUUID()
+    check('postCategoryCategoryId', 'please provide a valid postCategoryId').isUUID(),
+    check('postCategoryPostId', 'please provide a valid postPostId').isUUID()
 ]),postPostCategoryController)
 
 export default router

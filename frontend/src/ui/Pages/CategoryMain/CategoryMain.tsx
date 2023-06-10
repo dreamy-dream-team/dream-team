@@ -3,10 +3,10 @@ import styles from './category-main.module.css';
 import 'react-multi-carousel/lib/styles.css';
 import Carousel from "react-multi-carousel";
 import { TopNav } from "../../../shared/components/TopNav.tsx";
-import { PostCard } from "../../../shared/components/PostCard.tsx";
-import {Post} from "../../../shared/interfaces/Post";
 import {useGetAllCategoryQuery, useGetAllPostsPublishedQuery} from "../../../store/apis";
 import {Category} from "../../../shared/interfaces/Category";
+import {CategoryCard} from "../../../shared/components/CategoryCard";
+import {Post} from "../../../shared/interfaces/Post";
 
 
 export function CategoryMain() {
@@ -17,8 +17,6 @@ export function CategoryMain() {
                 <h4 className="font-weight-bold py-3 mb-4">Category Main Page</h4>
                 <div className={styles.content_wrapper}>
                 <CategoryRow/>
-                <CategoryRow/>
-                <CategoryRow/>
                 </div>
             </Container>
         </>
@@ -28,14 +26,13 @@ export function CategoryRow() {
 
         const {
             data: dataPosts,
-            error: errorPosts,
             isLoading: isLoadingPosts
         } = useGetAllPostsPublishedQuery("")
         const {
             data: dataCategory,
-            error: errorCategory,
             isLoading: isLoadingCategory
         } = useGetAllCategoryQuery("")
+        const categories = dataCategory ?? []
         if(
             isLoadingPosts ||
             isLoadingCategory
@@ -48,13 +45,15 @@ export function CategoryRow() {
         <>
             <div className={styles.wrapper}>
 
-                {dataCategory.map((category:Category) => <h4 key={category.categoryId}>{category.categoryName}</h4>)}
+                {categories.map((category:Category) => (
+                    <>
+                        <h4 key={category.categoryId}>{category.categoryName}</h4>
+                        <Carousel showDots={true} responsive={responsive}>
+                            {dataPosts.map((post:Post) => <CategoryCard categoryId={category.categoryId}/>)}
+                        </Carousel>
+                    </>
+                ) )}
 
-                <Carousel showDots={true} responsive={responsive}>
-
-                    {dataPosts.map((post:Post) => <PostCard post={post} key={post.postId}/>)}
-
-                </Carousel>
             </div>
         </>
     )

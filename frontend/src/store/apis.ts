@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery, } from '@reduxjs/toolkit/query/react'
-import {Post} from "../shared/interfaces/Post";
 import {Category} from "../shared/interfaces/Category";
 import {PartialPost, Post} from "../shared/interfaces/Post";
+import {PartialVote, Vote} from "../shared/interfaces/Vote";
+import {PartialProfile, Profile, SignIn} from "../shared/interfaces/Profile";
 
 export interface ServerResponse {
    status: number,
@@ -11,6 +12,10 @@ export interface ServerResponse {
 
 export interface ClientResponse extends ServerResponse {
    type: "alert alert-success" | "alert alert-danger"
+}
+
+export interface ClientResponseForSignIn extends ClientResponse {
+   authorization: string | undefined
 }
 
 export interface MutationResponse {
@@ -23,26 +28,94 @@ export const apis = createApi({
    baseQuery: fetchBaseQuery({baseUrl:'/apis'}),
    tagTypes: ["Post"],
    endpoints: (builder) => ({
-      getAllPostsPublished: builder.query<Post[], string>({
-         query: () => '/post',
-         transformResponse: (response: { data: Post[]}) => response.data,
-         providesTags: ["Post"]
+
+      getVotesByVotePostId:builder.query<Vote[], string>
+      ({
+         query: (postId) => `/vote/votePostId/${postId}`,
+         transformResponse:transformResponse<Vote[]>,
+         providesTags: ['Post']
+      }),
+      toggleVote: builder.mutation<ClientResponse, PartialVote> ({
+         transformResponse:transformMutationResponses,
+         transformErrorResponse: transformErrorResponses,
+         query (body: PartialVote) {
+            return {
+               url: '/vote',
+               method: 'POST',
+               body
+            }
+         },
+      }),
+      getProfileByProfileId: builder.query<Profile, string> ({
+         query: (profileId) => `/profile/${profileId}`,
+         transformResponse: transformResponse<Profile>
       }),
       getAllCategory: builder.query<Category[], string> ({
          query: () => '/category',
          transformResponse: (response: { data: Category[]}) => response.data,
       }),
+      getAllPostsPublished: builder.query<Post[], string>({
+         query: () => '/post',
+         transformResponse: (response: { data: Post[]}) => response.data,
+         providesTags: ["Post"]
+      }),
+      getAllPostsByPostCategory: builder.query<Post[], string> ({
+         query: (postCategoryId: string) => `/post/postCategoryId/${postCategoryId}`,
+         transformResponse: (response: { data: Post[]}) => response.data,
+         providesTags: ['Post']
+      }),
       postPost: builder.mutation<ClientResponse, PartialPost >({
+         transformResponse: transformMutationResponses,
+         transformErrorResponse: transformErrorResponses,
          query (body: PartialPost) {
             return{
                url:'/post',
-               method: "POST",
+               method: 'POST',
                body
             }
          },
+         invalidatesTags: ['Post']
+      }),
+      postSignIn: builder.mutation<ClientResponseForSignIn, SignIn> ({
+         query (body: SignIn) {
+            return {
+               url: '/sign-in',
+               method: 'POST',
+               body
+            }
+         },
+         transformErrorResponse: transformErrorResponses,
+         transformResponse: (response: ServerResponse, meta): ClientResponseForSignIn => {
+            const authorization = meta?.response?.headers.get('authorization') ?? undefined
+
+            if (response.status === 200) {
+               return {
+                  status: response.status,
+                  data: response.data,
+                  message: response.message,
+                  type: 'alert alert-success',
+                  authorization
+               }
+            }
+            return {
+               status: response.status,
+               data: response.data,
+               message: response.message,
+               type: 'alert alert-danger',
+               authorization
+            }
+         }
+      }),
+      PostSignUp: builder.mutation<ClientResponse, PartialProfile>({
          transformResponse: transformMutationResponses,
          transformErrorResponse: transformErrorResponses,
-         invalidatesTags: ["Post"]
+         query (body: PartialProfile) {
+            return {
+               url: '/sign-up',
+               method: 'POST',
+               body
+            }
+         }
       })
    })
 })
@@ -73,6 +146,18 @@ function transformErrorResponses(): ClientResponse {
    }
 }
 
-export const {useGetAllPostsPublishedQuery, useGetAllCategoryQuery, usePostPostMutation} = apis
+function transformResponse<T> (response: ServerResponse): T {
+   return response.data as T
+}
+
+export const {useGetAllPostsPublishedQuery,
+   usePostPostMutation,
+   useGetAllPostsByPostCategoryQuery,
+   useGetProfileByProfileIdQuery,
+   usePostSignInMutation,
+   usePostSignUpMutation,
+   useGetAllCategoryQuery,
+   useGetVotesByVotePostIdQuery,
+   useToggleVoteMutation} = apis
 console.log(useGetAllPostsPublishedQuery)
 

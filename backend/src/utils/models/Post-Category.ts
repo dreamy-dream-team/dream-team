@@ -6,6 +6,7 @@ export interface PostCategory {
 }
 
 export async function insertPostCategory (postCategory: PostCategory): Promise<string> {
+    console.log(postCategory)
     const {postCategoryCategoryId, postCategoryPostId} = postCategory
     await sql `INSERT INTO  post_category (post_category_category_id, post_category_post_id) VALUES (${postCategoryCategoryId}, ${postCategoryPostId})`
     return 'post category created successfully'
