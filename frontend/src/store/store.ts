@@ -3,8 +3,11 @@ import { apis } from './apis'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import auth from "./auth.ts";
+import profiles from "./profiles.ts";
+import votes from "./votes.ts";
+import post from "./post.ts";
 
-const reducer = combineReducers({api: apis.reducer, auth})
+const reducer = combineReducers({api: apis.reducer, auth, profiles, currentUser, post, votes})
 
 export const store = configureStore({
     reducer,
