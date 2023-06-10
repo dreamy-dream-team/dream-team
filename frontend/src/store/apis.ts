@@ -1,6 +1,6 @@
-import { createApi, fetchBaseQuery, } from '@reduxjs/toolkit/query/react'
-import {PartialPost, Post} from "../shared/interfaces/Post";
-import {PartialProfile, SignIn} from "../shared/interfaces/Profile.tsx";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'//removed comma after fetchBase
+//import {PartialPost, Post} from "../shared/interfaces/Post";
+import {PartialProfile, SignIn} from "../shared/interfaces/Profile";
 
 
 
@@ -28,13 +28,13 @@ export const apis = createApi({
     tagTypes: ['Post'],
     endpoints: (builder) => ({
 
-        getAllPosts: builder.query<Post[], string>({
+/*        getAllPosts: builder.query<Post[], string>({
             query: () => '/post',
-            transformResponse:transformResponse<Post[]>,
+            transformResponse:transformResponse,
             providesTags: ["Post"]
-        }),
+        }),*/
 
-        postPost: builder.mutation<ClientResponse, PartialPost>({
+/*        postPost: builder.mutation<ClientResponse, PartialPost>({
             transformResponse: transformMutationResponses,
             transformErrorResponse: transformErrorResponses,
             query (body: PartialPost) {
@@ -46,10 +46,10 @@ export const apis = createApi({
             },
 
             invalidatesTags: ["Post"]
-        }),
+        }),*/
 
-        postSignIn: builder.mutation<ClientResponse, SignIn>({
-            query: (body: SignIn){
+        postSignIn: builder.mutation<ClientResponseForSignIn, SignIn>({//Added ForSignIn
+            query: (body: SignIn)=>{ //added arrow function
                 return {
                     url: '/sign-in',
                     method: 'POST',
@@ -84,7 +84,7 @@ export const apis = createApi({
             transformResponse: transformMutationResponses,
             transformErrorResponse: transformErrorResponses,
 
-            query: (body: PartialProfile) {
+            query: (body: PartialProfile)=> {  //added arrow function
                 return {
                     url: '/sign-up',
                     method: 'POST',
@@ -122,6 +122,7 @@ function transformErrorResponses(): ClientResponse {
    }
 }
 
-export const {useGetAllPostsQuery, usePostPostMutation, usePostSignUpMutation, usePostSignInMutation} = apis
-console.log(useGetAllPostsQuery)
+export const {usePostSignUpMutation, usePostSignInMutation} = apis
 
+
+//TODO add back in (useGetAllPostsQuery, usePostPostMutation,)  &  console.log(useGetAllPostsQuery)  line 125,126
