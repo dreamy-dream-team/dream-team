@@ -11,7 +11,7 @@ export const Profile = () => {
         <>
         < BrandExample />
 
-        <Container fluid className="bg-black">
+        <Container fluid className="bg-secondary">
             {/*navbar*/}
             <Row>
                 {/*Categories*/}
