@@ -1,4 +1,4 @@
-import {Button, Col, FloatingLabel, Form, Row, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
+import {Button, Col, FloatingLabel, Form, Row, Spinner, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
 import {MutationResponse, useGetAllCategoryQuery, usePostPostMutation} from "../../store/apis.ts";
 import {PartialPost} from "../../shared/interfaces/Post.tsx";
 import {Formik, FormikHelpers, FormikProps} from "formik";
@@ -6,6 +6,8 @@ import {object, string} from "yup";
 import {DisplayError} from "../../shared/components/display-error/DisplayError.tsx";
 import {DisplayStatus} from "../../shared/components/display-status/Display.Status.tsx";
 import {FormDebugger} from "../../shared/components/FormDebugger.tsx";
+import {Category} from "../../shared/interfaces/Category.tsx";
+import React from "react";
 
 
 
@@ -63,15 +65,20 @@ function PostFormContent(props: FormikProps<PartialPost>) {
         handleReset
 } = props;
 
-const categoryCheckBox = useGetAllCategoryQuery
+    const {data: dataCategory, isLoading: isLoadingCategory} = useGetAllCategoryQuery("")
+    const categories = dataCategory ?? []
+    if(isLoadingCategory) {
+        return(<Spinner animation="border" />)
+    }
+    console.log(categories)
 
     return (
         <>
         <Form className={'align-content-center'}>
             <div className={'my-4 mx-auto px-3 py-2 border rounded-1 shadow-lg'} style={{overflow: 'auto', width: "35rem"}}>
-                <Form>
+                <div>
                     <FloatingLabel
-                        controlId="floatingInput"
+                        controlId="postTitle"
                         label="Title"
                         className="mb-1 mx-auto"
                     >
@@ -79,8 +86,8 @@ const categoryCheckBox = useGetAllCategoryQuery
                     </FloatingLabel>
                     <DisplayError errors={errors} touched={touched} field={"postTitle"}/>
 
-                    <FloatingLabel controlId="floatingTextarea2" label="Tell us your dream...">
-                        <Form.Control type={"text"} onChange={handleChange} onBlur={handleBlur} value={values.postContent}
+                    <FloatingLabel controlId="postContent" label="Tell us your dream...">
+                        <Form.Control type="text" onChange={handleChange} onBlur={handleBlur} name={"postContent"} value={values.postContent}
                             as="textarea"
                             placeholder="Tell us your dream..."
                             style={{ height: '175px', width: '500px'}}
@@ -88,44 +95,16 @@ const categoryCheckBox = useGetAllCategoryQuery
                     </FloatingLabel>
                     <DisplayError errors={errors} touched={touched} field={"postContent"}/>
                         <p className={'mb-0 text-center'}>Add category</p>
-                        <ToggleButtonGroup type="checkbox" className="mb-1">
-                            <ToggleButton variant={'outline-secondary'} id="tbg-check-1" value={1}>
-                                Funny
-                            </ToggleButton>
-                            <ToggleButton variant={'outline-secondary'} id="tbg-check-2" value={2}>
-                                Nightmare
-                            </ToggleButton>
-                            <ToggleButton variant={'outline-secondary'} id="tbg-check-3" value={3}>
-                                Animals
-                            </ToggleButton>
-                            <ToggleButton variant={'outline-secondary'} id="tbg-check-4" value={4}>
-                                School
-                            </ToggleButton>
-                            <ToggleButton variant={'outline-secondary'} id="tbg-check-5" value={5}>
-                                Work
-                            </ToggleButton>
-                            <ToggleButton variant={'outline-secondary'} id="tbg-check-6" value={6}>
-                                Weird
-                            </ToggleButton>
+                        <ToggleButtonGroup type="checkbox" className="mb-1 flex-wrap">
+                            {categories.map(category =><ToggleButton variant={'outline-secondary'} id={category.categoryId} value={category.categoryId}>
+                                {category.categoryName}
+                            </ToggleButton>)}
+
                         </ToggleButtonGroup>
-                        <br/>
-                        <ToggleButtonGroup type="checkbox" className="mb-2">
-                            <ToggleButton variant={'outline-secondary'} id="tbg-check-7" value={7}>
-                                Reoccurring
-                            </ToggleButton>
-                            <ToggleButton variant={'outline-secondary'} id="tbg-check-8" value={8}>
-                                Out of Body
-                            </ToggleButton>
-                            <ToggleButton variant={'outline-secondary'} id="tbg-check-9" value={9}>
-                                Daydream
-                            </ToggleButton>
-                            <ToggleButton variant={'outline-secondary'} id="tbg-check-10" value={10}>
-                                Lucid Dream
-                            </ToggleButton>
-                        </ToggleButtonGroup>
+
                         {/*//TODO ask about this error if they don't choose a category*/}
                         {/*DisplayError*/}
-                    </Form>
+                    </div>
 
                     <div>
                         <Row className="align-items-center">
