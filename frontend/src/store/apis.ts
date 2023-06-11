@@ -1,7 +1,8 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query";
+import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {PartialProfile, Profile, SignIn} from "../shared/interfaces/Profile.tsx";
 import {PartialPost} from "../shared/interfaces/Post.tsx";
-import Post from "./post.ts";
+import Post from "./posts.ts";
+import {Category} from "../shared/interfaces/Category.tsx";
 
 export interface ServerResponse {
     status: number,

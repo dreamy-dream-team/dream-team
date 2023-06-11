@@ -1,5 +1,5 @@
-import {Button, Col, FloatingLabel, Form, FormControl, Row, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
-import {MutationResponse, usePostPostMutation} from "../../store/apis.ts";
+import {Button, Col, FloatingLabel, Form, Row, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
+import {MutationResponse, useGetAllCategoryQuery, usePostPostMutation} from "../../store/apis.ts";
 import {PartialPost} from "../../shared/interfaces/Post.tsx";
 import {Formik, FormikHelpers, FormikProps} from "formik";
 import {object, string} from "yup";
@@ -11,14 +11,6 @@ import {FormDebugger} from "../../shared/components/FormDebugger.tsx";
 
 export function PostForm() {
     const [submit] = usePostPostMutation()
-    const post = {
-            postProfileId: "",
-            postContent: "",
-            postIsPublished: "",
-            postProfileHandleIsVisible: "",
-            postTitle: "",
-    };
-
         const validator = object({
             postContent: string().required('post content is required').max(1024, 'the content for this post is too long'),
             postTitle: string().required('Title is required').max(512, 'the title for this post is too long')
@@ -27,7 +19,6 @@ export function PostForm() {
     const initialValues: PartialPost = {
         postProfileId: "",
         postContent: "",
-        postDateTime: null,
         postProfileHandleIsVisible: true,
         postIsPublished: true,
         postTitle: ""
@@ -36,7 +27,7 @@ export function PostForm() {
 
     async function handleSubmit(values: PartialPost, actions: FormikHelpers<PartialPost>) {
             const {resetForm, setStatus} = actions
-            console.log(values)
+            // console.log(values)
         const result = await submit(values) as MutationResponse
         const {data: response, error} = result
 
@@ -72,29 +63,30 @@ function PostFormContent(props: FormikProps<PartialPost>) {
         handleReset
 } = props;
 
+const categoryCheckBox = useGetAllCategoryQuery
 
     return (
         <>
-
+        <Form className={'align-content-center'}>
             <div className={'my-4 mx-auto px-3 py-2 border rounded-1 shadow-lg'} style={{overflow: 'auto', width: "35rem"}}>
+                <Form>
                     <FloatingLabel
                         controlId="floatingInput"
                         label="Title"
                         className="mb-1 mx-auto"
                     >
-                        <Form.Control type="title" placeholder="Title" style={{ height: '50px', width: '500px'}}/>
+                        <Form.Control type="text" onChange={handleChange} onBlur={handleBlur} value={values.postTitle} name={"postTitle"} placeholder="Title" style={{ height: '50px', width: '500px'}}/>
                     </FloatingLabel>
                     <DisplayError errors={errors} touched={touched} field={"postTitle"}/>
 
                     <FloatingLabel controlId="floatingTextarea2" label="Tell us your dream...">
-                        <Form.Control
+                        <Form.Control type={"text"} onChange={handleChange} onBlur={handleBlur} value={values.postContent}
                             as="textarea"
                             placeholder="Tell us your dream..."
                             style={{ height: '175px', width: '500px'}}
                         />
                     </FloatingLabel>
                     <DisplayError errors={errors} touched={touched} field={"postContent"}/>
-                    <Form className={'align-content-center'}>
                         <p className={'mb-0 text-center'}>Add category</p>
                         <ToggleButtonGroup type="checkbox" className="mb-1">
                             <ToggleButton variant={'outline-secondary'} id="tbg-check-1" value={1}>
@@ -135,7 +127,7 @@ function PostFormContent(props: FormikProps<PartialPost>) {
                         {/*DisplayError*/}
                     </Form>
 
-                    <Form>
+                    <div>
                         <Row className="align-items-center">
                             <Col xs={'4'} className="my-1 me-0">
                                 <Form.Check
@@ -155,10 +147,11 @@ function PostFormContent(props: FormikProps<PartialPost>) {
                                 <Button type="submit">Submit</Button>
                             </Col>
                         </Row>
-                    </Form>
+                    </div>
                     <DisplayStatus status={status}/>
                     <FormDebugger {...props}/>
             </div>
+            </Form>
         </>
     );
 }
