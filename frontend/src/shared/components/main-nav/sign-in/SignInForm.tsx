@@ -85,7 +85,6 @@ function SignInFormContent(props: FormikProps<SignIn>) {
                         <Form onSubmit={handleSubmit}>
                             <Form.Group className="mb-3 mt-4" controlId="formEmail">
                                 <Form.Label>Email Address</Form.Label>
-                                <Form.Control type="email" placeholder="Enter Email"/>
                                 <InputGroup>
                                     <FormControl
                                         className="form-control"
@@ -102,7 +101,6 @@ function SignInFormContent(props: FormikProps<SignIn>) {
 
                             <Form.Group className="mb-3" controlId="formPassword">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="Password"/>
                                 <InputGroup>
                                     <InputGroup.Text>
                                         <FontAwesomeIcon icon="key" />
@@ -121,7 +119,7 @@ function SignInFormContent(props: FormikProps<SignIn>) {
                             </Form.Group>
 
                             <Form.Group className={"mt-3"}>
-                                <Button variant="primary" type="submit" className="w-100 mb-2">
+                                <Button variant="primary" type="submit" className="w-100 align-content-center mb-2">
                                     Submit
                                 </Button>
                                 {" "}

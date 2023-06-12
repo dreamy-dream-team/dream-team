@@ -1,5 +1,5 @@
 import {object, string} from "yup";
-import {PartialProfile} from "../../../interfaces/Profile.tsx";
+import {SignUpProfile} from "../../../interfaces/Profile.tsx";
 import {MutationResponse, usePostSignUpMutation} from "../../../../store/apis.ts";
 import {Formik, FormikHelpers, FormikProps} from "formik";
 import {Button, Container, Form, FormControl} from "react-bootstrap";
@@ -10,7 +10,7 @@ import {FormDebugger} from "../../FormDebugger.tsx";
 
 
 export function SignUpForm() {
-    const signUp: PartialProfile = {
+    const signUp: SignUpProfile = {
         profileEmail: "",
         profileHandle: "",
         profilePassword: "",
@@ -35,7 +35,7 @@ const [submit] = usePostSignUpMutation()
             .max(97, "Password needs to be less than 98 characters")
     });
 
-    async function handleSubmit(values: PartialProfile, actions: FormikHelpers<PartialProfile>){
+    async function handleSubmit(values: SignUpProfile, actions: FormikHelpers<SignUpProfile>){
         const {resetForm, setStatus} = actions
         console.log(values)
 
@@ -61,7 +61,7 @@ const [submit] = usePostSignUpMutation()
     )
 }
 
-function SignUpFormContent(props: FormikProps<PartialProfile>) {
+function SignUpFormContent(props: FormikProps<SignUpProfile>) {
     const {
         status,
         values,
