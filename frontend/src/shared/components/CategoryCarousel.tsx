@@ -1,12 +1,13 @@
 import {Post} from "../interfaces/Post";
-import {Badge, Card, Spinner} from "react-bootstrap";
+import {Card, Spinner} from "react-bootstrap";
 import {
     useGetAllPostsByPostCategoryQuery,
-    useGetProfileByProfileIdQuery,
-
+    useGetProfileByProfileIdQuery
 } from "../../store/apis";
 import Carousel from "react-multi-carousel";
 import {Category} from "../interfaces/Category";
+import {CategoryTag} from "./Tags";
+import {Link} from "react-router-dom";
 
 interface CategoryCardProps {
     category : Category
@@ -32,18 +33,11 @@ export function CategoryCarousel(props: CategoryCardProps) {
                     <DisplayProfileHandle profileId={post.postProfileId} postProfileHandleIsVisible={post.postProfileHandleIsVisible}/>
                     <Card.Title>{post.postTitle}</Card.Title>
                     <Card.Text as={"div"}>
-                        {post.postContent}
+                        {post.postContent.slice(0,100)}...
+                        <br></br>
+                        <Link to={`/post/${post.postId}`}>Read more</Link>
                     </Card.Text>
-                    <a href="#">
-                        <Badge pill bg="dark">
-                            Funny
-                        </Badge>
-                    </a>
-                    <a href="#">
-                        <Badge pill bg="dark">
-                            Animals
-                        </Badge>
-                    </a>
+                    <CategoryTag postId={post.postId}></CategoryTag>
                     <br></br>
                     {new Date(post.postDateTime).toLocaleString()}
                 </Card.Body>

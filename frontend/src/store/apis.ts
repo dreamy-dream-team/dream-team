@@ -64,6 +64,11 @@ export const apis = createApi({
          transformResponse: (response: { data: Post[]}) => response.data,
          providesTags: ['Post']
       }),
+      getCategoriesByPostCategoryPostId: builder.query<Post[], string> ({
+         query: (postCategoryPostId: string) => `/category/postCategoryPostId/${postCategoryPostId}`,
+         transformResponse: (response: { data: Post[]}) => response.data,
+         providesTags: ['Post']
+      }),
       postPost: builder.mutation<ClientResponse, PartialPost >({
          transformResponse: transformMutationResponses,
          transformErrorResponse: transformErrorResponses,
@@ -153,6 +158,7 @@ function transformResponse<T> (response: ServerResponse): T {
 export const {useGetAllPostsPublishedQuery,
    usePostPostMutation,
    useGetAllPostsByPostCategoryQuery,
+   useGetCategoriesByPostCategoryPostIdQuery,
    useGetProfileByProfileIdQuery,
    usePostSignInMutation,
    usePostSignUpMutation,
