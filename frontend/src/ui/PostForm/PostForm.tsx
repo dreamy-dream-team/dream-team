@@ -8,6 +8,7 @@ import {DisplayStatus} from "../../shared/components/display-status/Display.Stat
 import {FormDebugger} from "../../shared/components/FormDebugger.tsx";
 import {Category} from "../../shared/interfaces/Category.tsx";
 import React from "react";
+import {PostCard} from "../../shared/components/PostCard.tsx";
 
 
 
@@ -72,6 +73,9 @@ function PostFormContent(props: FormikProps<PartialPost>) {
     }
     console.log(categories)
 
+    const {data: anonymousPosts, isLoading: anonymousLoading} = useGetAnonymousPostsQuery();
+    const {data: publicPosts, isLoading: publicLoading} = useGetPublicPostsQuery();
+
     return (
         <>
         <Form className={'align-content-center'}>
@@ -99,7 +103,7 @@ function PostFormContent(props: FormikProps<PartialPost>) {
                             {categories.map(category =><ToggleButton variant={'outline-secondary'} id={category.categoryId} value={category.categoryId}>
                                 {category.categoryName}
                             </ToggleButton>)}
-
+                            <DisplayError errors={errors} touched={touched} field={"postCategory"}/>
                         </ToggleButtonGroup>
 
                         {/*//TODO ask about this error if they don't choose a category*/}
@@ -109,17 +113,23 @@ function PostFormContent(props: FormikProps<PartialPost>) {
                     <div>
                         <Row className="align-items-center">
                             <Col xs={'4'} className="my-1 me-0">
-                                <Form.Check
+                                <Form.Check {anonymousPosts?.map((post, idx) => (
+                                    <PostCard key={idx} post={post}/>
+                                ))}
                                     type="checkbox"
                                     id="autoSizingCheck2"
                                     label="Anonymous"
+                                    value={}
                                 />
                             </Col>
                             <Col xs={'4'} className="my-1 ms-0">
-                                <Form.Check
+                                <Form.Check {publicPosts?.map((post, idx) => (
+                                    <PostCard key={idx} post={post}/>
+                                ))}
                                     type="checkbox"
                                     id="autoSizingCheck2"
                                     label="Private"
+                                    value={}
                                 />
                             </Col>
                             <Col xs={'8'} className="my-1 ms-0">
