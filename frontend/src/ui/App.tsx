@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import './App.css'
-
+import { Settings } from "./Settings/Settings";
 
 import { SignUp } from './Pages/login/SignUp'
 import { Terms } from './Pages/Terms.tsx'
@@ -34,6 +34,7 @@ export function App(props: Props)  {
                     <Route path='/SignIn' element={<SignInForm />} />
                     <Route path='/' element={<Home />} />
                     <Route path={"*"} element={<FourOhFour />} />
+                    <Route path={'/settings'} element={<Settings />} />
                 </Routes>
             </BrowserRouter>
             </Provider>
