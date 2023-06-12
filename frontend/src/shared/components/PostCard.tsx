@@ -1,12 +1,14 @@
-import {Badge, Button, Card} from "react-bootstrap";
+import {Button, Card} from "react-bootstrap";
 import {Post} from "../interfaces/Post.tsx";
 import {useGetProfileByProfileIdQuery, useGetVotesByVotePostIdQuery, useToggleVoteMutation} from "../../store/apis";
+import {CategoryTag} from "./Tags";
 
 interface Props {
     post: Post
+    profileId: string
 }
 export function PostCard(props: Props) {
-    const { post } = props
+    const { post, profileId } = props
     const [submitVote] = useToggleVoteMutation()
     const { data: profile, isLoading} = useGetProfileByProfileIdQuery(profileId)
     const { data: vote, isLoading: voteIsLoading, refetch } = useGetVotesByVotePostIdQuery(post.postProfileId)
@@ -34,16 +36,7 @@ export function PostCard(props: Props) {
                     <Card.Text as={"div"}>
                         {post.postContent}
                     </Card.Text>
-                    <a href="#">
-                        <Badge pill bg="dark">
-                            Funny
-                        </Badge>
-                    </a>
-                    <a href="#">
-                        <Badge pill bg="dark">
-                            Animals
-                        </Badge>
-                    </a>
+                    <CategoryTag postId={post.postId}/>
                     <br></br>
                     <Button onClick={clickVote}>{vote.length}<span role="icon" aria-label="up vote">Up</span></Button>
                     <Button onClick={clickVote}>{vote.length}<span role="icon" aria-label="down vote">Down</span></Button>

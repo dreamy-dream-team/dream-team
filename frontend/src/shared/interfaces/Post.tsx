@@ -1,5 +1,5 @@
 export interface Post extends PartialPost{
-    postId: string|null
+    postId: string
     postDateTime: string
 }
 

@@ -33,11 +33,11 @@ export function CategoryCarousel(props: CategoryCardProps) {
                     <DisplayProfileHandle profileId={post.postProfileId} postProfileHandleIsVisible={post.postProfileHandleIsVisible}/>
                     <Card.Title>{post.postTitle}</Card.Title>
                     <Card.Text as={"div"}>
-                        {post.postContent.slice(0,100)}...
+                        {post.postContent.slice(0,120)}...
                         <br></br>
                         <Link to={`/post/${post.postId}`}>Read more</Link>
                     </Card.Text>
-                    <CategoryTag postId={post.postId}></CategoryTag>
+                    <CategoryTag postId={post.postId}/>
                     <br></br>
                     {new Date(post.postDateTime).toLocaleString()}
                 </Card.Body>

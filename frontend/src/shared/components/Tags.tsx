@@ -1,9 +1,8 @@
 import {Badge, Spinner} from "react-bootstrap";
-import {Category} from "../interfaces/Category";
 import {useGetCategoriesByPostCategoryPostIdQuery} from "../../store/apis";
 
 interface CategoryTagProps {
-    postId: string | null
+    postId: string
 }
 
 export function CategoryTag(props: CategoryTagProps) {

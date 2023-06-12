@@ -31,8 +31,8 @@ export const apis = createApi({
 
       getVotesByVotePostId:builder.query<Vote[], string>
       ({
-         query: (postId) => `/vote/votePostId/${postId}`,
-         transformResponse:transformResponse<Vote[]>,
+         query: (postId: string) => `/vote/votePostId/${postId}`,
+         transformResponse: (response: { data: Vote[]}) => response.data,
          providesTags: ['Post']
       }),
       toggleVote: builder.mutation<ClientResponse, PartialVote> ({
@@ -64,9 +64,9 @@ export const apis = createApi({
          transformResponse: (response: { data: Post[]}) => response.data,
          providesTags: ['Post']
       }),
-      getCategoriesByPostCategoryPostId: builder.query<Post[], string> ({
+      getCategoriesByPostCategoryPostId: builder.query<Category[], string> ({
          query: (postCategoryPostId: string) => `/category/postCategoryPostId/${postCategoryPostId}`,
-         transformResponse: (response: { data: Post[]}) => response.data,
+         transformResponse: (response: { data: Category[]}) => response.data,
          providesTags: ['Post']
       }),
       postPost: builder.mutation<ClientResponse, PartialPost >({
