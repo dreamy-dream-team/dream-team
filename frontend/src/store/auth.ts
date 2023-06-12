@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 import jwtDecode from "jwt-decode";
 import { AppDispatch, RootState } from './store.ts'
-import { Profile } from '../shared/interfaces/Profile.ts'
+import {PartialProfile} from "../shared/interfaces/Profile.tsx";
 
-
-export interface JwtToken extends Profile{
+export interface JwtToken extends PartialProfile{
     exp: number,
     iat: number
 }
 
 const initialState: JwtToken|null = null
+
 const slice = createSlice({
     name: "auth",
     initialState,
@@ -20,10 +20,10 @@ const slice = createSlice({
     }
 })
 
-export const {getAuth} = slice.actions
+export const {getAuth} = slice.actions;
 
-export const fetchAuth = ()  => async (dispatch: AppDispatch, getState: RootState) => {
-    const state = getState()
+export const fetchAuth = ()  => async (dispatch: AppDispatch, getState: () => RootState) => {
+    const state = getState();
 
     if (state.auth === null) {
         const token = window.localStorage.getItem("authorization")
@@ -31,9 +31,9 @@ export const fetchAuth = ()  => async (dispatch: AppDispatch, getState: RootStat
 
         if(decodedToken) {
             if (decodedToken?.exp < Math.round( Date.now() / 1000)){
-                decodedToken = null
+                decodedToken = null;
             }
-            dispatch(getAuth(decodedToken))
+            dispatch(getAuth(decodedToken));
 
         }
 

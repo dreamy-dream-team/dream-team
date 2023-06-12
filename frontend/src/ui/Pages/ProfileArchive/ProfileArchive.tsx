@@ -1,7 +1,8 @@
 //import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+/*import { Container, Row, Col, Card } from "react-bootstrap";*/
+import {ProfileArchiveForm} from "../../../shared/components/profile-archive/ProfileArchiveForm.tsx";
 
-const categories = [
+/*const categories = [
     "Funny",
     "Nightmares",
     "School",
@@ -9,20 +10,21 @@ const categories = [
     "Daydreams",
     "Out of body",
     "Weird"
-];
+];*/
 
 //Testing posts in Private, Journal, and Anonymous
-const comments = [
+/*const comments = [
     { title: "Private", posts: ["Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."] },
     { title: "Journal", posts: ["Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."] },
     { title: "Anonymous", posts: ["Parite enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut" +
         " aliquip ex ea commodo consequat.", "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."] },
-];
+];*/
 
 export const ProfileArchive = () => {
     return (
         <>
-            <Container fluid>
+            <ProfileArchiveForm/>
+{/*            <Container fluid>
                 <Row style={{marginTop: '200px'}}>
                     <Col className="p-3" md={3} xs={12} style={{height: "100vh"}}>
                         <div className="border border-3 rounded p-2 bg-light h-100 d-flex flex-column justify-content-center align-items-center">
@@ -55,7 +57,7 @@ export const ProfileArchive = () => {
                         ))}
                     </Col>
                 </Row>
-            </Container>
+            </Container>*/}
         </>
     );
 };
