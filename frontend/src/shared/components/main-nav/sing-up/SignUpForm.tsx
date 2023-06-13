@@ -7,16 +7,21 @@ import {useState} from "react";
 import {DisplayError} from "../../display-error/DisplayError.tsx";
 import {DisplayStatus} from "../../display-status/Display.Status.tsx";
 import {FormDebugger} from "../../FormDebugger.tsx";
+import Logo from "../../../../images/Dreamery-Logo.svg";
 
-
+// This component handles the SignUp form
 export function SignUpForm() {
+    // Initialize SignUpProfile object with empty fields
     const signUp: SignUpProfile = {
         profileEmail: "",
         profileHandle: "",
         profilePassword: "",
         profilePasswordConfirm: "",
     };
-const [submit] = usePostSignUpMutation()
+    // Initialize signUpMutation hook
+    const [submit] = usePostSignUpMutation()
+
+    // Define validation schema for the form fields
     const validator = object({
         profileEmail: string()
             .email("email must be a valid email")
@@ -35,6 +40,8 @@ const [submit] = usePostSignUpMutation()
             .max(97, "Password needs to be less than 98 characters")
     });
 
+    // Asynchronous function to handle form submission
+    // Makes a request to the server and sets the status of the form according to the response
     async function handleSubmit(values: SignUpProfile, actions: FormikHelpers<SignUpProfile>){
         const {resetForm, setStatus} = actions
         console.log(values)
@@ -52,6 +59,8 @@ const [submit] = usePostSignUpMutation()
         }
 
     }
+
+    //Formik component
     return (
         <>
             <Formik initialValues={signUp} onSubmit={handleSubmit} validationSchema={validator}>
@@ -72,13 +81,17 @@ function SignUpFormContent(props: FormikProps<SignUpProfile>) {
         handleSubmit
     } = props;
 
-const [agreed, setAgreed] = useState(false)
+
+    // State to handle the 'agreed' checkbox
+    const [agreed, setAgreed] = useState(false)
+
     // @ts-ignore
     // @ts-ignore
     return(
         <>
             <Container className="text-center">
-                <h1 className="my-5"> Dreamery World</h1>
+                {/*<h1 className="my-0"> Dreamery World</h1>*/}
+                <img src={Logo} className="logo-svg  mt-0" alt="logo"style={{width: '150px', height: 'auto'}} />
 
                         <Form onSubmit={handleSubmit}>
 
@@ -146,6 +159,7 @@ const [agreed, setAgreed] = useState(false)
                             </Button>
                         </Form>
                 <DisplayStatus status={status}/>
+               {/* helpful during development to understand how the form's data and states are changing as a user interacts with it.*/}
                 <FormDebugger {...props}/>
             </Container>
 
