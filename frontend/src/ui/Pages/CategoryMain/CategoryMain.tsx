@@ -33,7 +33,6 @@ export function CategoryRow() {
                     <CategoryCarousel key={category.categoryId} category={category} />
                     </>
                 ) )}
-
             </div>
         </>
     )

@@ -31,7 +31,7 @@ export const apis = createApi({
 
       getVotesByVotePostId:builder.query<Vote[], string>
       ({
-         query: (postId: string) => `/vote/votePostId/${postId}`,
+         query: (postId) => `/vote/votePostId/${postId}`,
          transformResponse: (response: { data: Vote[]}) => response.data,
          providesTags: ['Post']
       }),
@@ -50,10 +50,9 @@ export const apis = createApi({
          query: (profileId) => `/profile/${profileId}`,
          transformResponse: transformResponse<Profile>
       }),
-      getPostByPostId: builder.query<Post[], string> ({
+      getPostByPostId: builder.query<Post, string> ({
          query: (postId) => `/post/${postId}`,
-         transformResponse: (response: {data: Post[]}) => response.data,
-         providesTags: ["Post"]
+         transformResponse: transformResponse<Post>
       }),
       getAllCategory: builder.query<Category[], string> ({
          query: () => '/category',

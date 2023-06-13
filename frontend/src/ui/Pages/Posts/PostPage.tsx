@@ -1,20 +1,21 @@
 import {Container, Spinner} from "react-bootstrap";
 import {PostCard} from "../../../shared/components/PostCard";
-import {Post} from "../../../shared/interfaces/Post";
 import {useGetPostByPostIdQuery} from "../../../store/apis";
+import {useParams} from "react-router-dom";
 
-interface Props {
-    post: Post
-
-}
 export function PostPage() {
+    const { postId } = useParams()
+    const {data: post, isLoading} = useGetPostByPostIdQuery(postId as string)
 
+    if(isLoading || post === undefined) {
+        return(<Spinner animation="border" />)
+    }
 
     return(
         <>
         <Container>
             <h4>Post Page</h4>
-
+            <PostCard post={post}/>
         </Container>
         </>
     )

@@ -11,8 +11,12 @@ export function PostCard(props: Props) {
     const [submitVote] = useToggleVoteMutation()
     const { data: profile, isLoading} = useGetProfileByProfileIdQuery(post.postProfileId)
     const { data: vote, isLoading: voteIsLoading, refetch } = useGetVotesByVotePostIdQuery(post.postProfileId)
-    const clickVote = async () => {
-        await submitVote({votePostId: post.postId})
+    const clickVoteUp = async () => {
+        await submitVote({votePostId: post.postId, voteValue: false})
+        await refetch()
+    }
+    const clickVoteDown = async () => {
+        await submitVote({votePostId: post.postId, voteValue: true})
         await refetch()
     }
 
@@ -37,8 +41,8 @@ export function PostCard(props: Props) {
                     </Card.Text>
                     <CategoryTag postId={post.postId}/>
                     <br></br>
-                    <Button onClick={clickVote}>{vote.length}<span role="icon" aria-label="up vote">Up</span></Button>
-                    <Button onClick={clickVote}>{vote.length}<span role="icon" aria-label="down vote">Down</span></Button>
+                    <Button onClick={clickVoteUp}>{vote.length}<span role="icon" aria-label="up vote">Up</span></Button>
+                    <Button onClick={clickVoteDown}>{vote.length}<span role="icon" aria-label="down vote">Down</span></Button>
                     {new Date(post.postDateTime).toLocaleString()}
                 </Card.Body>
             </Card>

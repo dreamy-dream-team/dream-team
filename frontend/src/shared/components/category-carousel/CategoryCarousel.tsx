@@ -36,7 +36,7 @@ export function CategoryCarousel(props: CategoryCardProps) {
                     <Card.Text as={"div"}>
                         {post.postContent.slice(0,115)}...
                         <br></br>
-                        <Link to={`/post/${post.postId}`}>Read more</Link>
+                        <Link to={`/post-page/${post.postId}`}>Read more</Link>
                     </Card.Text>
                     <CategoryTag postId={post.postId}/>
                     <br></br>

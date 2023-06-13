@@ -12,6 +12,7 @@ import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import { Provider } from "react-redux";
 import { CategoryMain } from "./Pages/CategoryMain/CategoryMain";
 import { PostPage } from "./Pages/Posts/PostPage";
+import { CategoryPage } from "./Pages/Category/CategoryPage";
 
 
 interface Props {
@@ -25,8 +26,9 @@ export function App(props: Props)  {
             <Provider store = {store}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/PostPage' element={<PostPage />} />
-                    <Route path='/CategoryMain' element={<CategoryMain />} />
+                    <Route path='/category-page/:categoryId/:categoryName' element={<CategoryPage />} />
+                    <Route path='/post-page/:postId' element={<PostPage />} />
+                    <Route path='/category-main' element={<CategoryMain />} />
                     <Route path='/ProfileArchive' element={<ProfileArchive />} />
                     <Route path='/ForgotPassword' element={<ForgotPassword />} />
                     <Route path='/SignUp' element={<SignUp />} />
