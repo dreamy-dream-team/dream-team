@@ -1,16 +1,15 @@
 import {Button, Card} from "react-bootstrap";
 import {Post} from "../interfaces/Post.tsx";
 import {useGetProfileByProfileIdQuery, useGetVotesByVotePostIdQuery, useToggleVoteMutation} from "../../store/apis";
-import {CategoryTag} from "./Tags";
+import {CategoryTag} from "./tags/Tags";
 
 interface Props {
     post: Post
-    profileId: string
 }
 export function PostCard(props: Props) {
-    const { post, profileId } = props
+    const { post } = props
     const [submitVote] = useToggleVoteMutation()
-    const { data: profile, isLoading} = useGetProfileByProfileIdQuery(profileId)
+    const { data: profile, isLoading} = useGetProfileByProfileIdQuery(post.postProfileId)
     const { data: vote, isLoading: voteIsLoading, refetch } = useGetVotesByVotePostIdQuery(post.postProfileId)
     const clickVote = async () => {
         await submitVote({votePostId: post.postId})

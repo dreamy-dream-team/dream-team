@@ -1,13 +1,14 @@
-import {Post} from "../interfaces/Post";
+import {Post} from "../../interfaces/Post";
 import {Card, Spinner} from "react-bootstrap";
 import {
     useGetAllPostsByPostCategoryQuery,
     useGetProfileByProfileIdQuery
-} from "../../store/apis";
+} from "../../../store/apis";
 import Carousel from "react-multi-carousel";
-import {Category} from "../interfaces/Category";
-import {CategoryTag} from "./Tags";
+import {Category} from "../../interfaces/Category";
+import {CategoryTag} from "../tags/Tags";
 import {Link} from "react-router-dom";
+import styles from "./category-carousel.module.css";
 
 interface CategoryCardProps {
     category : Category
@@ -24,16 +25,16 @@ export function CategoryCarousel(props: CategoryCardProps) {
 
     return (
         <>
+            <div className={styles.row_wrapper}>
             <h4 key={category.categoryId}>{category.categoryName}</h4>
             <Carousel showDots={true} responsive={responsive}>
-
             {dataPostsByCategory.map((post:Post) =>
                 <Card>
                 <Card.Body>
                     <DisplayProfileHandle profileId={post.postProfileId} postProfileHandleIsVisible={post.postProfileHandleIsVisible}/>
                     <Card.Title>{post.postTitle}</Card.Title>
                     <Card.Text as={"div"}>
-                        {post.postContent.slice(0,120)}...
+                        {post.postContent.slice(0,115)}...
                         <br></br>
                         <Link to={`/post/${post.postId}`}>Read more</Link>
                     </Card.Text>
@@ -43,6 +44,7 @@ export function CategoryCarousel(props: CategoryCardProps) {
                 </Card.Body>
             </Card>)}
             </Carousel>
+            </div>
         </>
     )
 }

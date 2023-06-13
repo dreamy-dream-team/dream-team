@@ -3,13 +3,13 @@ import styles from './category-main.module.css';
 import 'react-multi-carousel/lib/styles.css';
 import {useGetAllCategoryQuery} from "../../../store/apis";
 import {Category} from "../../../shared/interfaces/Category";
-import {CategoryCarousel} from "../../../shared/components/CategoryCarousel";
+import {CategoryCarousel} from "../../../shared/components/category-carousel/CategoryCarousel";
 
 export function CategoryMain() {
     return(
         <>
-            <Container className="container">
-                <h4 className="font-weight-bold py-3 mb-4">Category Main Page</h4>
+            <Container>
+                <h4>Category Main Page</h4>
                 <div className={styles.content_wrapper}>
                 <CategoryRow/>
                 </div>

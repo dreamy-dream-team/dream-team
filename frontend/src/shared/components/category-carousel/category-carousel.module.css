@@ -1,0 +1,20 @@
+:root{
+    /********* Colors *********/
+    --black: #221E22;
+    --white: #DEE5E5;
+    --purple: #A980E8;
+    --yellow: #FFC482;
+    --blue: #188FA7;
+}
+.row_wrapper {
+    border-bottom: .05rem solid;
+    padding: 1rem 2rem 1rem 2rem;
+    margin-bottom: 1rem;
+    background-color: var(--purple);
+}
+.row_wrapper > h4 {
+    font-family: monospace;
+    padding: 0;
+}
+
+

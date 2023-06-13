@@ -50,6 +50,11 @@ export const apis = createApi({
          query: (profileId) => `/profile/${profileId}`,
          transformResponse: transformResponse<Profile>
       }),
+      getPostByPostId: builder.query<Post[], string> ({
+         query: (postId) => `/post/${postId}`,
+         transformResponse: (response: {data: Post[]}) => response.data,
+         providesTags: ["Post"]
+      }),
       getAllCategory: builder.query<Category[], string> ({
          query: () => '/category',
          transformResponse: (response: { data: Category[]}) => response.data,
@@ -160,6 +165,7 @@ export const {useGetAllPostsPublishedQuery,
    useGetAllPostsByPostCategoryQuery,
    useGetCategoriesByPostCategoryPostIdQuery,
    useGetProfileByProfileIdQuery,
+   useGetPostByPostIdQuery,
    usePostSignInMutation,
    usePostSignUpMutation,
    useGetAllCategoryQuery,
