@@ -10,6 +10,7 @@ export function PostCard(props: Props) {
     const { post } = props
     const [submitVote] = useToggleVoteMutation()
     const { data: profile, isLoading} = useGetProfileByProfileIdQuery(post.postProfileId)
+    console.log(profile)
     const { data: vote, isLoading: voteIsLoading, refetch } = useGetVotesByVotePostIdQuery(post.postProfileId)
     const clickVoteUp = async () => {
         await submitVote({votePostId: post.postId, voteValue: false})

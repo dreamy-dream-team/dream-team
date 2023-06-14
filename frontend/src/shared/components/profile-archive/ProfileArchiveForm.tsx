@@ -1,33 +1,57 @@
-import {useGetAnonymousPostsQuery, useGetJournalPostsQuery, useGetPublicPostsQuery} from "../../../store/apis.ts";
-import {TopNav} from "../TopNav.tsx";
+
 import {Col, Container, Row} from "react-bootstrap";
 import {SideNav} from "../SideNav.tsx";
 import Categories from "../../../ui/Pages/profile/left.tsx";
 import {PostCard} from "../PostCard.tsx";
-import {useSelector} from "react-redux";
+import {useAppSelector} from "../../../store/store.ts";
+import {useGetAnonymousPostsByProfileIdQuery} from "../../../store/apis.ts";
+import {Post} from "../../interfaces/Post.tsx";
+/*import {useSelector} from "react-redux";*/
 
 
 export function ProfileArchiveForm() {
 
-    const auth = useSelector((state) => state.auth);
+    const auth = useAppSelector((state) => state.auth);
+    // @ts-ignore
     const postProfileId = auth?.profileId;
 
-    const {data: publicPosts, isError: publicError, isLoading: publicLoading} = useGetPublicPostsQuery(postProfileId);
-    const {data: journalPosts, isError: journalError, isLoading: journalLoading} = useGetJournalPostsQuery(postProfileId);
-    const {data: anonymousPosts, isError: anonymousError, isLoading: anonymousLoading} = useGetAnonymousPostsQuery(postProfileId);
 
+    const {data, isLoading: anonymousLoading} = useGetAnonymousPostsByProfileIdQuery(postProfileId);
+
+    if(anonymousLoading === undefined){
+        return <>is Loading</>
+    }
+    interface SortedPosts {
+        anonymousPosts: Post [],
+        privatePosts: Post[],
+        normalPosts: Post[]
+
+    }
+    const posts = data??[]
+
+    const sortedPosts : SortedPosts = posts.reduce((acc:SortedPosts, cur:Post) => {
+
+        if(cur.postProfileHandleIsVisible === false){
+            acc.anonymousPosts.push(cur)
+        }
+        else if(cur.postIsPublished === false){
+            console.log(cur)
+            acc.privatePosts.push(cur)
+        }else{
+            acc.normalPosts.push(cur)
+        }
+        return acc
+
+    }, {
+        anonymousPosts:  [], privatePosts: [], normalPosts: []
+    })
+    console.log(sortedPosts)
 /*    //extract the array of posts from the data
     const publicPosts = publicPostsData?.data;
     const journalPosts = journalPostsData?.data;
     const anonymousPosts = anonymousPostsData?.data;*/
 
-    console.log(publicPosts);
-    console.log(journalPosts);
-    console.log(anonymousPosts);
 
-
-    if (publicLoading || journalLoading || anonymousLoading) return <p>Loading...</p>
-    if (publicError || journalError || anonymousError) return <p>Error while fetching posts</p>
 
         /*if (!Array.isArray(publicPosts)) {
         console.log(publicPosts);
@@ -35,7 +59,7 @@ export function ProfileArchiveForm() {
 
     return (
         <>
-            <TopNav/>
+
             <Container fluid>
                 <Row style={{marginTop: '200px'}}>
                     <Col className="p-3" md={3} xs={12} style={{height: "100vh"}}>
@@ -45,15 +69,15 @@ export function ProfileArchiveForm() {
 
                     <Col md={{span:6, offset: 1}} xs={12}>
                         <h2>Public</h2>
-                        {publicPosts?.map((post, idx) => (
+                        {sortedPosts.normalPosts.map((post, idx) => (
                             <PostCard key={idx} post={post}/>
                             ))}
                         <h2>Journal</h2>
-                        {journalPosts?.map((post, idx) => (
+                        {sortedPosts.privatePosts.map((post, idx) => (
                             <PostCard key={idx} post={post}/>
                             ))}
                         <h2>Anonymous</h2>
-                        {anonymousPosts?.map((post, idx) => (
+                        {sortedPosts.anonymousPosts.map((post, idx) => (
                             <PostCard key={idx} post={post}/>
                             ))}
                     </Col>

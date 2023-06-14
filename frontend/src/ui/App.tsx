@@ -12,6 +12,7 @@ import { CategoryMain } from "./Pages/CategoryMain/CategoryMain";
 import { PostPage } from "./Pages/Posts/PostPage";
 import { CategoryPage } from "./Pages/Category/CategoryPage";
 import { TopNav } from "../shared/components/TopNav";
+import {Profile} from "./Pages/profile/profile.tsx";
 
 
 
@@ -35,6 +36,7 @@ export function App(props: Props)  {
                     <Route path='/' element={<Home />} />
                     <Route path={"*"} element={<FourOhFour />} />
                     <Route path={'/settings'} element={<Settings />} />
+                    <Route path='/profile' element={<Profile />} />
                 </Routes>
             </BrowserRouter>
             </Provider>

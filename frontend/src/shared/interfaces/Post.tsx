@@ -1,8 +1,7 @@
 export interface Post extends PartialPost{
-    postId: string
+    postId: string|null
     postDateTime: string
 }
-
 export interface PartialPost {
     postProfileId: string
     postContent: string

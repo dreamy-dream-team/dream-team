@@ -1,22 +1,22 @@
 
 import {Col, Container, Row} from "react-bootstrap"
-import BrandExample from "../../../shared/components/TopNav.tsx";
-import Categories from "./left.tsx";
+// import {TopNav} from "../../../shared/components/TopNav.tsx";
 import Links from "./right.tsx";
 import ProfilePost from "./post.tsx";
+import {SideNav} from "../../../shared/components/SideNav.tsx";
 
 
 export const Profile = () => {
     return(
         <>
-        < BrandExample />
+        {/*< TopNav />*/}
 
-        <Container fluid className="bg-black">
+        <Container fluid className="bg-secondary">
             {/*navbar*/}
             <Row>
                 {/*Categories*/}
                 <Col lg={3}>
-                <Categories />
+                <SideNav />
                 </Col>
 
                 {/*Posts*/}

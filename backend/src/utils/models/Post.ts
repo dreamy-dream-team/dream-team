@@ -12,8 +12,8 @@ export interface Post {
 }
 
 export async function insertPost (post: Post): Promise<string> {
-    const {postProfileId, postContent, postDateTime, postProfileHandleIsVisible, postIsPublished, postTitle} = post
-    await sql `INSERT INTO post (post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_is_published, post_title) VALUES (gen_random_uuid(), ${postProfileId}, ${postContent}, NOW(), ${postProfileHandleIsVisible}, ${postIsPublished}, ${postTitle})`
+    const {postId, postProfileId, postContent, postDateTime, postProfileHandleIsVisible, postIsPublished, postTitle} = post
+    await sql `INSERT INTO post (post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_is_published, post_title) VALUES (${postId}, ${postProfileId}, ${postContent}, NOW(), ${postProfileHandleIsVisible}, ${postIsPublished}, ${postTitle})`
     return 'post created successfully'
 }
 
@@ -36,7 +36,7 @@ export async function selectPostByPostId (postId: string): Promise<Post|null> {
 }
 
 export async function selectPostsByPostProfileId (postProfileId: string): Promise<Post[]> {
-    return <Post[]> await sql`SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM post WHERE post_profile_id = ${postProfileId}`
+    return <Post[]> await sql`SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_is_published, post_title FROM post WHERE post_profile_id = ${postProfileId}`
 }
 
 export async function updatePostByPostId (post: Post): Promise<string> {
