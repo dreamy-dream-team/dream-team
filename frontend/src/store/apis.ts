@@ -237,5 +237,6 @@ export const {useGetAllPostsPublishedQuery,
     useGetJournalPostsQuery,
     useGetAnonymousPostsByProfileIdQuery,
     usePostPostCategoryMutation,
+    useGetAllPostsQuery,
    useToggleVoteMutation} = apis
 

@@ -17,7 +17,7 @@ import {v4 as uuid} from "uuid"
 
 export async function getAllPostsController (request: Request, response: Response): Promise<Response<Status>> {
     try {
-        const data = await selectAllPosts()
+        const data = await selectAllPostsByPostIsPublished()
         const status: Status = { status: 200, message: null, data }
         return response.json(status)
     } catch (error) {
