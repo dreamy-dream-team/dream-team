@@ -61,5 +61,3 @@ export const ProfileArchive = () => {
         </>
     );
 };
-
-export default ProfileArchive;

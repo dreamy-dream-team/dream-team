@@ -1,5 +1,6 @@
-import {useState, ChangeEvent} from "react";
+import {useState, ChangeEvent, FormEvent} from "react";
 import {Button, Form, Modal} from "react-bootstrap";
+import {ForgotPasswordForm} from "../../../shared/components/main-nav/forgot-password/ForgotPasswordForm.tsx";
 
 
 export const ForgotPassword = () => {
@@ -9,19 +10,19 @@ export const ForgotPassword = () => {
     const [showConfirmation, setShowConfirmation] = useState(false);
 
     const handleClose = () => setShow(false);
-    /*const handleShow = () => setShow(true);*/
+    const handleShow = () => setShow(true);
     const handleConfirmationClose = () => setShowConfirmation(false);
     const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
         setIsValid(event.target.checkValidity());
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
         if (isValid) {
             setShowConfirmation(true);
             setShow(false);
-/*            fetch('', {
+            fetch('', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({email}),
@@ -35,17 +36,19 @@ export const ForgotPassword = () => {
                 .catch((error) => {
                     console.error('Error:', error);
                 });
-            setShow(false);*/
+            setShow(false);
         }
     };
 
     return (
         <>
-           {/* <Button variant="link" onClick={handleShow} backdrop="static">
-                ForgotPassword
-            </Button>*/}
 
-            <Modal show={show} onHide={handleClose}backdrop="static">
+            <ForgotPasswordForm/>
+{/*            <Button variant="link" onClick={handleShow}>
+                ForgotPassword
+            </Button>
+
+            <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Forgot Password</Modal.Title>
                 </Modal.Header>
@@ -66,7 +69,7 @@ export const ForgotPassword = () => {
                 </Modal.Body>
             </Modal>
 
-            <Modal show={showConfirmation} onHide={handleConfirmationClose}backdrop="static">
+            <Modal show={showConfirmation} onHide={handleConfirmationClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Password Reset</Modal.Title>
                 </Modal.Header>
@@ -78,7 +81,8 @@ export const ForgotPassword = () => {
                         Close
                     </Button>
                 </Modal.Footer>
-            </Modal>
+            </Modal>*/}
+
         </>
     );
 };

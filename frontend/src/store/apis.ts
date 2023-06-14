@@ -22,7 +22,9 @@ export interface MutationResponse {
    data: ClientResponse | undefined,
    error: ClientResponse | undefined
 }
+
 export const apis = createApi({
+
     reducerPath: "api",
     baseQuery: fetchBaseQuery({baseUrl: '/apis'}),
     tagTypes: ['Post'],
@@ -94,20 +96,20 @@ export const apis = createApi({
 
         }),
 
-        getPublicPosts: builder.query<Post[], void>({
-            query: (postProfileId) => `/postProfileId/${postProfileId}/postIsPublished/true/ `,
+        getPublicPosts: builder.query<Array<Post>, string>({
+            query: (postProfileId) => `/post/postProfileId/${postProfileId}/postIsPublished/true/ `,
             // Check if endpoint is correct
             providesTags: ['Post']
         }),
 
-        getJournalPosts: builder.query<Post[], void>({
-            query: (postProfileId) => `/postProfileId/${postProfileId}/postIsPublished/false/ `,
+        getJournalPosts: builder.query<Array<Post>, string>({
+            query: (postProfileId) => `/post/postProfileId/${postProfileId}/postIsPublished/false/ `,
             // Check if endpoint is correct
             providesTags: ['Post']
         }),
 
-        getAnonymousPosts: builder.query<Post[], void>({
-            query: (postProfileId) => `/postProfileId/${postProfileId}/postProfileHandleIsVisible/false/`,
+        getAnonymousPosts: builder.query<Array<Post>, string>({
+            query: (postProfileId) => `/post/postProfileId/${postProfileId}/postProfileHandleIsVisible/false/`,
             providesTags: ['Post']
         })
 
