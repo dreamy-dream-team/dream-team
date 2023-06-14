@@ -6,7 +6,8 @@ import {SignUpModal} from "./main-nav/sign-up/SignUpModal";
 import {SignInModal} from "./main-nav/sign-in/SignInModal";
 import {useState} from "react";
 import {SignOutComponent} from "./main-nav/SignOut";
-import logo from "../../images/Dreamery-Logo.svg"
+import logo from "../../images/dreamery-logo.svg"
+import styles from "./main-nav/nav.module.css"
 
 
 export const TopNav = () => {
@@ -24,17 +25,11 @@ export const TopNav = () => {
     }
 
     return(
-        <Navbar bg="primary" variant="dark">
+        <Navbar className={styles.navbar} variant="dark">
             <Container>
-                <img
-                    alt="logo"
-                    src= {logo}
-                    width="50"
-                    height="50"
-                    className="d-inline-block align-top"
-                    />{' '}
+                <img alt="logo" src={logo} className={styles.nav_logo}/>
                 <Link className={"nav-link"} to="/">
-                    <Navbar.Brand>DREAMERY</Navbar.Brand>
+                    <Navbar.Brand>Dreamery</Navbar.Brand>
                 </Link>
                 <Nav className="mr-auto">
                     {profile !== null && (
@@ -42,25 +37,15 @@ export const TopNav = () => {
                     <NavDropdown className="nav-link navbar-username" title={profile.profileHandle}>
                         <div className="dropdown-item">
                             <Link to={`/profile/${profile?.profileId}`} className="btn btn-outline-dark">
-                                <FontAwesomeIcon icon="user"/>&nbsp;&nbsp;My Profile
-                            </Link><br></br>
-                            <Link to={`/category-main`} className="btn btn-outline-dark">
-                                <FontAwesomeIcon icon="user"/>&nbsp;&nbsp;Category
+                                <FontAwesomeIcon icon="user"/>My Profile
                             </Link>
                         </div>
-
+                        <div className="dropdown-item">
+                        <Link to={`/category-main`} className="btn btn-outline-dark">
+                            <FontAwesomeIcon icon="user"/>Category
+                        </Link>
+                        </div>
                         <SignOutComponent/>
-
-                        {/*<div className="dropdown-item">*/}
-                        {/*    <Link to={`/profile/${profile?.profileHandle}`} className="btn btn-outline-dark">*/}
-                        {/*        <FontAwesomeIcon icon="user"/>&nbsp;&nbsp;Sign In*/}
-                        {/*    </Link>*/}
-                        {/*</div>*/}
-                        {/*<div className="dropdown-item">*/}
-                        {/*    <Link to={`/profile/${profile?.profileHandle}`} className="btn btn-outline-dark">*/}
-                        {/*        <FontAwesomeIcon icon="user"/>&nbsp;&nbsp;Sign Out*/}
-                        {/*    </Link>*/}
-                        {/*</div>*/}
 
                     </NavDropdown>
                     </>

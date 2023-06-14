@@ -1,7 +1,7 @@
 import {Button, Card} from "react-bootstrap";
 import {Post} from "../interfaces/Post.tsx";
 import {useGetProfileByProfileIdQuery, useGetVotesByVotePostIdQuery, useToggleVoteMutation} from "../../store/apis";
-import {CategoryTag} from "./tags/Tags";
+import {CategoryTag} from "../components/tags/Tags";
 import {useJwtToken} from "../hooks/useJwtHook";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Vote} from "../interfaces/Vote";

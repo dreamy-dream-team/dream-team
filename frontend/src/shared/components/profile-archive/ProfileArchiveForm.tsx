@@ -2,7 +2,7 @@
 import {Col, Container, Row} from "react-bootstrap";
 import {SideNav} from "../SideNav.tsx";
 import Categories from "../../../ui/Pages/profile/left.tsx";
-import {PostCard} from "../PostCard.tsx";
+import {PostCard} from "../../post-card/PostCard.tsx";
 import {useAppSelector} from "../../../store/store.ts";
 import {useGetAnonymousPostsByProfileIdQuery} from "../../../store/apis.ts";
 import {Post} from "../../interfaces/Post.tsx";

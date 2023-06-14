@@ -1,5 +1,5 @@
 import {Container, Spinner} from "react-bootstrap";
-import {PostCard} from "../../../shared/components/PostCard";
+import {PostCard} from "../../../shared/post-card/PostCard";
 import {useGetPostByPostIdQuery} from "../../../store/apis";
 import {useParams} from "react-router-dom";
 
