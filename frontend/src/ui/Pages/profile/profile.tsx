@@ -6,8 +6,7 @@ import Links from "./right.tsx";
 import {SideNav} from "../../../shared/components/SideNav.tsx";
 import {useGetPublicPostsByProfileIdQuery} from "../../../store/apis.ts";
 import {useParams} from "react-router-dom";
-import {PostCard} from "../../../shared/components/PostCard.tsx";
-
+import {PostCard} from "../../../shared/post-card/PostCard.tsx";
 
 export const Profile = () => {
     const {profileId} = useParams()
