@@ -164,10 +164,11 @@ export const apis = createApi({
                 }
             }
         }),
-        getPublicPosts: builder.query<Post[], string>({
-            query: (postProfileId) => `/post/postProfileId/${postProfileId}/postIsPublished/true/ `,
+        getPublicPostsByProfileId: builder.query<Post[], string>({
+            query: (postProfileId) => `/post/postProfileId/${postProfileId}/postProfileHandleIsVisible/true/ `,
             // Check if endpoint is correct
-            providesTags: ['Post']
+            providesTags: ['Post'],
+            transformResponse: transformResponse<Post[]>
         }),
         getJournalPosts: builder.query<Post[], string>({
             query: (postProfileId) => `/post/postProfileId/${postProfileId}/postIsPublished/false/ `,
@@ -224,7 +225,7 @@ export const {useGetAllPostsPublishedQuery,
    usePostSignUpMutation,
    useGetAllCategoryQuery,
    useGetVotesByVotePostIdQuery,
-    useGetPublicPostsQuery,
+    useGetPublicPostsByProfileIdQuery,
     useGetJournalPostsQuery,
     useGetAnonymousPostsByProfileIdQuery,
     usePostPostCategoryMutation,
