@@ -1,7 +1,7 @@
 import Card from 'react-bootstrap/Card';
-import person from "../images/person.svg";
-import anon from "../images/anon.svg"
-import journal from "../images/journal.svg"
+import person from "../../images/person.svg";
+import anon from "../../images/anon.svg"
+import journal from "../../images/journal.svg"
 // import private from "../images/private.svg"
 
 

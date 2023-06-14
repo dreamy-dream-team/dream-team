@@ -1,6 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import {Row} from "react-bootstrap";
-import person from "../images/person.svg";
+import person from "../../images/person.svg";
 
 function ProfilePost() {
     return (
