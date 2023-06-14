@@ -66,7 +66,7 @@
 //                             </Form.Group>
 //
 //                         </Form>
-//                         <a href="/login/ForgotPassword" className="d-block text-center mb-2">Forgot Password</a>
+//                         <a href="/login/ForgotPasswordForm" className="d-block text-center mb-2">Forgot Password</a>
 //                         <a href="/login/SignUp" className="d-block text-center mb-2">Create New Account</a>
 //                     </Col>
 //                 </Row>

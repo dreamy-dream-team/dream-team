@@ -11,12 +11,21 @@ import { getAuth, JwtToken } from '../../../../store/auth.ts'
 import {FormDebugger} from "../../FormDebugger.tsx";
 import {AppDispatch, useAppDispatch} from "../../../../store/store.ts";
 import {useNavigate} from "react-router-dom";
+import Logo from "../../../../images/Dreamery-Logo.svg"
 
 
+//function component handles the SignIn form
 export const SignInForm = () => {
+
+    //Initialize signInMutation hook and get the dispatcher function
     const [submitRequest] = usePostSignInMutation()
     const dispatch: AppDispatch = useAppDispatch()
+
     const navigate = useNavigate()
+
+
+    //define validation schema using yup
+
     const validator = object().shape({
         profileEmail: string()
             .email("please provide a valid email")
@@ -25,11 +34,15 @@ export const SignInForm = () => {
             .required("password is required")
             .min(8, "password must be at least eight characters")
     });
+
+    //initialize signin object with empty fields
     const signIn: SignIn = {
         profileEmail: "",
         profilePassword: ""
     };
 
+    // Function to handle form submission
+    // It makes a request to the server and sets the status of the form according to the response
     const submitSignIn = async (values: SignIn, formikHelpers: FormikHelpers<SignIn>)=>{
         const{resetForm, setStatus} = formikHelpers
         const result = await submitRequest(values)
@@ -62,6 +75,8 @@ export const SignInForm = () => {
     )
 };
 
+
+
 function SignInFormContent(props: FormikProps<SignIn>) {
     const {
         status,
@@ -75,13 +90,17 @@ function SignInFormContent(props: FormikProps<SignIn>) {
         handleSubmit,
         handleReset
     } = props;
+
+    // Return the form layout and components
     return (
         <>
-            <Container className="d-flex flex-column align-items-center justify-content-center vh-100">
-                <h1 className="text-center mt-4 mb-4 ">Dreamery World</h1>
-                {/*<img src={Logo} alt="logo" className="mb-4" style={{ width: '100px', height: '100px' }} />*/}
-                <Row className={"w-100 h-auto"}>
-                    <h4 className="text-center mt-4 mb-4">Sign-In</h4>
+            <Container className="d-flex flex-column align-items-center bg-body-secondary justify-content-center vh-75">
+                <h1 className="text-center mt-4 mb-0 ">Dreamery World</h1>
+                <img src={Logo} className="logo-svg bg-body-secondary mt-0" alt="logo"style={{width: '150px', height: 'auto'}} />
+
+                <Row className={"w-100 h-auto justify-content-center"}>
+
+                    <h4 className="text-center mt-0 mb-0">Sign-In</h4>
                     <Col xs={12} md={8} lg={6} className="mx-auto">
                         <Form onSubmit={handleSubmit}>
                             <Form.Group className="mb-3 mt-4" controlId="formEmail">
@@ -123,7 +142,7 @@ function SignInFormContent(props: FormikProps<SignIn>) {
                                 </Button>
                                 {" "}
                                 <Button
-                                    className="btn btn-danger"
+                                    className="btn btn-secondary"
                                     onClick={handleReset}
                                     disabled={!dirty || isSubmitting}
                                 >Reset
@@ -132,9 +151,12 @@ function SignInFormContent(props: FormikProps<SignIn>) {
                         </Form>
                     </Col>
                 </Row>
+
             </Container>
+
             <div className="pt-3">
                 <DisplayStatus status={status} />
+                {/*helpful during development to understand how the form's data and states are changing as a user interacts with it.*/}
                 <FormDebugger {...props}/>
             </div>
         </>
