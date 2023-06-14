@@ -105,9 +105,10 @@ function PostFormContent(props: FormikProps<PartialPost>) {
 
     return (
         <>
-        <Form onSubmit={handleSubmit} className={"border rounded-2"}>
+      <div className={styles.postFormWrapper}>
+        <Form onSubmit={handleSubmit} className={"border rounded-2 shadow-lg mx-auto"}>
             <div className={styles.postForm}>
-                <div className={"border rounded-1"}>
+                <div className={"border rounded-1 "}>
                     <FloatingLabel className={styles.floating}
                         controlId="postTitle"
                         label="Title"
@@ -141,17 +142,17 @@ function PostFormContent(props: FormikProps<PartialPost>) {
                         <fieldset>
                             <legend>Add a category:</legend>
                             {categories.map((category, index) =>
-                            <div class="form-check form-check-inline" key={index}>
+                            <div className="form-check form-check-inline me-0 ps-0" key={index}>
                                 <input type="checkbox"
-                                       class="btn-check"
-                                       checked autocomplete="off"
+                                       className="btn-check"
+                                       autocomplete="off"
                                        id={category.categoryName}
                                        name={"postCategoryCategoryIds"}
                                        value={category.categoryId}
                                        onChange={handleChange}
                                        onBlur={handleBlur}
                                     />
-                                    <label class="btn btn-outline-secondary" htmlFor={category.categoryName}>{category.categoryName}</label>
+                                    <label className="btn btn-outline-secondary" htmlFor={category.categoryName}>{category.categoryName}</label>
                             </div>
                                 )}
                         </fieldset>
@@ -191,12 +192,13 @@ function PostFormContent(props: FormikProps<PartialPost>) {
                     </div>
                 </fieldset>
                     <div>
-                        <Button type="submit">Submit</Button>
+                        <Button variant="dark" type="submit">Submit</Button>
                     </div>
                     <DisplayStatus status={status}/>
                     {/*<FormDebugger {...props}/>*/}
             </div>
             </Form>
+      </div>
         </>
     );
 }

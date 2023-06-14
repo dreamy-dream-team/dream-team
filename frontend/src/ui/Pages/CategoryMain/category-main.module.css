@@ -8,6 +8,8 @@
 }
 body{
     background: linear-gradient(180deg, rgba(24,143,167,1) 58%, rgba(169,128,232,1) 100%);
+    min-height: 100vh;
+
 }
 h4{
     font-family: sans-serif ;

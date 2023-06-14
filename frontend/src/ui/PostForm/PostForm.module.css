@@ -7,11 +7,26 @@
     --blue: #188FA7;
 }
 
+.postFormWrapper {
+    max-width: 50%;
+    display: flex;
+    margin: auto;
+}
+
 .postForm {
     background-color: #DEE5E5;
-    margin: auto;
     padding: 2em;
+    transform-origin: center;
+}
 
+
+.form-check-inline {
+    display: inline-block;
+    margin-right: 0;
+}
+
+.form-check {
+    padding-left: 0;
 }
 
 .floating {
@@ -20,12 +35,15 @@
 
 fieldset {
     text-align: start;
+    max-width: 500px;
 }
 
 .btn-check {
     margin: 0;
 }
 
-
+.btn-primary {
+    --bs-btn-bg: #A980E8;
+}
 
 
