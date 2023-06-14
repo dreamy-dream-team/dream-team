@@ -58,18 +58,20 @@ function ProfilePost() {
 
             <Card>
                 <Card.Body>
-                    <Card.Title>Eerie forest </Card.Title>
+                    <Card.Title>High school again </Card.Title>
                     <Card.Text>
-                        In the dream, you find yourself trapped in a dark, eerie forest. The trees loom overhead, casting long, twisted shadows that seem to reach out for you. The air is heavy with a sense of foreboding, and you can't shake the feeling that something sinister is lurking nearby.
+                        In my dream, I found myself back in high school, but things were hilariously bizarre. As I walked down the hallway, I noticed that the lockers had sprouted legs and were chatting with each other like gossiping teenagers. They would exchange juicy tidbits about students and giggle mischievously as I passed by.
 
-                        As you try to find your way out, the forest becomes increasingly labyrinthine, with the paths twisting and turning in on themselves. Every direction you take leads you deeper into the heart of the forest, further away from any semblance of safety.
+                        When I entered the classroom, I was greeted by my teacher, who had transformed into a wacky clown. Instead of textbooks, he had a colorful assortment of balloon animals on his desk. As he started the lesson, he would use the balloon animals to explain complex concepts, making the whole class burst into laughter.
 
-                        Suddenly, you hear a rustling sound behind you. You turn around, but there's nothing there. The feeling of being watched intensifies, and your heart starts pounding in your chest. The rustling sound grows louder and closer, and you break into a panicked run, desperately trying to escape whatever is pursuing you.
+                        The blackboard was covered in silly doodles instead of equations. Instead of trying to solve math problems, we found ourselves deciphering the hidden jokes within the doodles. It was impossible to concentrate with all the laughter echoing in the room.
 
-                        No matter how fast you run or how hard you try to escape, the presence behind you seems to be getting closer. You can feel its breath on the back of your neck, sending shivers down your spine. Just as you're about to succumb to terror, you wake up, drenched in sweat and relieved that it was only a nightmare.
+                        During lunch break, the cafeteria served the most outrageous food combinations. I remember trying a slice of pizza topped with whipped cream, and there was even spaghetti ice cream! It seemed like the school chefs were on a mission to create the most unusual and absurd culinary experiences. Surprisingly, everyone seemed to be enjoying the adventurous menu, swapping strange food items and daring each other to try the wildest combinations.
+
+                        As the day went on, the school's PA system started playing catchy tunes instead of announcements. Suddenly, the classrooms and hallways turned into impromptu dance floors. Students and teachers alike couldn't resist the infectious beats, and we all broke into spontaneous dance parties. Even the strictest teachers couldn't help but show off their hidden dance moves, making the whole school feel like a wild, rhythm-filled party.
                     </Card.Text>
                 </Card.Body>
-                <p className="text-center">#nightmare</p>
+                <p className="text-center">#funny #school</p>
             </Card>
             <Row lg="6">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -98,18 +100,16 @@ function ProfilePost() {
 
             <Card>
                 <Card.Body>
-                    <Card.Title>Eerie forest </Card.Title>
+                    <Card.Title>My job has invaded my dreams</Card.Title>
                     <Card.Text>
-                        In the dream, you find yourself trapped in a dark, eerie forest. The trees loom overhead, casting long, twisted shadows that seem to reach out for you. The air is heavy with a sense of foreboding, and you can't shake the feeling that something sinister is lurking nearby.
+                        I've had this dream every night for the past week and a half. In my dream I find myself trapped in a whimsical office filled with absurdity and mayhem. The layout of the office is constantly shifting, making it impossible to find my way around. No matter how hard I work, the tasks keep multiplying, creating an overwhelming workload that never seems to diminish.
 
-                        As you try to find your way out, the forest becomes increasingly labyrinthine, with the paths twisting and turning in on themselves. Every direction you take leads you deeper into the heart of the forest, further away from any semblance of safety.
+                        The coworkers in my dream are larger-than-life characters, with exaggerated features and peculiar behaviors. They engage in nonsensical conversations and participate in bizarre activities that have nothing to do with work. It's a surreal and comical portrayal of the people I interact with in the workplace.
 
-                        Suddenly, you hear a rustling sound behind you. You turn around, but there's nothing there. The feeling of being watched intensifies, and your heart starts pounding in your chest. The rustling sound grows louder and closer, and you break into a panicked run, desperately trying to escape whatever is pursuing you.
-
-                        No matter how fast you run or how hard you try to escape, the presence behind you seems to be getting closer. You can feel its breath on the back of your neck, sending shivers down your spine. Just as you're about to succumb to terror, you wake up, drenched in sweat and relieved that it was only a nightmare.
+                        Adding to the hilarity, the office supplies seem to have a mischievous agenda of their own. Pens turn into rubber ducks, staplers go missing just when I need them, and sticky notes multiply exponentially, covering every available surface. It's a constant battle to keep things organized and functioning amidst the chaos.
                     </Card.Text>
                 </Card.Body>
-                <p className="text-center">#nightmare</p>
+                <p className="text-center">#reoccuring #work</p>
             </Card>
             <Row lg="6">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

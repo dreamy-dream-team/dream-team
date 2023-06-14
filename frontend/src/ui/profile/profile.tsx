@@ -10,7 +10,7 @@ export const Profile = () => {
     return(
         <>
         < BrandExample />
-        <h3 className="bg-secondary text-center text-white">Welcome Username to your profile </h3>
+        {/*<h3 className="bg-secondary text-center text-white">Welcome Username to your profile </h3>*/}
         <Container fluid className="bg-secondary pt-5">
             {/*navbar*/}
             <Row>
