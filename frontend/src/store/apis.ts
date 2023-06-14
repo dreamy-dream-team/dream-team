@@ -179,6 +179,14 @@ export const apis = createApi({
             providesTags: ['Post'],
             transformResponse: transformResponse<Post[]>
         }),
+
+        getPublicPostsByProfileId: builder.query<Post[], string>({
+            query: (postProfileId) => `/post/postProfileId/${postProfileId}`,
+            providesTags: ['Post'],
+            transformResponse: transformResponse<Post[]>
+        }),
+
+
     })
 })
 
