@@ -13,8 +13,10 @@ import { PostPage } from "./Pages/Posts/PostPage";
 import { CategoryPage } from "./Pages/Category/CategoryPage";
 import { TopNav } from "../shared/components/TopNav";
 import {Profile} from "./Pages/profile/profile.tsx";
+import {library} from "@fortawesome/fontawesome-svg-core";
+import {faArrowUp, faArrowDown} from "@fortawesome/free-solid-svg-icons";
 
-
+library.add(faArrowUp, faArrowDown)
 
 interface Props {
     store: ToolkitStore
