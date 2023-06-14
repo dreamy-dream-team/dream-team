@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {SignUpModal} from "./main-nav/sign-up/SignUpModal";
 import {SignInModal} from "./main-nav/sign-in/SignInModal";
 import {useState} from "react";
+import logo from "../../images/Dreamery-Logo.svg"
 
 export const TopNav = () => {
     const {profile} = useJwtToken()
@@ -23,9 +24,15 @@ export const TopNav = () => {
     return(
         <Navbar bg="primary" variant="dark">
             <Container>
-
+                <img
+                    alt="logo"
+                    src= {logo}
+                    width="50"
+                    height="50"
+                    className="d-inline-block align-top"
+                    />{' '}
                 <Link className={"nav-link"} to="/">
-                    <Navbar.Brand>Dreamery</Navbar.Brand>
+                    <Navbar.Brand>DREAMERY</Navbar.Brand>
                 </Link>
                 <Nav className="mr-auto">
                     {profile !== null && (
@@ -36,6 +43,16 @@ export const TopNav = () => {
                                 <FontAwesomeIcon icon="user"/>&nbsp;&nbsp;My Profile
                             </Link>
                         </div>
+                        {/*<div className="dropdown-item">*/}
+                        {/*    <Link to={`/profile/${profile?.profileHandle}`} className="btn btn-outline-dark">*/}
+                        {/*        <FontAwesomeIcon icon="user"/>&nbsp;&nbsp;Sign In*/}
+                        {/*    </Link>*/}
+                        {/*</div>*/}
+                        {/*<div className="dropdown-item">*/}
+                        {/*    <Link to={`/profile/${profile?.profileHandle}`} className="btn btn-outline-dark">*/}
+                        {/*        <FontAwesomeIcon icon="user"/>&nbsp;&nbsp;Sign Out*/}
+                        {/*    </Link>*/}
+                        {/*</div>*/}
                     </NavDropdown>
                     </>
                     )}
