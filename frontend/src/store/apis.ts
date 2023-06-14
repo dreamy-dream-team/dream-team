@@ -164,19 +164,20 @@ export const apis = createApi({
                 }
             }
         }),
-        getPublicPosts: builder.query<Post[], void>({
-            query: (postProfileId) => `/postProfileId/${postProfileId}/postIsPublished/true/ `,
+        getPublicPosts: builder.query<Post[], string>({
+            query: (postProfileId) => `/post/postProfileId/${postProfileId}/postIsPublished/true/ `,
             // Check if endpoint is correct
             providesTags: ['Post']
         }),
-        getJournalPosts: builder.query<Post[], void>({
-            query: (postProfileId) => `/postProfileId/${postProfileId}/postIsPublished/false/ `,
+        getJournalPosts: builder.query<Post[], string>({
+            query: (postProfileId) => `/post/postProfileId/${postProfileId}/postIsPublished/false/ `,
             // Check if endpoint is correct
             providesTags: ['Post']
         }),
-        getAnonymousPosts: builder.query<Post[], void>({
-            query: (postProfileId) => `/postProfileId/${postProfileId}/postProfileHandleIsVisible/false/`,
-            providesTags: ['Post']
+        getAnonymousPostsByProfileId: builder.query<Post[], string>({
+            query: (postProfileId) => `/post/postProfileId/${postProfileId}`,
+            providesTags: ['Post'],
+            transformResponse: transformResponse<Post[]>
         }),
     })
 })
@@ -225,7 +226,7 @@ export const {useGetAllPostsPublishedQuery,
    useGetVotesByVotePostIdQuery,
     useGetPublicPostsQuery,
     useGetJournalPostsQuery,
-    useGetAnonymousPostsQuery,
+    useGetAnonymousPostsByProfileIdQuery,
     usePostPostCategoryMutation,
    useToggleVoteMutation} = apis
 

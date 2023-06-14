@@ -10,7 +10,7 @@ export function useJwtToken (): { profile: Profile | null, isLoading: boolean } 
 
         return state.auth
     })
- console.log(auth)
+
     const profile: Profile | null = auth
         ? {
             profileId: auth.profileId,
