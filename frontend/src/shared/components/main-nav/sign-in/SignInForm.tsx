@@ -10,7 +10,9 @@ import { SignIn} from '../../../interfaces/Profile.tsx'
 import { getAuth, JwtToken } from '../../../../store/auth.ts'
 import {FormDebugger} from "../../FormDebugger.tsx";
 import {AppDispatch, useAppDispatch} from "../../../../store/store.ts";
+import {useNavigate} from "react-router-dom";
 import Logo from "../../../../images/Dreamery-Logo.svg"
+
 
 //function component handles the SignIn form
 export const SignInForm = () => {
@@ -19,7 +21,11 @@ export const SignInForm = () => {
     const [submitRequest] = usePostSignInMutation()
     const dispatch: AppDispatch = useAppDispatch()
 
+    const navigate = useNavigate()
+
+
     //define validation schema using yup
+
     const validator = object().shape({
         profileEmail: string()
             .email("please provide a valid email")
@@ -43,14 +49,15 @@ export const SignInForm = () => {
         const {data: response, error} = result as {data: ClientResponseForSignIn, error: ClientResponseForSignIn}
         if(error){
             setStatus({type: error.type, message: error.message})
-        }else if (response?.status === 200){
+        } else if (response?.status === 200){
             window.localStorage.removeItem("authorization");
             window.localStorage.setItem("authorization", response.authorization as string);
             const decodedToken = jwtDecode<JwtToken>(response.authorization as string)
             dispatch(getAuth(decodedToken))
             resetForm()
             setStatus({type: response.type, message: response.message})
-        }else{
+            navigate('/')
+        } else {
             setStatus({type: response?.type, message: response?.message})
         }
 
@@ -62,7 +69,6 @@ export const SignInForm = () => {
             initialValues={signIn}
             onSubmit={submitSignIn}
             validationSchema={validator}>
-
             {SignInFormContent}
         </Formik>
         </>
@@ -100,14 +106,13 @@ function SignInFormContent(props: FormikProps<SignIn>) {
                             <Form.Group className="mb-3 mt-4" controlId="formEmail">
                                 <Form.Label>Email Address</Form.Label>
                                 <InputGroup>
-                                    <FormControl
-                                        className="form-control"
-                                        name="profileEmail"
-                                        type="text"
-                                        value={values.profileEmail}
-                                        placeholder="Email"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
+                                    <FormControl    className="form-control"
+                                     name="profileEmail"
+                                     type="text"
+                                     value={values.profileEmail}
+                                     placeholder="Email"
+                                     onChange={handleChange}
+                                     onBlur={handleBlur}
                                     />
                                 </InputGroup>
                                 <DisplayError errors={errors} touched={touched} field={"profileEmail"} />
@@ -119,8 +124,7 @@ function SignInFormContent(props: FormikProps<SignIn>) {
                                     <InputGroup.Text>
                                         <FontAwesomeIcon icon="key" />
                                     </InputGroup.Text>
-                                    <FormControl
-                                        className="form-control"
+                                    <FormControl className="form-control"
                                         name="profilePassword"
                                         type="password"
                                         value={values.profilePassword}
@@ -144,10 +148,7 @@ function SignInFormContent(props: FormikProps<SignIn>) {
                                 >Reset
                                 </Button>
                             </Form.Group>
-
                         </Form>
-                        <a href="/login/ForgotPassword" className="d-block text-center mb-2">Forgot Password</a>
-                        <a href="/login/SignUp" className="d-block text-center mb-2">Create New Account</a>
                     </Col>
                 </Row>
 
