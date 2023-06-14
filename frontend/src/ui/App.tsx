@@ -33,7 +33,7 @@ export function App(props: Props)  {
                     <Route path='/post-page/:postId' element={<PostPage />} />
                     <Route path='/category-main' element={<CategoryMain />} />
                     <Route path='/ProfileArchive' element={<ProfileArchive />} />
-                    <Route path='/ForgotPassword' element={<ForgotPassword />} />
+                    <Route path='/ForgotPasswordForm' element={<ForgotPassword />} />
                     <Route path='/SignUp' element={<SignUp />} />
                     <Route path='/Terms' element={<Terms />} />
                     <Route path='/SignIn' element={<SignInForm />} />
