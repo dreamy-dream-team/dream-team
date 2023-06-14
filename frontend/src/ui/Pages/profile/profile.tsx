@@ -2,11 +2,18 @@
 import {Col, Container, Row} from "react-bootstrap"
 // import {TopNav} from "../../../shared/components/TopNav.tsx";
 import Links from "./right.tsx";
-import ProfilePost from "./post.tsx";
+// import ProfilePost from "./post.tsx";
 import {SideNav} from "../../../shared/components/SideNav.tsx";
+import {useGetPublicPostsByProfileIdQuery} from "../../../store/apis.ts";
+import {useParams} from "react-router-dom";
+import {PostCard} from "../../../shared/components/PostCard.tsx";
 
 
 export const Profile = () => {
+    const {profileId} = useParams()
+    const {data} = useGetPublicPostsByProfileIdQuery(profileId as string)
+    const posts = data ?? []
+    console.log(posts)
     return(
         <>
         {/*< TopNav />*/}
@@ -14,23 +21,19 @@ export const Profile = () => {
         <Container fluid className="bg-secondary">
             {/*navbar*/}
             <Row>
-                {/*Categories*/}
-                <Col lg={3}>
+                <Col sm={3}>
                 <SideNav />
                 </Col>
 
-                {/*Posts*/}
-                <Col lg={6}>
-                <ProfilePost />
-
-
+                <Col sm={6}>
+                    {posts.map((post)=> <PostCard post={post}/>)}
                 </Col>
 
-                {/*Links*/}
-                <Col lg={3}>
+                <Col sm={3}>
                 < Links />
                 </Col>
             </Row>
+
         </Container>
         </>
     )
