@@ -1,0 +1,31 @@
+:root{
+    /********* Colors *********/
+    --black: #221E22;
+    --white: #DEE5E5;
+    --purple: #A980E8;
+    --yellow: #FFC482;
+    --blue: #188FA7;
+}
+
+.postForm {
+    background-color: #DEE5E5;
+    margin: auto;
+    padding: 2em;
+
+}
+
+.floating {
+    text-align: center;
+}
+
+fieldset {
+    text-align: start;
+}
+
+.btn-check {
+    margin: 0;
+}
+
+
+
+

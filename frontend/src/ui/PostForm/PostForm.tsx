@@ -17,6 +17,7 @@ import {object, string} from "yup";
 import {DisplayError} from "../../shared/components/display-error/DisplayError";
 import {DisplayStatus} from "../../shared/components/display-status/Display.Status";
 import {useJwtToken} from "../../shared/hooks/useJwtHook";
+import styles from "./PostForm.module.css"
 
 
 
@@ -104,10 +105,10 @@ function PostFormContent(props: FormikProps<PartialPost>) {
 
     return (
         <>
-        <Form onSubmit={handleSubmit} className={'align-content-center'}>
-            <div className={'my-4 mx-auto px-3 py-2 border rounded-1 shadow-lg'} style={{overflow: 'auto', width: "35rem"}}>
-                <div>
-                    <FloatingLabel
+        <Form onSubmit={handleSubmit} className={"border rounded-2"}>
+            <div className={styles.postForm}>
+                <div className={"border rounded-1"}>
+                    <FloatingLabel className={styles.floating}
                         controlId="postTitle"
                         label="Title"
                         className="mb-1 mx-auto"
@@ -136,19 +137,21 @@ function PostFormContent(props: FormikProps<PartialPost>) {
                     </FloatingLabel>
                     <DisplayError errors={errors} touched={touched} field={"postContent"}/>
 
-                    <Form.Group controlId={""} className="mb-1">
+                    <Form.Group controlId={""}>
                         <fieldset>
                             <legend>Add a category:</legend>
                             {categories.map((category, index) =>
-                            <div key={index}>
+                            <div class="form-check form-check-inline" key={index}>
                                 <input type="checkbox"
+                                       class="btn-check"
+                                       checked autocomplete="off"
                                        id={category.categoryName}
                                        name={"postCategoryCategoryIds"}
                                        value={category.categoryId}
                                        onChange={handleChange}
                                        onBlur={handleBlur}
                                     />
-                                    <label htmlFor={category.categoryName}>{category.categoryName}</label>
+                                    <label class="btn btn-outline-secondary" htmlFor={category.categoryName}>{category.categoryName}</label>
                             </div>
                                 )}
                         </fieldset>
@@ -161,9 +164,11 @@ function PostFormContent(props: FormikProps<PartialPost>) {
                     </div>
 
                 <fieldset>
-                    <div>
+                    <div class="form-check-inline form-switch ">
                         <input
+                            class="form-check-input"
                             type="checkbox"
+                            role="switch"
                             id="postProfileHandleIsVisible"
                             name={"postProfileHandleIsVisible"}
                             value={0}
@@ -171,9 +176,12 @@ function PostFormContent(props: FormikProps<PartialPost>) {
                             onBlur={handleBlur}
 
                         /> <label htmlFor="postProfileHandleIsVisible">Anonymous</label>
-
+                    </div>
+                    <div className="form-check-inline form-switch mx-auto">
                         <input
+                            class="form-check-input"
                             type="checkbox"
+                            role="switch"
                             id="postIsPublished"
                             name={"postIsPublished"}
                             value={0}
