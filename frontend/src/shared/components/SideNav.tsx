@@ -1,6 +1,15 @@
 import Card from "react-bootstrap/Card";
+import {Link} from "react-router-dom";
+import {useGetAllCategoryQuery} from "../../store/apis.ts";
+import {ListGroup, Spinner} from "react-bootstrap";
 
 export function SideNav() {
+    const {data: dataCategory, isLoading: isLoadingCategory} = useGetAllCategoryQuery("")
+    const categories = dataCategory ?? []
+    if(isLoadingCategory) {
+        return(<Spinner animation="border" />)
+    }
+    console.log(categories)
     return (
         <Card style={{ width: '18rem' }}>
             <Card.Body className="text-center bg-info">
@@ -11,17 +20,10 @@ export function SideNav() {
                     <path
                         d="M14.544 9.772a3.506 3.506 0 0 0-2.225-1.676 5.502 5.502 0 0 0-6.337-4.002 4.002 4.002 0 0 1 7.392.91 2.5 2.5 0 0 1 1.17 4.769z"/>
                 </svg>
-                <Card.Text>
-                    <ul><Card.Link href="#">#Funny</Card.Link></ul>
-                    <ul><Card.Link href="#">#Nightmares</Card.Link></ul>
-                    <ul><Card.Link href="#">#Animals</Card.Link></ul>
-                    <ul><Card.Link href="#">#School</Card.Link></ul>
-                    <ul><Card.Link href="#">#Work</Card.Link></ul>
-                    <ul><Card.Link href="#">#Lucid</Card.Link></ul>
-                    <ul><Card.Link href="#">#OBE</Card.Link></ul>
-                    <ul><Card.Link href="#">#Weird</Card.Link></ul>
-                    <ul><Card.Link href="#">#Reoccuring</Card.Link></ul>
-                    <ul><Card.Link href="#">#Daydream</Card.Link></ul>
+                <Card.Text >
+                    <ListGroup>
+                        {categories.map((category, index) => <Link key={index} to={`/category-page/${category.categoryId}/${category.categoryName}`} > {category.categoryName} </Link>)}
+                    </ListGroup>
                 </Card.Text>
             </Card.Body>
         </Card>

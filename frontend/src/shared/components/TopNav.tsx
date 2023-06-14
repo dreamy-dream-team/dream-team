@@ -41,7 +41,7 @@ export const TopNav = () => {
                     <>
                     <NavDropdown className="nav-link navbar-username" title={profile.profileHandle}>
                         <div className="dropdown-item">
-                            <Link to={`/profile/${profile?.profileHandle}`} className="btn btn-outline-dark">
+                            <Link to={`/profile/${profile?.profileId}`} className="btn btn-outline-dark">
                                 <FontAwesomeIcon icon="user"/>&nbsp;&nbsp;My Profile
                             </Link><br></br>
                             <Link to={`/category-main`} className="btn btn-outline-dark">
