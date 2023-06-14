@@ -3,8 +3,13 @@ import {
     deletePostByPostId,
     insertPost,
     Post,
-    selectAllPosts, selectAllPostsByPostIsPublished, selectPostByPostId, selectPostsByPostProfileHandleIsVisible,
-    selectPostsByPostProfileId, updatePostByPostId
+    selectAllPosts,
+    selectAllPostsByPostCategory,
+    selectAllPostsByPostIsPublished,
+    selectPostByPostId,
+    selectPostsByPostProfileHandleIsVisible,
+    selectPostsByPostProfileId,
+    updatePostByPostId
 } from "../../utils/models/Post";
 import {NextFunction, Request, response, Response} from "express";
 import {Profile} from "../../utils/models/Profile";
@@ -15,6 +20,21 @@ export async function getAllPostsController (request: Request, response: Respons
         const status: Status = { status: 200, message: null, data }
         return response.json(status)
     } catch (error) {
+        return response.json({
+            status: 500,
+            message: '',
+            data: []
+        })
+    }
+}
+
+export async function getAllPostsByPostCategoryIdController (request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const {postCategoryId} = request.params
+        const data = await selectAllPostsByPostCategory(postCategoryId)
+        return response.json({status: 200, message: null, data})
+    } catch (error) {
+        console.log(error)
         return response.json({
             status: 500,
             message: '',
@@ -79,7 +99,6 @@ export async function getPostsByPostProfileHandleIsVisibleController (request: R
 
 export async function getPostsByPostIsPublishedController (request: Request, response: Response, nextFunction: NextFunction): Promise<Response<Status>> {
     try {
-        const {postIsPublished} = request.params
         const data = await selectAllPostsByPostIsPublished()
         return response.json({status: 200, message: null, data})
     } catch (error) {

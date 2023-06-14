@@ -6,15 +6,19 @@
     --yellow: #FFC482;
     --blue: #188FA7;
 }
+body{
+    background-color: var(--yellow);
+}
+h4{
+    font-family: sans-serif ;
+    font-weight: bold;
+    padding: 2rem 0 2rem 0;
+}
+.content_wrapper{
+    background-color: var(--black);
+}
 .wrapper{
     max-width: 100%;
     padding: 2rem 1rem 4rem 1rem;
-    border-bottom: .05rem solid;
 }
-.content_wrapper{
 
-}
-.card{
-    margin: 0 .25rem;
-    aspect-ratio: 16/9;
-}

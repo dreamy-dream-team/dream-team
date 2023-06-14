@@ -6,7 +6,7 @@ import {
     getPostsByPostIdController,
     getPostsByPostProfileIdController,
     getPostsByPostProfileHandleIsVisibleController, getPostsByPostIsPublishedController,
-    postPost, deletePostController, putPostController
+    postPost, deletePostController, putPostController, getAllPostsByPostCategoryIdController
 } from "./post.controller";
 import {isLoggedIn} from "../../utils/controllers/isLoggedIn.controller";
 import {postValidator} from "./post.validator";
@@ -34,4 +34,8 @@ router.route('/')
 // GETs all posts that a Profile non-anonymously shared
 router.route('/postProfileId/:postProfileId/postProfileHandleIsVisible/true/')
     .get(asyncValidatorController([check('postProfileId', 'please provide a valid postProfileId').isUUID()]), getPostsByPostProfileHandleIsVisibleController)
+
+// GETs all posts under a post-category
+router.route('/postCategoryId/:postCategoryId')
+    .get(asyncValidatorController([check('postCategoryId').isUUID()]), getAllPostsByPostCategoryIdController)
 export default router

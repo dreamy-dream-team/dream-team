@@ -1,8 +1,9 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'//removed comma after fetchBase
-//import {PartialPost, Post} from "../shared/interfaces/Post";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {SignUpProfile, SignIn} from "../shared/interfaces/Profile";
-import {Post} from "../shared/interfaces/Post.tsx";
-
+import {Category} from "../shared/interfaces/Category";
+import {PartialPost, Post} from "../shared/interfaces/Post";
+import {PartialVote, Vote} from "../shared/interfaces/Vote";
+import {Profile} from "../shared/interfaces/Profile";
 
 export interface ServerResponse {
    status: number,
@@ -28,26 +29,62 @@ export const apis = createApi({
     tagTypes: ['Post'],
     endpoints: (builder) => ({
 
-/*        getAllPosts: builder.query<Post[], string>({
-            query: () => '/post',
-            transformResponse:transformResponse,
-            providesTags: ["Post"]
-        }),*/
-
-/*        postPost: builder.mutation<ClientResponse, PartialPost>({
-            transformResponse: transformMutationResponses,
-            transformErrorResponse: transformErrorResponses,
-            query (body: PartialPost) {
-                return {
-                    url: '/post',
-                    method: "POST",
-                    body
-                }
-            },
-
-            invalidatesTags: ["Post"]
-        }),*/
-
+    getVotesByVotePostId:builder.query<Vote[], string>
+    ({
+        query: (postId) => `/vote/votePostId/${postId}`,
+        transformResponse: (response: { data: Vote[]}) => response.data,
+        providesTags: ['Post']
+    }),
+    toggleVote: builder.mutation<ClientResponse, PartialVote> ({
+        transformResponse:transformMutationResponses,
+        transformErrorResponse: transformErrorResponses,
+        query (body: PartialVote) {
+            return {
+                url: '/vote',
+                method: 'POST',
+                body
+            }
+        },
+    }),
+    getProfileByProfileId: builder.query<Profile, string> ({
+        query: (profileId) => `/profile/${profileId}`,
+        transformResponse: transformResponse<Profile>
+    }),
+    getPostByPostId: builder.query<Post, string> ({
+        query: (postId) => `/post/${postId}`,
+        transformResponse: transformResponse<Post>
+    }),
+    getAllCategory: builder.query<Category[], string> ({
+        query: () => '/category',
+        transformResponse: (response: { data: Category[]}) => response.data,
+    }),
+    getAllPostsPublished: builder.query<Post[], string>({
+        query: () => '/post',
+        transformResponse: (response: { data: Post[]}) => response.data,
+        providesTags: ["Post"]
+    }),
+    getAllPostsByPostCategory: builder.query<Post[], string> ({
+        query: (postCategoryId: string) => `/post/postCategoryId/${postCategoryId}`,
+        transformResponse: (response: { data: Post[]}) => response.data,
+        providesTags: ['Post']
+    }),
+    getCategoriesByPostCategoryPostId: builder.query<Category[], string> ({
+        query: (postCategoryPostId: string) => `/category/postCategoryPostId/${postCategoryPostId}`,
+        transformResponse: (response: { data: Category[]}) => response.data,
+        providesTags: ['Post']
+    }),
+    postPost: builder.mutation<ClientResponse, PartialPost >({
+        transformResponse: transformMutationResponses,
+        transformErrorResponse: transformErrorResponses,
+        query (body: PartialPost) {
+            return{
+                url:'/post',
+                method: 'POST',
+                body
+            }
+        },
+        invalidatesTags: ['Post']
+    }),
         postSignIn: builder.mutation<ClientResponseForSignIn, SignIn>({//Added ForSignIn
             query: (body: SignIn)=>{ //added arrow function
                 return {
@@ -79,7 +116,6 @@ export const apis = createApi({
                 }
             },
         }),
-
         postSignUp: builder.mutation<ClientResponse, SignUpProfile>({
             transformResponse: transformMutationResponses,
             transformErrorResponse: transformErrorResponses,
@@ -91,26 +127,21 @@ export const apis = createApi({
                     body
                 }
             }
-
         }),
-
         getPublicPosts: builder.query<Post[], void>({
             query: (postProfileId) => `/postProfileId/${postProfileId}/postIsPublished/true/ `,
             // Check if endpoint is correct
             providesTags: ['Post']
         }),
-
         getJournalPosts: builder.query<Post[], void>({
             query: (postProfileId) => `/postProfileId/${postProfileId}/postIsPublished/false/ `,
             // Check if endpoint is correct
             providesTags: ['Post']
         }),
-
         getAnonymousPosts: builder.query<Post[], void>({
             query: (postProfileId) => `/postProfileId/${postProfileId}/postProfileHandleIsVisible/false/`,
             providesTags: ['Post']
         })
-
     })
 })
 
@@ -140,7 +171,22 @@ function transformErrorResponses(): ClientResponse {
    }
 }
 
-export const {usePostSignUpMutation, usePostSignInMutation,useGetPublicPostsQuery, useGetJournalPostsQuery, useGetAnonymousPostsQuery} = apis
+function transformResponse<T> (response: ServerResponse): T {
+   return response.data as T
+}
 
-
-//TODO add back in (useGetAllPostsQuery, usePostPostMutation,)  &  console.log(useGetAllPostsQuery)  line 125,126
+export const {useGetAllPostsPublishedQuery,
+   usePostPostMutation,
+   useGetAllPostsByPostCategoryQuery,
+   useGetCategoriesByPostCategoryPostIdQuery,
+   useGetProfileByProfileIdQuery,
+   useGetPostByPostIdQuery,
+   usePostSignInMutation,
+   usePostSignUpMutation,
+   useGetAllCategoryQuery,
+   useGetVotesByVotePostIdQuery,
+    useGetPublicPostsQuery,
+    useGetJournalPostsQuery,
+    useGetAnonymousPostsQuery,
+   useToggleVoteMutation} = apis
+console.log(useGetAllPostsPublishedQuery)

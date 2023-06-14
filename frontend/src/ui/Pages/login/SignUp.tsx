@@ -12,7 +12,7 @@ export function SignUp() {
     return(
      <>
          <Container className="text-center">
-         <h1 className="my-5"> Dreamery World</h1>
+         <h1 className="my-5">Dreamery World</h1>
     <Modal show={show} onHide={handleClose} backdrop="static">
         <Modal.Header closeButton>
             <Modal.Title>Sign Up</Modal.Title>
@@ -22,7 +22,6 @@ export function SignUp() {
         </Modal.Body>
     </Modal>
          </Container>
-
      </>
     )
 }

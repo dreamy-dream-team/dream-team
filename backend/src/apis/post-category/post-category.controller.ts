@@ -53,10 +53,12 @@ export async function postPostCategoryController (request: Request, response: Re
         }
         const profile: Profile = request.session.profile as Profile
         const profileId: string = profile.profileId as string
+        console.log(postCategoryPostId)
         const post = await selectPostByPostId(postCategoryPostId)
         if (post?.postProfileId !== profileId) {
             return response.json({status:401, data: null, message: 'you are not allowed to perform this action'})
         }
+        console.log("postCategory")
         const result = await insertPostCategory(postCategory)
         const status : Status = {
             status: 200,

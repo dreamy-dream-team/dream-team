@@ -21,6 +21,7 @@
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
+    "react-multi-carousel": "^2.8.4",
     "react-redux": "^8.0.5",
     "react-responsive-carousel": "^3.2.23",
     "react-router-bootstrap": "^0.26.2",
