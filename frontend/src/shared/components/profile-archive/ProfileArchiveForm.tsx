@@ -1,18 +1,17 @@
 import {useGetAnonymousPostsQuery, useGetJournalPostsQuery, useGetPublicPostsQuery} from "../../../store/apis.ts";
-import TopNav from "../TopNav.tsx";
 import {Col, Container, Row} from "react-bootstrap";
 import {SideNav} from "../SideNav.tsx";
 import Categories from "../../../ui/Pages/profile/left.tsx";
 import {PostCard} from "../PostCard.tsx";
-import {useSelector} from "react-redux";
+/*import {useSelector} from "react-redux";*/
 
 
 export function ProfileArchiveForm() {
 
-    const auth = useSelector((state) => state.auth);
-    const postProfileId = auth?.profileId;
+    /*const auth = useSelector((state) => state.auth);
+    const postProfileId = auth?.profileId;*/
 
-    const {data: publicPosts, isError: publicError, isLoading: publicLoading} = useGetPublicPostsQuery(postProfileId);
+    const {data: publicPosts, isError: publicError, isLoading: publicLoading} = useGetPublicPostsQuery();
     const {data: journalPosts, isError: journalError, isLoading: journalLoading} = useGetJournalPostsQuery(postProfileId);
     const {data: anonymousPosts, isError: anonymousError, isLoading: anonymousLoading} = useGetAnonymousPostsQuery(postProfileId);
 
@@ -35,7 +34,7 @@ export function ProfileArchiveForm() {
 
     return (
         <>
-            <TopNav/>
+
             <Container fluid>
                 <Row style={{marginTop: '200px'}}>
                     <Col className="p-3" md={3} xs={12} style={{height: "100vh"}}>

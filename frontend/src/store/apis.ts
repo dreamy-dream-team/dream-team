@@ -128,17 +128,17 @@ export const apis = createApi({
                 }
             }
         }),
-        getPublicPosts: builder.query<Post[], void>({
+        getPublicPosts: builder.query<Post[], string>({
             query: (postProfileId) => `/postProfileId/${postProfileId}/postIsPublished/true/ `,
             // Check if endpoint is correct
             providesTags: ['Post']
         }),
-        getJournalPosts: builder.query<Post[], void>({
+        getJournalPosts: builder.query<Post[], string>({
             query: (postProfileId) => `/postProfileId/${postProfileId}/postIsPublished/false/ `,
             // Check if endpoint is correct
             providesTags: ['Post']
         }),
-        getAnonymousPosts: builder.query<Post[], void>({
+        getAnonymousPosts: builder.query<Post[], string>({
             query: (postProfileId) => `/postProfileId/${postProfileId}/postProfileHandleIsVisible/false/`,
             providesTags: ['Post']
         })
