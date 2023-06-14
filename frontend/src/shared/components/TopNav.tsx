@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {SignUpModal} from "./main-nav/sign-up/SignUpModal";
 import {SignInModal} from "./main-nav/sign-in/SignInModal";
 import {useState} from "react";
+import {SignOutComponent} from "./main-nav/SignOut";
 
 export const TopNav = () => {
     const {profile} = useJwtToken()
@@ -34,8 +35,12 @@ export const TopNav = () => {
                         <div className="dropdown-item">
                             <Link to={`/profile/${profile?.profileHandle}`} className="btn btn-outline-dark">
                                 <FontAwesomeIcon icon="user"/>&nbsp;&nbsp;My Profile
+                            </Link><br></br>
+                            <Link to={`/category-main`} className="btn btn-outline-dark">
+                                <FontAwesomeIcon icon="user"/>&nbsp;&nbsp;Category
                             </Link>
                         </div>
+                        <SignOutComponent/>
                     </NavDropdown>
                     </>
                     )}
