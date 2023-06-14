@@ -29,9 +29,9 @@ export function CategoryRow() {
         <>
             <div className={styles.wrapper}>
                 {categories.map((category:Category) => (
-                    <>
+
                     <CategoryCarousel key={category.categoryId} category={category} />
-                    </>
+
                 ) )}
             </div>
         </>

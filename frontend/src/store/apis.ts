@@ -1,9 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import {SignUpProfile, SignIn} from "../shared/interfaces/Profile";
 import {Category} from "../shared/interfaces/Category";
 import {PartialPost, Post} from "../shared/interfaces/Post";
 import {PartialVote, Vote} from "../shared/interfaces/Vote";
-import {Profile} from "../shared/interfaces/Profile";
+import {PartialProfile, Profile, SignIn} from "../shared/interfaces/Profile";
 
 export interface ServerResponse {
    status: number,
@@ -85,8 +84,8 @@ export const apis = createApi({
         },
         invalidatesTags: ['Post']
     }),
-        postSignIn: builder.mutation<ClientResponseForSignIn, SignIn>({//Added ForSignIn
-            query: (body: SignIn)=>{ //added arrow function
+        postSignIn: builder.mutation<ClientResponseForSignIn, SignIn> ({
+            query (body: SignIn) {
                 return {
                     url: '/sign-in',
                     method: 'POST',
@@ -114,13 +113,12 @@ export const apis = createApi({
                     type: 'alert alert-danger',
                     authorization
                 }
-            },
+            }
         }),
-        postSignUp: builder.mutation<ClientResponse, SignUpProfile>({
+        postSignUp: builder.mutation<ClientResponse, PartialProfile>({
             transformResponse: transformMutationResponses,
             transformErrorResponse: transformErrorResponses,
-
-            query: (body: SignUpProfile)=> {  //added arrow function
+            query (body: PartialProfile) {
                 return {
                     url: '/sign-up',
                     method: 'POST',
