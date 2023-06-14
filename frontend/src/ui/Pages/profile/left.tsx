@@ -1,6 +1,5 @@
 import Card from 'react-bootstrap/Card';
-import find from "../images/find.svg";
-
+import find from '../../images/find.svg'
 
 function Categories() {
     return (

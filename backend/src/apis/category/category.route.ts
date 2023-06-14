@@ -1,6 +1,11 @@
 import {Router} from "express";
 import {asyncValidatorController} from "../../utils/controllers/async-validator.controller";
-import {getAllCategoriesController, getCategoryByCategoryId, postCategoryController} from "./category.controller";
+import {
+    getAllCategoriesController,
+    getCategoriesByPostCategoryPostIdController,
+    getCategoryByCategoryId,
+    postCategoryController
+} from "./category.controller";
 import {check, checkSchema} from "express-validator";
 import {categoryValidator} from "./category.validator";
 
@@ -11,5 +16,8 @@ router.route('/')
 .post(asyncValidatorController(checkSchema(categoryValidator)), postCategoryController)
 
 router.route('/categoryId/:categoryId')
-    .get(asyncValidatorController([check('categoryId', "please provide valid category Id").isUUID()]),getCategoryByCategoryId)
+    .get(asyncValidatorController([check('categoryId', "please provide valid category Id").isUUID()]), getCategoryByCategoryId)
+
+router.route('/postCategoryPostId/:postCategoryPostId')
+    .get(asyncValidatorController([check('postCategoryPostId', "please provide valid post category Id").isUUID()]), getCategoriesByPostCategoryPostIdController)
 export default router

@@ -25,3 +25,7 @@ export async function selectCategoryByCategoryId (categoryId: string): Promise<C
 export async function selectAllCategories (): Promise<Category[]> {
     return sql <Category[]> `SELECT category_id, category_name FROM category`
 }
+
+export async function selectCategoriesByPostCategoryPostId (postCategoryPostId: string): Promise<Category[]> {
+     return sql<Category[]>`SELECT category_id, category_name FROM category INNER JOIN post_category ON category.category_id = post_category.post_category_category_id WHERE post_category_post_id = ${postCategoryPostId}`
+}

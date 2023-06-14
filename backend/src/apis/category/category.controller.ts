@@ -1,6 +1,6 @@
 import {
     Category, insertCategory,
-    selectAllCategories,
+    selectAllCategories, selectCategoriesByPostCategoryPostId,
     selectCategoryByCategoryId
 } from "../../utils/models/Category";
 import {Status} from "../../utils/interfaces/Status";
@@ -16,10 +16,19 @@ export async function getCategoryByCategoryId (request: Request, response: Respo
     }
 }
 
-
 export async function getAllCategoriesController (request: Request, response: Response): Promise<Response<Status>> {
     try {
         const data = await selectAllCategories()
+        return response.json({status: 200, data, message: null})
+    } catch (error: any) {
+        return response.json({status: 400, data: null, message: error.message})
+    }
+}
+
+export async function getCategoriesByPostCategoryPostIdController (request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const { postCategoryPostId } = request.params
+        const data = await selectCategoriesByPostCategoryPostId(postCategoryPostId)
         return response.json({status: 200, data, message: null})
     } catch (error: any) {
         return response.json({status: 400, data: null, message: error.message})

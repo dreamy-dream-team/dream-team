@@ -12,8 +12,8 @@ export interface Post {
 }
 
 export async function insertPost (post: Post): Promise<string> {
-    const {postProfileId, postContent, postDateTime, postProfileHandleIsVisible, postIsPublished, postTitle} = post
-    await sql `INSERT INTO post (post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_is_published, post_title) VALUES (gen_random_uuid(), ${postProfileId}, ${postContent}, NOW(), ${postProfileHandleIsVisible}, ${postIsPublished}, ${postTitle})`
+    const {postId, postProfileId, postContent, postDateTime, postProfileHandleIsVisible, postIsPublished, postTitle} = post
+    await sql `INSERT INTO post (post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_is_published, post_title) VALUES (${postId}, ${postProfileId}, ${postContent}, NOW(), ${postProfileHandleIsVisible}, ${postIsPublished}, ${postTitle})`
     return 'post created successfully'
 }
 
@@ -23,6 +23,11 @@ export async function selectAllPosts (): Promise<Post[]> {
 
 export async function selectAllPostsByVote (): Promise<Post[]> {
     return sql <Post[]> `SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM vote INNER JOIN vote_value ON post.postId = vote.votePostId WHERE (SELECT COUNT(vote_value) FROM vote WHERE vote_value ORDER BY COUNT(vote_value) DESC)`
+}
+
+export async function selectAllPostsByPostCategory (postCategoryCategoryId: string): Promise<Post[]> {
+
+    return sql <Post[]> `SELECT post_id, post_profile_id, post_content, post_date_time, post_profile_handle_is_visible, post_title FROM post INNER JOIN post_category ON post.post_id = post_category.post_category_post_id WHERE post_category_category_id = ${postCategoryCategoryId}`
 }
 
 export async function selectPostByPostId (postId: string): Promise<Post|null> {
@@ -50,7 +55,7 @@ export async function selectPostsByPostProfileHandleIsVisible (postProfileId: st
     return sql<Post[]>`SELECT post_id, post_profile_id, post_content, post_date_time, post_is_published, post_profile_handle_is_visible, post_title FROM post WHERE post_profile_handle_is_visible = true AND post_profile_id = ${postProfileId} AND post_is_published = true`
 }
 
-export async function selectAllPostsByPostIsPublished (postIsPublished: boolean): Promise<Post[]> {
-    return sql <Post[]>`SELECT post_id, post_profile_id, post_content, post_date_time, post_is_published, post_profile_handle_is_visible, post_title FROM post WHERE post_is_published = ${postIsPublished}`
+export async function selectAllPostsByPostIsPublished (): Promise<Post[]> {
+    return sql <Post[]>`SELECT post_id, post_profile_id, post_content, post_date_time, post_is_published, post_profile_handle_is_visible, post_title FROM post WHERE post_is_published = true`
 }
 
