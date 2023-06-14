@@ -13,6 +13,7 @@ import {
 } from "../../utils/models/Post";
 import {NextFunction, Request, response, Response} from "express";
 import {Profile} from "../../utils/models/Profile";
+import {v4 as uuid} from "uuid"
 
 export async function getAllPostsController (request: Request, response: Response): Promise<Response<Status>> {
     try {
@@ -125,12 +126,13 @@ export async function postPost (request: Request, response: Response): Promise<R
             postIsPublished,
             postProfileHandleIsVisible
         }
+        post.postId = uuid()
 
         const result = await insertPost(post)
         const status: Status = {
             status: 200,
             message: result,
-            data: null
+            data: {postId: post.postId}
         }
         return response.json(status)
     } catch (error) {

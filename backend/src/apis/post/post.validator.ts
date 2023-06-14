@@ -18,10 +18,6 @@ postContent: {
     escape: true
 },
 
-postDateTime: {
-    toDate: true
-},
-
 postProfileHandleIsVisible: {
     isBoolean: true,
 },

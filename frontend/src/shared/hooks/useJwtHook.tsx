@@ -1,27 +1,22 @@
-import {PartialProfile} from "../interfaces/Profile.tsx";
-import React from "react";
 import {RootState, useAppDispatch, useAppSelector} from "../../store/store.ts";
 import {fetchAuth} from "../../store/auth.ts";
+import {Profile} from "../interfaces/Profile.tsx";
+import React from "react";
 
-/**
- * A custom hook to handle grabbing pertinent information from the jwt token stored in redux
- *
- * @returns {{Profile | null, isLoading: boolean}} an object containing the auth object from the JWT token stored in redux | null if the user is not logged in, and a helper flag to help with react rendering and redirects
- */
+export function useJwtToken (): { profile: Profile | null, isLoading: boolean } {
 
-export function useJwtToken (): { profile: PartialProfile | null, isLoading: boolean } {
-    
     const [isLoading, setIsLoading]: [boolean, React.Dispatch<boolean>] = React.useState(true)
     const auth = useAppSelector((state: RootState) => {
 
         return state.auth
     })
-
-    const profile: PartialProfile | null = auth
+ console.log(auth)
+    const profile: Profile | null = auth
         ? {
             profileId: auth.profileId,
             profileEmail: auth.profileEmail,
             profileHandle: auth.profileHandle,
+            profileCreationDate: auth.profileCreationDate
         }
         : null
 
@@ -29,12 +24,15 @@ export function useJwtToken (): { profile: PartialProfile | null, isLoading: boo
 
     const initialEffects = () => {
         async function getAuthFromRedux () {
-            await dispatch (fetchAuth())
+            await dispatch(fetchAuth())
             setIsLoading(false)
+
         }
+
         getAuthFromRedux().catch(onerror => {console.error(onerror)})
     }
 
     React.useEffect(initialEffects, [dispatch])
-    return {profile, isLoading}
+    return { profile, isLoading }
+
 }
