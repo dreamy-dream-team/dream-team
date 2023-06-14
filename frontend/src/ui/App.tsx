@@ -36,7 +36,7 @@ export function App(props: Props)  {
                     <Route path='/' element={<Home />} />
                     <Route path={"*"} element={<FourOhFour />} />
                     <Route path={'/settings'} element={<Settings />} />
-                    <Route path='/profile' element={<Profile />} />
+                    <Route path='/profile/:profileId' element={<Profile />} />
                 </Routes>
             </BrowserRouter>
             </Provider>

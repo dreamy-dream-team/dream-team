@@ -4,15 +4,18 @@ import anon from "../../images/anon.svg"
 import journal from "../../images/journal.svg"
 import settings from "../../images/settings.svg";
 import pri from "../../images/private.svg"
+import {useJwtToken} from "../../../shared/hooks/useJwtHook.tsx";
 
 
 
 function Links() {
+    const {profile} = useJwtToken()
     return (
         <Card style={{ width: '18rem' }}>
             <Card.Body className="bg-info">
-                <Card.Title>Username</Card.Title>
-
+                {profile !== null && (
+                <Card.Title>{profile.profileHandle}</Card.Title>
+                )}
                 {/*Settings*/}
                 <ul>
                     <img
