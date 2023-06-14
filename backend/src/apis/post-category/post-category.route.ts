@@ -29,8 +29,8 @@ router.route('/')
 .post(
     isLoggedIn,
     asyncValidatorController([
-    check('postCategoryId', 'please provide a valid postCategoryId').isUUID(),
-    check('postPostId', 'please provide a valid postPostId').isUUID()
+    check('postCategoryCategoryId', 'please provide a valid postCategoryId').isUUID(),
+    check('postCategoryPostId', 'please provide a valid postPostId').isUUID()
 ]),postPostCategoryController)
 
 
