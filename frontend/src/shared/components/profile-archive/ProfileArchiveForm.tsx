@@ -1,5 +1,5 @@
 import {useGetAnonymousPostsQuery, useGetJournalPostsQuery, useGetPublicPostsQuery} from "../../../store/apis.ts";
-import TopNav from "../TopNav.tsx";
+import {TopNav} from "../TopNav.tsx";
 import {Col, Container, Row} from "react-bootstrap";
 import {SideNav} from "../SideNav.tsx";
 import Categories from "../../../ui/Pages/profile/left.tsx";
