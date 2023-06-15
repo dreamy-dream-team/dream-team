@@ -160,7 +160,7 @@ function SignUpFormContent(props: FormikProps<SignUpProfile>) {
                         </Form>
                 <DisplayStatus status={status}/>
                {/* helpful during development to understand how the form's data and states are changing as a user interacts with it.*/}
-                <FormDebugger {...props}/>
+                {/*<FormDebugger {...props}/>*/}
             </Container>
 
         </>

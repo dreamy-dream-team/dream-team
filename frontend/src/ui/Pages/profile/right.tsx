@@ -5,6 +5,8 @@ import journal from "../../images/journal.svg"
 import settings from "../../images/settings.svg";
 import pri from "../../images/private.svg"
 import {useJwtToken} from "../../../shared/hooks/useJwtHook.tsx";
+import React from "react";
+import {Link} from "react-router-dom";
 
 
 
@@ -25,7 +27,7 @@ function Links() {
                         height="50"
                         className="d-inline-block align-top"
                     />{' '}
-                    <Card.Link href="#">Settings</Card.Link>
+                    <Link to={`/ProfileArchive`}>Profile Archive</Link>
                 </ul>
 
                 {/*Public*/}

@@ -109,7 +109,7 @@ function PostFormContent(props: FormikProps<PartialPost>) {
         <Form onSubmit={handleSubmit} className={"border rounded-2 shadow-lg mx-auto"}>
             <div className={styles.postForm}>
                 <div className={"border rounded-1 "}>
-                    <FloatingLabel className={styles.floating}
+                    <FloatingLabel className=  {styles.floating}
                         controlId="postTitle"
                         label="Title"
                         className="mb-1 mx-auto"

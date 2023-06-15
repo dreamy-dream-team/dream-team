@@ -4,11 +4,11 @@ import jwtDecode from "jwt-decode";
 import {Button, Col, Container, Form, FormControl, InputGroup, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {DisplayError} from "../../display-error/DisplayError.tsx";
-import {DisplayStatus} from "../../display-status/Display.Status.tsx";
+
 import { ClientResponseForSignIn, usePostSignInMutation } from '../../../../store/apis.ts'
 import { SignIn} from '../../../interfaces/Profile.tsx'
 import { getAuth, JwtToken } from '../../../../store/auth.ts'
-import {FormDebugger} from "../../FormDebugger.tsx";
+
 import {AppDispatch, useAppDispatch} from "../../../../store/store.ts";
 import {useNavigate} from "react-router-dom";
 import Logo from "../../../../images/Dreamery-Logo.svg"
@@ -79,7 +79,7 @@ export const SignInForm = () => {
 
 function SignInFormContent(props: FormikProps<SignIn>) {
     const {
-        status,
+
         values,
         errors,
         touched,
@@ -96,7 +96,7 @@ function SignInFormContent(props: FormikProps<SignIn>) {
         <>
             <Container className="d-flex flex-column align-items-center bg-body-secondary justify-content-center vh-75">
                 <h1 className="text-center mt-4 mb-0 ">Dreamery World</h1>
-                <img src={Logo} className="logo-svg bg-body-secondary mt-0" alt="logo"style={{width: '150px', height: 'auto'}} />
+                <img src={Logo} className="logo-svg bg-body-secondary mt-0" alt="logo" style={{width: '150px', height: 'auto'}} />
 
                 <Row className={"w-100 h-auto justify-content-center"}>
 
@@ -154,11 +154,6 @@ function SignInFormContent(props: FormikProps<SignIn>) {
 
             </Container>
 
-            <div className="pt-3">
-                <DisplayStatus status={status} />
-                {/*helpful during development to understand how the form's data and states are changing as a user interacts with it.*/}
-                <FormDebugger {...props}/>
-            </div>
         </>
     )
 }
