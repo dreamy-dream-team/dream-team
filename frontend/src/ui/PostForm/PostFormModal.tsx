@@ -4,6 +4,7 @@ import {PostForm} from "./PostForm";
 import {useWindowSize} from "usehooks-ts";
 
 
+//Conditional rendering function to create responsive modal button. Imports PostForm and is exported on the pages. PostForm is only imported here.
 export function PostFormModal() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
