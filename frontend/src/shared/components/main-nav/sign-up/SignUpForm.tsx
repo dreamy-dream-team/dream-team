@@ -6,8 +6,7 @@ import {Button, Container, Form, FormControl} from "react-bootstrap";
 import {useState} from "react";
 import {DisplayError} from "../../display-error/DisplayError.tsx";
 import {DisplayStatus} from "../../display-status/Display.Status.tsx";
-import {FormDebugger} from "../../FormDebugger.tsx";
-import Logo from "../../../../images/Dreamery-Logo.svg";
+// import Logo from "../../../../images/Dreamery-Logo.svg";
 
 // This component handles the SignUp form
 export function SignUpForm() {
@@ -91,7 +90,7 @@ function SignUpFormContent(props: FormikProps<SignUpProfile>) {
         <>
             <Container className="text-center">
                 {/*<h1 className="my-0"> Dreamery World</h1>*/}
-                <img src={Logo} className="logo-svg  mt-0" alt="logo"style={{width: '150px', height: 'auto'}} />
+                {/*<img src={Logo} className="logo-svg  mt-0" alt="logo"style={{width: '150px', height: 'auto'}} />*/}
 
                         <Form onSubmit={handleSubmit}>
 

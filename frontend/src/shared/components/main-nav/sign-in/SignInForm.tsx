@@ -11,7 +11,7 @@ import { getAuth, JwtToken } from '../../../../store/auth.ts'
 
 import {AppDispatch, useAppDispatch} from "../../../../store/store.ts";
 import {useNavigate} from "react-router-dom";
-import Logo from "../../../../images/Dreamery-Logo.svg"
+// import Logo from "../../../../images/Dreamery-Logo.svg"
 
 
 //function component handles the SignIn form
@@ -96,7 +96,7 @@ function SignInFormContent(props: FormikProps<SignIn>) {
         <>
             <Container className="d-flex flex-column align-items-center bg-body-secondary justify-content-center vh-75">
                 <h1 className="text-center mt-4 mb-0 ">Dreamery World</h1>
-                <img src={Logo} className="logo-svg bg-body-secondary mt-0" alt="logo" style={{width: '150px', height: 'auto'}} />
+                {/*<img src={Logo} className="logo-svg bg-body-secondary mt-0" alt="logo" style={{width: '150px', height: 'auto'}} />*/}
 
                 <Row className={"w-100 h-auto justify-content-center"}>
 
