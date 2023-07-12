@@ -11,20 +11,20 @@ services:
       test: [ "CMD", "redis-cli", "ping"]
   sql:
     build: ./sql
-    ports:
+    ports:                                                 
       - '54321:5432'
     platform: linux/x86_64
     volumes:
       - sql:/var/lib/postgresql/data/
     env_file:
       - ./project.env
-  app:
-    build: frontend
-    depends_on:
-      - node
-    #    For deploying to server use ports: - 80:80
-    ports:
-      - 80:80
+#  app:
+#    build: frontend
+#    depends_on:
+#      - node
+#    #    For deploying to server use ports: - 80:80
+#    ports:
+#      - 80:80
   node:
     build: backend
     env_file:
