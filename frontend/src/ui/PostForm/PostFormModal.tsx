@@ -2,7 +2,7 @@ import { Button,Modal,} from "react-bootstrap";
 import { useState } from "react";
 import {PostForm} from "./PostForm";
 import {useWindowSize} from "usehooks-ts";
-
+import styles from "./PostFormModal.module.css"
 
 //Conditional rendering function to create responsive modal button. Imports PostForm and is exported on the pages. PostForm is only imported here.
 export function PostFormModal() {
