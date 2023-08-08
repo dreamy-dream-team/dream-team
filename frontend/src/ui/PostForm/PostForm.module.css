@@ -46,6 +46,9 @@ fieldset {
     --bs-btn-bg: #A980E8;
 }
 
-.modal {
-    position: absolute;
+.centered-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Adjust this if needed */
 }

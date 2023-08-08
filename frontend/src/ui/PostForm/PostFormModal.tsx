@@ -14,12 +14,14 @@ export function PostFormModal() {
     const mobileViewModal = (
         <div>
             {
-                <Modal show={show} onHide={handleClose}>
+                <Modal show={show} onHide={handleClose} backdrop={"static"}>
                 <Modal.Header closeButton>
                     <Modal.Title>Tell us your dream...</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-               <PostForm />
+                    <div className="centered-form">
+                        <PostForm />
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
