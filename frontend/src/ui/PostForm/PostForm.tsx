@@ -120,7 +120,7 @@ function PostFormContent(props: FormikProps<PartialPost>) {
                                       value={values.postTitle}
                                       name={"postTitle"}
                                       placeholder="Title"
-                                      style={{ height: '50px', width: '500px'}}/>
+                                      style={{ height: '50px', width: '50%'}}/>
                     </FloatingLabel>
                     <DisplayError errors={errors} touched={touched} field={"postTitle"}/>
 
@@ -133,7 +133,7 @@ function PostFormContent(props: FormikProps<PartialPost>) {
                             value={values.postContent}
                             as="textarea"
                             placeholder="Tell us your dream..."
-                            style={{ height: '175px', width: '500px'}}
+                            style={{ height: '175px', width: '50%'}}
                         />
                     </FloatingLabel>
                     <DisplayError errors={errors} touched={touched} field={"postContent"}/>
