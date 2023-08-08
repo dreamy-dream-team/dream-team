@@ -46,4 +46,6 @@ fieldset {
     --bs-btn-bg: #A980E8;
 }
 
-
+.modal {
+    position: absolute;
+}
