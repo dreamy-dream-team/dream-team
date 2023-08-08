@@ -11,8 +11,9 @@ export function PostFormModal() {
     const handleShow = () => setShow(true);
     const {width} = useWindowSize()
     const isDesktopView = width >= 768;
+    let form;
     const mobileViewModal = (
-        <div>
+        <div className={styles.centered}>
             {
                 <Modal show={show} onHide={handleClose} backdrop={"static"}>
                 <Modal.Header closeButton>

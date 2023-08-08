@@ -10,13 +10,15 @@
 .postFormWrapper {
     max-width: 50%;
     display: flex;
-    margin: auto;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .postForm {
     background-color: #DEE5E5;
     padding: 2em;
-    transform-origin: center;
+    /*transform-origin: center;*/
 }
 
 
