@@ -12,7 +12,7 @@ import styles from "./main-nav/nav.module.css"
 
 export const TopNav = () => {
     const {profile} = useJwtToken()
-    const [show, setShow] = useState(false)
+    const [show, setShow]= useState(false)
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
 
@@ -27,9 +27,8 @@ export const TopNav = () => {
     return(
         <Navbar className={styles.navbar} variant="dark">
             <Container>
-                <img alt="logo" src={logo} className={styles.nav_logo}/>
                 <Link className={"nav-link"} to="/">
-                    <Navbar.Brand>Dreamery</Navbar.Brand>
+                    <img alt="logo" src={logo} className={styles.nav_logo}/>
                 </Link>
                 <Nav className="mr-auto">
                     {profile !== null && (
@@ -53,9 +52,11 @@ export const TopNav = () => {
                     {isModalOpen() && (
                         <>
                         <SignUpModal/>
-                        <SignInModal show={show}
+                        <SignInModal
+                        show={show}
+                        handleShow={handleShow}
                         handleClose={handleClose}
-                        handleShow={handleShow}/>
+                        />
                         </>
                         )}
                 </Nav>

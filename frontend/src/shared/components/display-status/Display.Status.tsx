@@ -10,7 +10,6 @@ interface DisplayStatusProps {
 
 export function DisplayStatus(props: DisplayStatusProps): JSX.Element {
     const {status} = props
-    console.log(status)
     if(status) {
         return (
             <>

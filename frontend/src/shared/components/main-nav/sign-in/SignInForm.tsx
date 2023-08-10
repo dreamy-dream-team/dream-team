@@ -10,7 +10,7 @@ import { SignIn} from '../../../interfaces/Profile.tsx'
 import { getAuth, JwtToken } from '../../../../store/auth.ts'
 
 import {AppDispatch, useAppDispatch} from "../../../../store/store.ts";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 // import Logo from "../../../../images/Dreamery-Logo.svg"
 
 
@@ -56,6 +56,7 @@ export const SignInForm = () => {
             dispatch(getAuth(decodedToken))
             resetForm()
             setStatus({type: response.type, message: response.message})
+            setShowModal(false);
             navigate('/')
         } else {
             setStatus({type: response?.type, message: response?.message})
@@ -79,7 +80,6 @@ export const SignInForm = () => {
 
 function SignInFormContent(props: FormikProps<SignIn>) {
     const {
-
         values,
         errors,
         touched,
@@ -137,7 +137,11 @@ function SignInFormContent(props: FormikProps<SignIn>) {
                             </Form.Group>
 
                             <Form.Group className={"mt-3"}>
-                                <Button variant="primary" type="submit" className="w-100 align-content-center mb-2">
+                                <Button
+                                    variant="primary"
+                                    type="submit"
+                                    className="w-100 align-content-center mb-2"
+                                >
                                     Submit
                                 </Button>
                                 {" "}
