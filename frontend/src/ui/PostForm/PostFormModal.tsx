@@ -20,7 +20,7 @@ export function PostFormModal() {
                     <Modal.Title>Tell us your dream...</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div className="centered-form">
+                    <div className="centered-form">   {/*keeps postform centered in the modal*/}
                         <PostForm />
                     </div>
                 </Modal.Body>
