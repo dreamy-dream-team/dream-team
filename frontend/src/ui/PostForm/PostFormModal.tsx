@@ -28,9 +28,6 @@ export function PostFormModal() {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Post
-                    </Button>
                 </Modal.Footer>
             </Modal>}
         </div>
