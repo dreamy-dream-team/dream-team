@@ -162,7 +162,7 @@ function PostFormContent(props: FormikProps<PartialPost>) {
 
                     <DisplayError errors={errors} touched={touched} field={"postCategory"}/>
 
-                        {/*//TODO create an error with formik if they don't choose a category*/}
+                        {/*//TODO create an error that shows up if they don't choose a category*/}
                         {/*DisplayError*/}
                     </div>
 
