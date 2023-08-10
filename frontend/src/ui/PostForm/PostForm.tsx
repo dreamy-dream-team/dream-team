@@ -20,7 +20,7 @@ import {useJwtToken} from "../../shared/hooks/useJwtHook";
 import styles from "./PostForm.module.css"
 
 
-
+// This is the post-form to create a dream on the homepage, profile, and category pages. This is also what is being pulled into PostFormModal.//
 
 
 export function PostForm() {
@@ -38,10 +38,10 @@ export function PostForm() {
     const initialValues: any = {
         postProfileId: "",
         postContent: "",
-        postProfileHandleIsVisible: true,
-        postIsPublished: true,
+        postProfileHandleIsVisible: true, //this is for the anonymous posting. if selected, changes to false.
+        postIsPublished: true, //this is for the private post for the journal. If selected, changes to false.
         postTitle: "",
-        postCategoryCategoryIds:[]
+        postCategoryCategoryIds:[] //array is used here because the categories are being called from database as a map function.
 
     }
 
@@ -58,7 +58,7 @@ export function PostForm() {
         // console.log(values.postCategoryCategoryIds)
         for (let categoryId of values.postCategoryCategoryIds) {
             await submitPostCategory({postCategoryCategoryId: categoryId, postCategoryPostId: result.data.data.postId})
-        }
+        } //not entirely sure why this isn't working. this is for the toggles on the post form to select for anonymous and private posting.
 
 
         const {data: response, error} = result
@@ -135,6 +135,8 @@ function PostFormContent(props: FormikProps<PartialPost>) {
                             placeholder="Tell us your dream..."
                             style={{ height: '50%', width: '100%'}}
                         />
+                   {/*DON'T MESS WITH THE HEIGHT AND WIDTH. BREAKS THE MODAL*/}
+
                     </FloatingLabel>
                     <DisplayError errors={errors} touched={touched} field={"postContent"}/>
 
@@ -160,7 +162,7 @@ function PostFormContent(props: FormikProps<PartialPost>) {
 
                     <DisplayError errors={errors} touched={touched} field={"postCategory"}/>
 
-                        {/*//TODO ask about this error if they don't choose a category*/}
+                        {/*//TODO create an error with formik if they don't choose a category*/}
                         {/*DisplayError*/}
                     </div>
 
